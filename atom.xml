@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-08-03T16:50:56.000Z</updated>
+  <updated>2018-08-03T17:30:11.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Disqus API科学评论大法</title>
+    <link href="https://reb.mallotec.com/posts/d32fb564.html"/>
+    <id>https://reb.mallotec.com/posts/d32fb564.html</id>
+    <published>2018-08-03T17:51:48.000Z</published>
+    <updated>2018-08-03T17:30:11.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Disqus 由于在国内被屏蔽了，不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API 反代加速访问的用法，于是去找了相关资料，原本想自己造轮子，后来发现已经有现成的，我就先拿来用着吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="https://reb.mallotec.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
+    
+      <category term="Disqus" scheme="https://reb.mallotec.com/tags/Disqus/"/>
+    
+  </entry>
   
   <entry>
     <title>测试专页</title>
