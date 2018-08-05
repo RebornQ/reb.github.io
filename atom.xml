@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-08-03T18:31:42.000Z</updated>
+  <updated>2018-08-05T09:52:18.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="https://reb.mallotec.com/posts/d32fb564.html"/>
     <id>https://reb.mallotec.com/posts/d32fb564.html</id>
     <published>2018-08-03T17:51:48.000Z</published>
-    <updated>2018-08-03T18:31:42.000Z</updated>
+    <updated>2018-08-05T09:52:18.000Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Disqus 由于在国内被屏蔽了，不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API 反代加速访问的用法，于是去找了相关资料，原本想自己造轮子，后来发现已经有现成的，我就先拿来用着吧。&lt;/p&gt;
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Disqus 不用说，大家都知道他的主域名&lt;code&gt;disqus.com&lt;/code&gt;在国内被屏蔽了，导致在国内不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API 反代加速访问的用法，于是去找了相关资料，原本想自己造轮子，后来发现已经有现成的，我就先拿来用着吧。&lt;/p&gt;
     
     </summary>
     
@@ -43,7 +43,7 @@
     <link href="https://reb.mallotec.com/posts/b84ba97.html"/>
     <id>https://reb.mallotec.com/posts/b84ba97.html</id>
     <published>2018-08-03T17:49:51.000Z</published>
-    <updated>2018-08-03T16:50:56.000Z</updated>
+    <updated>2018-08-05T09:43:59.000Z</updated>
     
     <summary type="html">
     
@@ -59,9 +59,17 @@
     <link href="https://reb.mallotec.com/posts/2cb4e595.html"/>
     <id>https://reb.mallotec.com/posts/2cb4e595.html</id>
     <published>2018-08-03T17:48:59.000Z</published>
-    <updated>2018-08-03T18:32:06.000Z</updated>
+    <updated>2018-08-05T11:43:36.000Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;国内的评论系统畅言都需要ICP备案，像我这种打死不备案的人来说，国内的评论系统就用不了了。最终决定博客使用的是国外的
+        
+      
     
     </summary>
     
