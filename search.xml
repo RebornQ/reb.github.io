@@ -15,7 +15,7 @@
   <entry>
     <title><![CDATA[测试专页]]></title>
     <url>%2Fposts%2Fb84ba97.html</url>
-    <content type="text"><![CDATA[此页面无实质内容，用于博客添加新功能时测试使用！博客开发日志：2018-08-04 使用七牛云作为博客图床2018-08-03 Disqus 评论添加国内使用 Disqus API 方式 –修改Md主题源码2018-07-27 使用 Disqus 延迟加载 –修改Md主题源码2018-07-26 添加 Disqus 评论2018-07-23 文章结尾添加版权声明 –修改Md主题源码2018-07-22 修复插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 –修改Md主题源码2018-07-21 主题由 Next 切换为 Material2018-07-21 博客启用https2018-07-15 开始搭建 Hexo 博客]]></content>
+    <content type="text"><![CDATA[此页面无实质内容，用于博客添加新功能时测试使用！博客开发日志：2018-08-04 使用七牛云作为博客图床(广告插件会拦截七牛云资源导致报错Failed to load resource: net::ERR_BLOCKED_BY_CLIENT，而且默认http会导致浏览器提示网络不安全)2018-08-03 Disqus 评论添加国内使用 Disqus API 方式 –修改Md主题源码2018-07-27 使用 Disqus 延迟加载 –修改Md主题源码2018-07-26 添加 Disqus 评论2018-07-23 文章结尾添加版权声明 –修改Md主题源码2018-07-22 修复插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 –修改Md主题源码2018-07-21 主题由 Next 切换为 Material2018-07-21 博客启用https2018-07-15 开始搭建 Hexo 博客]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hexo添加Disqus评论]]></title>
@@ -105,8 +105,8 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>hexo</tag>
+        <tag>教程</tag>
         <tag>个人经验</tag>
       </tags>
   </entry>
