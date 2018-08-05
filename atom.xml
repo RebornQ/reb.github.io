@@ -59,17 +59,11 @@
     <link href="https://reb.mallotec.com/posts/2cb4e595.html"/>
     <id>https://reb.mallotec.com/posts/2cb4e595.html</id>
     <published>2018-08-03T17:48:59.000Z</published>
-    <updated>2018-08-05T12:18:02.000Z</updated>
+    <updated>2018-08-05T15:07:07.000Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;国内的评论系统畅言都需要ICP备案，像我这种打死不备案的人来说，国内的评论系统就用不了了。最终决定博客使用的是国外的
-        
-      
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;国内的评论系统畅言都需要ICP备案，像我这种打死不备案的人来说，国内的评论系统就用不了了。最终决定博客使用的是国外的 &lt;strong&gt;Disqus&lt;/strong&gt; 评论系统，但他的主域名&lt;code&gt;disqus.com&lt;/code&gt;在国内被屏蔽了，只能科学上网后使用。&lt;/p&gt;&lt;p&gt;果然有空还是自己造轮子爽一点，逃～&lt;br&gt;
     
     </summary>
     
