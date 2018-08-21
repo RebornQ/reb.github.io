@@ -1,4 +1,5 @@
 function SetCwinHeight(id) {
+	document.domain='reb.mallotec.com'
     var iframeid = document.getElementById(id); //iframe id
     if (document.getElementById) {
         if (iframeid && !window.opera) {
