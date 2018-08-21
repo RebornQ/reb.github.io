@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-08-21T15:20:46.000Z</updated>
+  <updated>2018-08-21T17:02:09.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -17,11 +17,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Nginx域名转发（反向代理）</title>
+    <link href="https://reb.mallotec.com/posts/357640ff.html"/>
+    <id>https://reb.mallotec.com/posts/357640ff.html</id>
+    <published>2018-08-23T00:47:45.000Z</published>
+    <updated>2018-08-21T17:02:09.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;参考：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/linxiong945/p/4182928.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;【Nginx】关于域名转发proxy_pass&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://doub.io/wlzy-3/&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;在开发过程中，有时候我们会有一个这样的需求：访问&lt;code&gt;m.XXX.com&lt;/code&gt;的时候，需要实际访问&lt;code&gt;www.YYY.com/m&lt;/code&gt;，并且域名不能发生变化（这种也可称为镜像？）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="运维日志" scheme="https://reb.mallotec.com/categories/log-server/"/>
+    
+    
+      <category term="Nginx" scheme="https://reb.mallotec.com/tags/Nginx/"/>
+    
+      <category term="服务器" scheme="https://reb.mallotec.com/tags/server/"/>
+    
+      <category term="运维" scheme="https://reb.mallotec.com/tags/operation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决iframe跨域高度自适应问题</title>
+    <link href="https://reb.mallotec.com/posts/a29672a0.html"/>
+    <id>https://reb.mallotec.com/posts/a29672a0.html</id>
+    <published>2018-08-21T23:21:40.000Z</published>
+    <updated>2018-08-21T17:14:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;我在前面写博文的时候，有遇到一次需要嵌套别人的网页来做预览，我想到了用iframe标签，结果发现根本没法自适应高度？？！！什么玩意，强迫症的我又走上了填坑之路。对，你没看错，又。。。。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Web前端" scheme="https://reb.mallotec.com/categories/frontend/"/>
+    
+    
+      <category term="Web前端" scheme="https://reb.mallotec.com/tags/frontend/"/>
+    
+      <category term="iframe" scheme="https://reb.mallotec.com/tags/iframe/"/>
+    
+  </entry>
+  
+  <entry>
     <title>推荐几个能自动转换粘贴内容为Markdown的工具</title>
     <link href="https://reb.mallotec.com/posts/48ffa897.html"/>
     <id>https://reb.mallotec.com/posts/48ffa897.html</id>
     <published>2018-08-21T01:45:09.000Z</published>
-    <updated>2018-08-21T15:20:46.000Z</updated>
+    <updated>2018-08-21T16:58:00.000Z</updated>
     
     <summary type="html">
     
@@ -223,7 +269,7 @@
     <link href="https://reb.mallotec.com/posts/41e1ea07.html"/>
     <id>https://reb.mallotec.com/posts/41e1ea07.html</id>
     <published>2018-07-21T16:12:02.000Z</published>
-    <updated>2018-08-05T12:18:57.000Z</updated>
+    <updated>2018-08-21T16:51:33.000Z</updated>
     
     <summary type="html">
     
@@ -234,9 +280,11 @@
       <category term="运维日志" scheme="https://reb.mallotec.com/categories/log-server/"/>
     
     
-      <category term="运维" scheme="https://reb.mallotec.com/tags/operation/"/>
+      <category term="Nginx" scheme="https://reb.mallotec.com/tags/Nginx/"/>
     
       <category term="服务器" scheme="https://reb.mallotec.com/tags/server/"/>
+    
+      <category term="运维" scheme="https://reb.mallotec.com/tags/operation/"/>
     
       <category term="Linux" scheme="https://reb.mallotec.com/tags/Linux/"/>
     
