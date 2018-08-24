@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-08-21T17:02:09.000Z</updated>
+  <updated>2018-08-24T07:54:15.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>暴力查询四六级准考证号——真的很暴力</title>
+    <link href="https://reb.mallotec.com/posts/90d0bd8.html"/>
+    <id>https://reb.mallotec.com/posts/90d0bd8.html</id>
+    <published>2018-08-23T18:45:55.000Z</published>
+    <updated>2018-08-24T07:54:15.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;参考：&lt;a href=&quot;http://www.freebuf.com/articles/database/145261.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;http://www.freebuf.com/articles/database/145261.html&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;昨天有个朋友说准考证没带回来，问我能不能帮她查下准考证号，我突然想起了今年2月份穷举的四级准考证，于是就翻出来试试。&lt;/p&gt;&lt;p&gt;当时我对源码进行了一些修改，不过一年前我还没搭建博客，如今也算有个机会对当时的学习做个记录和总结。&lt;/p&gt;&lt;p&gt;昨天我也继续对源码进行了一番改进，改的都非常简单，&lt;strong&gt;认真阅读&lt;/strong&gt;了原作者那部分修改前的&lt;strong&gt;源码&lt;/strong&gt;就肯定能看懂。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="https://reb.mallotec.com/categories/python/"/>
+    
+    
+      <category term="实用" scheme="https://reb.mallotec.com/tags/useful/"/>
+    
+      <category term="CET" scheme="https://reb.mallotec.com/tags/CET/"/>
+    
+      <category term="python" scheme="https://reb.mallotec.com/tags/python/"/>
+    
+      <category term="学习" scheme="https://reb.mallotec.com/tags/learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx域名转发（反向代理）</title>
@@ -225,11 +251,11 @@
     <link href="https://reb.mallotec.com/posts/bfc4a775.html"/>
     <id>https://reb.mallotec.com/posts/bfc4a775.html</id>
     <published>2018-07-23T23:49:33.000Z</published>
-    <updated>2018-08-05T15:04:49.000Z</updated>
+    <updated>2018-08-23T19:07:30.000Z</updated>
     
     <summary type="html">
     
-      Welcome to my blog, enter password to read.
+      输入密码以访问文章
     
     </summary>
     
@@ -308,9 +334,9 @@
       <category term="hexo" scheme="https://reb.mallotec.com/categories/hexo/"/>
     
     
-      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
-    
       <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
+    
+      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
     
       <category term="个人经验" scheme="https://reb.mallotec.com/tags/experiences/"/>
     
