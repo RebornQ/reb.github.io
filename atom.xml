@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-09-14T11:36:59.000Z</updated>
+  <updated>2018-09-15T06:17:25.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>StarUML 3.x 完美破解新姿势</title>
+    <link href="https://reb.mallotec.com/posts/d94bd648.html"/>
+    <id>https://reb.mallotec.com/posts/d94bd648.html</id>
+    <published>2018-09-15T08:39:23.000Z</published>
+    <updated>2018-09-15T06:17:25.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;在昨天，我发布了一篇又长又臭的&lt;a href=&quot;../posts/ee00472d.html&quot;&gt;StarUML 3.x 完美破解方案&lt;/a&gt;&lt;/p&gt;&lt;p&gt;然后今天早上一起床就想到，啊～好麻烦啊！能不能让完美再简单点？&lt;/p&gt;&lt;p&gt;好的，然后我又开始了折腾（真丶生命在于折腾😂）&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="逆向" scheme="https://reb.mallotec.com/categories/reverse/"/>
+    
+    
+      <category term="逆向" scheme="https://reb.mallotec.com/tags/reverse/"/>
+    
+      <category term="破解" scheme="https://reb.mallotec.com/tags/crack/"/>
+    
+  </entry>
   
   <entry>
     <title>StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）</title>
@@ -356,9 +378,9 @@
       <category term="hexo" scheme="https://reb.mallotec.com/categories/hexo/"/>
     
     
-      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
-    
       <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
+    
+      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
     
       <category term="个人经验" scheme="https://reb.mallotec.com/tags/experiences/"/>
     
