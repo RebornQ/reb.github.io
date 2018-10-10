@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-09-15T08:31:56.000Z</updated>
+  <updated>2018-10-10T14:51:18.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次对layout_weight和match_parent的深入探究</title>
+    <link href="https://reb.mallotec.com/posts/73a11b2e.html"/>
+    <id>https://reb.mallotec.com/posts/73a11b2e.html</id>
+    <published>2018-10-10T16:36:17.000Z</published>
+    <updated>2018-10-10T14:51:18.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;昨晚，我又被奕广大佬日常拖去讨论问题（可以，这宿舍很好学🌚）。&lt;/p&gt;&lt;p&gt;这次讨论的问题是关于 Android 中 layout_weight（权重） 的用法，然后在这过程中，我们遇到了一个坑——关于权重的计算问题。&lt;/p&gt;&lt;p&gt;这问题可能比较基础，但是咧，我之前一直都不会用 layout_weight 的，所以是属于 layout_weight 使用的新手，大佬请绕道勿喷😂&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://reb.mallotec.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="https://reb.mallotec.com/tags/Android/"/>
+    
+      <category term="宿舍日常问题探讨" scheme="https://reb.mallotec.com/tags/dor-daily-learn/"/>
+    
+  </entry>
   
   <entry>
     <title>另一种 StarUML 3.x 完美破解的思路——比较暴力</title>
@@ -179,7 +201,7 @@
     <link href="https://reb.mallotec.com/posts/b84ba97.html"/>
     <id>https://reb.mallotec.com/posts/b84ba97.html</id>
     <published>2018-08-03T17:49:51.000Z</published>
-    <updated>2018-08-06T01:44:28.000Z</updated>
+    <updated>2018-10-07T13:10:56.000Z</updated>
     
     <summary type="html">
     
@@ -378,9 +400,9 @@
       <category term="hexo" scheme="https://reb.mallotec.com/categories/hexo/"/>
     
     
-      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
-    
       <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
+    
+      <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
     
       <category term="个人经验" scheme="https://reb.mallotec.com/tags/experiences/"/>
     
