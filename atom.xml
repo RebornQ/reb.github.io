@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2018-10-10T15:11:32.000Z</updated>
+  <updated>2019-03-24T13:10:18.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android多语言切换实现进化版--Kotlin实现</title>
+    <link href="https://reb.mallotec.com/posts/e836c9c6.html"/>
+    <id>https://reb.mallotec.com/posts/e836c9c6.html</id>
+    <published>2019-03-24T21:01:39.000Z</published>
+    <updated>2019-03-24T13:10:18.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;前面发了一篇“Android多语言切换实现——Java实现”，但是那个方案有缺陷，于是今天想写个更完美的方案。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://reb.mallotec.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="https://reb.mallotec.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android多语言切换实现--Java实现</title>
+    <link href="https://reb.mallotec.com/posts/8a9e22db.html"/>
+    <id>https://reb.mallotec.com/posts/8a9e22db.html</id>
+    <published>2019-03-23T20:05:15.000Z</published>
+    <updated>2019-03-24T13:10:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;最近在想宝可梦的那样记账要加什么功能好呢？突然想到，不如实现多语言手动切换（国际化），方便那些为了开&lt;code&gt;Google Assistant&lt;/code&gt;而把语言设置成英文的朋友可以在该App使用中文界面。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://reb.mallotec.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="https://reb.mallotec.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>一次对layout_weight和match_parent的深入探究</title>
