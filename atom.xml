@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://reb.mallotec.com/"/>
-  <updated>2019-12-08T01:03:25.000Z</updated>
+  <updated>2019-12-08T09:48:13.000Z</updated>
   <id>https://reb.mallotec.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>里包恩第一款开源第三方库面世！！</title>
+    <title>里包恩第一款开源第三方库 plugin-language 面世！！</title>
     <link href="https://reb.mallotec.com/posts/7afcff16.html"/>
     <id>https://reb.mallotec.com/posts/7afcff16.html</id>
     <published>2019-12-08T08:37:51.000Z</published>
-    <updated>2019-12-08T01:03:25.000Z</updated>
+    <updated>2019-12-08T09:48:13.000Z</updated>
     
     <summary type="html">
     
@@ -464,9 +464,9 @@
       <category term="hexo" scheme="https://reb.mallotec.com/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
-    
       <category term="教程" scheme="https://reb.mallotec.com/tags/tutorials/"/>
+    
+      <category term="hexo" scheme="https://reb.mallotec.com/tags/hexo/"/>
     
       <category term="个人经验" scheme="https://reb.mallotec.com/tags/experiences/"/>
     
