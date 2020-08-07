@@ -361,6 +361,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo添加Disqus评论</title>
+    <url>/posts/2cb4e595.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>国内的评论系统畅言都需要ICP备案，像我这种打死不备案的人来说，国内的评论系统就用不了了。最终决定博客使用的是国外的 <strong>Disqus</strong> 评论系统，但他的主域名<code>disqus.com</code>在国内被屏蔽了，只能科学上网后使用。</p>
+<p>果然有空还是自己造轮子爽一点，逃～</p>
+<a id="more"></a>
+
+<h1 id="配置-Disqus"><a href="#配置-Disqus" class="headerlink" title="配置 Disqus"></a>配置 Disqus</h1><p>Disqus官网：<a href="https://disqus.com/">https://disqus.com</a><br>打开链接后， 可以直接用Facebook，Twitter以及 Google 登录，也可以用邮箱注册后登录。</p>
+<h2 id="选择创建目的"><a href="#选择创建目的" class="headerlink" title="选择创建目的"></a>选择创建目的</h2><p>登录后，点击首页的GET STARTED 按钮，然后点击图示按钮：<br><img src="/images/disqus-step1-intent.png" alt="disqus-step1-intent"></p>
+<h2 id="创建一个新站点"><a href="#创建一个新站点" class="headerlink" title="创建一个新站点"></a>创建一个新站点</h2><p><img src="/images/disqus-step2-newsite.png" alt="disqus-step2-newsite"></p>
+<ul>
+<li>Website Name 填的是<code>shortname</code>，到时候要填到<code>主题配置文件</code>中</li>
+<li>Category 选择种类，我选的是 <code>Tech</code></li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Select-Plan"><a href="#Select-Plan" class="headerlink" title="Select Plan"></a>Select Plan</h3><p>接下来你会看到以下页面：<br><img src="/images/disqus-step3-choose-plan.png" alt="disqus-step3-choose-plan"><br>这一步不需要选计划，跳过<code>Select Plan</code>，直接到<code>Install Disqus</code>。</p>
+<h3 id="Install-Disqus"><a href="#Install-Disqus" class="headerlink" title="Install Disqus"></a>Install Disqus</h3><h4 id="Select-Platform"><a href="#Select-Platform" class="headerlink" title="Select Platform"></a>Select Platform</h4><p><img src="/images/disqus-step4-choose-platform.png" alt="disqus-step4-choose-platform"><br>Hexo 不属于以上任何形式，因此选择<code>Universal Code</code>(通用代码)。</p>
+<h4 id="Install-Instructions"><a href="#Install-Instructions" class="headerlink" title="Install Instructions"></a>Install Instructions</h4><p><img src="/images/disqus-step5-universalcode-install.png" alt="disqus-step5-universalcode-instal"><br>然后拉到最下面选择<code>Configure</code></p>
+<h3 id="Configure-Disqus"><a href="#Configure-Disqus" class="headerlink" title="Configure Disqus"></a>Configure Disqus</h3><p><img src="/images/disqus-step6-configure.png" alt="disqus-step6-configure"></p>
+<ul>
+<li>Website Name 一般就刚刚第一步填的<code>short name</code>（我刚刚填了 justtestme，到这步的时候一般会自动填充）</li>
+<li>Website URL 填写你的博客地址</li>
+</ul>
+<p>填完信息后点击<code>Complete Setup</code>完成配置。</p>
+<h1 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h1><p>在<code>主题配置文件</code>中找到<code>comment</code>项：<br>（以 Material 主题为例）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Comment Systems</span></span><br><span class="line"><span class="comment"># Available value of &quot;use&quot;:</span></span><br><span class="line"><span class="comment">#     disqus | disqus_click | changyan | 163gentie</span></span><br><span class="line">comment:</span><br><span class="line">    use: disqus_click</span><br><span class="line">    shortname: justtestme <span class="comment"># duoshuo or disqus shortname</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>use</strong>：选择<code>disqus</code>或<code>disqus_click</code>，两者差别请参阅<a href="https://material.viosey.com/docs/">Material主题文档</a></li>
+<li><strong>shortname</strong>：填写你刚刚在 Disqus 设置的 Website Name，英文冒号后空格。（严格意义上是填站点配置面板中的 Shortname ）</li>
+</ul>
+<h1 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h1><p>使用如下命令提交到服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>科学上网后，任意打开一篇你的博文就能评论了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在<a href="https://justtestme.disqus.com/admin/settings/general/">https://justtestme.disqus.com/admin/settings/general/</a>页面管理 Your Sites（ justtestme 换成自己的 shortname ）。</p>
+<p>此处的 Shortname 和 Websit Name 是可以不同的。如下图：<br><img src="/images/disqus-configure-differentname-short-website.png" alt="disqus-configure-differentname-short-website"></p>
+<blockquote>
+<p><strong>注意：</strong><code>主题配置文件</code>中<code>comment</code>项填的是此处的 <font color='red'><strong>Shortname</strong></font> 而不是 Website Name！！</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://www.jianshu.com/p/d68de067ea74">Hexo搭建博客系列：（六）Hexo添加Disqus评论</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>Disqus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Disqus API科学评论大法</title>
     <url>/posts/d32fb564.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Disqus 不用说，大家都知道他的主域名<code>disqus.com</code>在国内被屏蔽了，导致在国内不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API 反代加速访问的用法，于是去找了相关资料，原本想自己造轮子，后来发现已经有现成的，我就先拿来用着吧。</p>
@@ -463,57 +514,6 @@
 <li><a href="http://smk17.cn/posts/104/">〖原创〗基于disqus-php-api在Hexo博客中使用Disqus</a></li>
 </ul>
 </blockquote>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>Disqus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo添加Disqus评论</title>
-    <url>/posts/2cb4e595.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>国内的评论系统畅言都需要ICP备案，像我这种打死不备案的人来说，国内的评论系统就用不了了。最终决定博客使用的是国外的 <strong>Disqus</strong> 评论系统，但他的主域名<code>disqus.com</code>在国内被屏蔽了，只能科学上网后使用。</p>
-<p>果然有空还是自己造轮子爽一点，逃～</p>
-<a id="more"></a>
-
-<h1 id="配置-Disqus"><a href="#配置-Disqus" class="headerlink" title="配置 Disqus"></a>配置 Disqus</h1><p>Disqus官网：<a href="https://disqus.com/">https://disqus.com</a><br>打开链接后， 可以直接用Facebook，Twitter以及 Google 登录，也可以用邮箱注册后登录。</p>
-<h2 id="选择创建目的"><a href="#选择创建目的" class="headerlink" title="选择创建目的"></a>选择创建目的</h2><p>登录后，点击首页的GET STARTED 按钮，然后点击图示按钮：<br><img src="/images/disqus-step1-intent.png" alt="disqus-step1-intent"></p>
-<h2 id="创建一个新站点"><a href="#创建一个新站点" class="headerlink" title="创建一个新站点"></a>创建一个新站点</h2><p><img src="/images/disqus-step2-newsite.png" alt="disqus-step2-newsite"></p>
-<ul>
-<li>Website Name 填的是<code>shortname</code>，到时候要填到<code>主题配置文件</code>中</li>
-<li>Category 选择种类，我选的是 <code>Tech</code></li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Select-Plan"><a href="#Select-Plan" class="headerlink" title="Select Plan"></a>Select Plan</h3><p>接下来你会看到以下页面：<br><img src="/images/disqus-step3-choose-plan.png" alt="disqus-step3-choose-plan"><br>这一步不需要选计划，跳过<code>Select Plan</code>，直接到<code>Install Disqus</code>。</p>
-<h3 id="Install-Disqus"><a href="#Install-Disqus" class="headerlink" title="Install Disqus"></a>Install Disqus</h3><h4 id="Select-Platform"><a href="#Select-Platform" class="headerlink" title="Select Platform"></a>Select Platform</h4><p><img src="/images/disqus-step4-choose-platform.png" alt="disqus-step4-choose-platform"><br>Hexo 不属于以上任何形式，因此选择<code>Universal Code</code>(通用代码)。</p>
-<h4 id="Install-Instructions"><a href="#Install-Instructions" class="headerlink" title="Install Instructions"></a>Install Instructions</h4><p><img src="/images/disqus-step5-universalcode-install.png" alt="disqus-step5-universalcode-instal"><br>然后拉到最下面选择<code>Configure</code></p>
-<h3 id="Configure-Disqus"><a href="#Configure-Disqus" class="headerlink" title="Configure Disqus"></a>Configure Disqus</h3><p><img src="/images/disqus-step6-configure.png" alt="disqus-step6-configure"></p>
-<ul>
-<li>Website Name 一般就刚刚第一步填的<code>short name</code>（我刚刚填了 justtestme，到这步的时候一般会自动填充）</li>
-<li>Website URL 填写你的博客地址</li>
-</ul>
-<p>填完信息后点击<code>Complete Setup</code>完成配置。</p>
-<h1 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h1><p>在<code>主题配置文件</code>中找到<code>comment</code>项：<br>（以 Material 主题为例）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Comment Systems</span></span><br><span class="line"><span class="comment"># Available value of &quot;use&quot;:</span></span><br><span class="line"><span class="comment">#     disqus | disqus_click | changyan | 163gentie</span></span><br><span class="line">comment:</span><br><span class="line">    use: disqus_click</span><br><span class="line">    shortname: justtestme <span class="comment"># duoshuo or disqus shortname</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>use</strong>：选择<code>disqus</code>或<code>disqus_click</code>，两者差别请参阅<a href="https://material.viosey.com/docs/">Material主题文档</a></li>
-<li><strong>shortname</strong>：填写你刚刚在 Disqus 设置的 Website Name，英文冒号后空格。（严格意义上是填站点配置面板中的 Shortname ）</li>
-</ul>
-<h1 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h1><p>使用如下命令提交到服务器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>科学上网后，任意打开一篇你的博文就能评论了。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在<a href="https://justtestme.disqus.com/admin/settings/general/">https://justtestme.disqus.com/admin/settings/general/</a>页面管理 Your Sites（ justtestme 换成自己的 shortname ）。</p>
-<p>此处的 Shortname 和 Websit Name 是可以不同的。如下图：<br><img src="/images/disqus-configure-differentname-short-website.png" alt="disqus-configure-differentname-short-website"></p>
-<blockquote>
-<p><strong>注意：</strong><code>主题配置文件</code>中<code>comment</code>项填的是此处的 <font color='red'><strong>Shortname</strong></font> 而不是 Website Name！！</p>
-</blockquote>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://www.jianshu.com/p/d68de067ea74">Hexo搭建博客系列：（六）Hexo添加Disqus评论</a></li>
-</ul>
 ]]></content>
       <categories>
         <category>hexo</category>
