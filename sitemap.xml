@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://reb.mallotec.com/posts/90d0bd8.html</loc>
+    
+    <lastmod>2020-08-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://reb.mallotec.com/messageboard/index.html</loc>
     
     <lastmod>2020-08-07</lastmod>
@@ -94,13 +101,6 @@
   
   <url>
     <loc>https://reb.mallotec.com/posts/e87d9191.html</loc>
-    
-    <lastmod>2020-08-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/90d0bd8.html</loc>
     
     <lastmod>2020-08-07</lastmod>
     
@@ -235,14 +235,14 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/tags/hexo/</loc>
+    <loc>https://reb.mallotec.com/tags/experiences/</loc>
     <lastmod>2020-08-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/tags/experiences/</loc>
+    <loc>https://reb.mallotec.com/tags/hexo/</loc>
     <lastmod>2020-08-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
