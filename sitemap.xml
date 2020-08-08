@@ -228,14 +228,14 @@
 
   
   <url>
-    <loc>https://reb.mallotec.com/tags/tutorials/</loc>
+    <loc>https://reb.mallotec.com/tags/hexo/</loc>
     <lastmod>2020-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/tags/hexo/</loc>
+    <loc>https://reb.mallotec.com/tags/tutorials/</loc>
     <lastmod>2020-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
