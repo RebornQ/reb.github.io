@@ -1,7 +1,7 @@
 {
   "name": "Reborn's Blog",
   "short_name": "Reborn",
-  "theme_color": "#49b1f5",
+  "theme_color": "#0D0D0D",
   "background_color": "#0D0D0D",
   "display": "standalone",
   "orientation": "portrait-primary",
