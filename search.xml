@@ -130,6 +130,8 @@
             
             <tag> 破解 </tag>
             
+            <tag> UML </tag>
+            
         </tags>
       
     </entry>
@@ -156,6 +158,8 @@
             <tag> 逆向 </tag>
             
             <tag> 破解 </tag>
+            
+            <tag> UML </tag>
             
         </tags>
       
@@ -541,9 +545,9 @@
             
             <tag> 教程 </tag>
             
-            <tag> hexo </tag>
-            
             <tag> 个人经验 </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
