@@ -1,13 +1,12 @@
 {
   "name": "Reborn's Blog",
   "short_name": "Reborn",
-  "theme_color": "#0D0D0D",
-  "background_color": "#0D0D0D",
+  "theme_color": "#35363A",
+  "background_color": "#35363A",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "splash_pages": null,
   "scope": "/",
-  "start_url": "/",
+  "start_url": "./?utm_source=homescreen",
   "icons": [
     {
       "src": "images/pwa/icons/icon-72x72.png",
