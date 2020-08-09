@@ -22,7 +22,7 @@ function createtime() {
     if (String(snum).length === 1) {
         snum = "0" + snum;
     }
-    document.getElementById("timeDate").innerHTML = /*"本站已运行 " +ynum+" 年 "*/ +dnum + " 天 ";
+    document.getElementById("timeDate").innerHTML =  " " + ynum + " 年 " + (dnum - ynum * 365) + " 天 ";
     /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
     document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
 }
