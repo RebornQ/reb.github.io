@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>function SetCwinHeight(id) {
+function SetCwinHeight(id) {
 	document.domain='reb.mallotec.com';
     var iframeid = document.getElementById(id); //iframe id
     if (document.getElementById) {
