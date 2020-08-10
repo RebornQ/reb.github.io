@@ -2,6 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://reb.mallotec.com/categories/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/about/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/gallery/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/link/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/links/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/messageboard/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/tags/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/timeline/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/tools/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/gallery/katekyo_hitman_reborn/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://reb.mallotec.com/posts/90d0bd8.html</loc>
     
     <lastmod>2020-08-10</lastmod>
@@ -59,76 +129,6 @@
   
   <url>
     <loc>https://reb.mallotec.com/posts/cda82088.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/about/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/categories/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/gallery/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/link/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/links/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/messageboard/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/timeline/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tools/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/gallery/katekyo_hitman_reborn/index.html</loc>
     
     <lastmod>2020-08-10</lastmod>
     
@@ -298,7 +298,14 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/tags/theme-hexo/</loc>
+    <loc>https://reb.mallotec.com/tags/reverse/</loc>
+    <lastmod>2020-08-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/tags/crack/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -333,14 +340,7 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/tags/reverse/</loc>
-    <lastmod>2020-08-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/crack/</loc>
+    <loc>https://reb.mallotec.com/tags/theme-hexo/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -552,14 +552,14 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/categories/database/</loc>
+    <loc>https://reb.mallotec.com/categories/reverse/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/categories/reverse/</loc>
+    <loc>https://reb.mallotec.com/categories/database/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
