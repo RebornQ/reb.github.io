@@ -2,7 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://reb.mallotec.com/categories/index.html</loc>
+    <loc>https://reb.mallotec.com/posts/90d0bd8.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/dce274cc.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/739f7ebe.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/f0a8d55a.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/b05a5a01.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/4d2729e2.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/2b453e2f.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/cda82088.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/posts/b3fd4b52.html</loc>
     
     <lastmod>2020-08-10</lastmod>
     
@@ -10,6 +66,13 @@
   
   <url>
     <loc>https://reb.mallotec.com/about/index.html</loc>
+    
+    <lastmod>2020-08-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/categories/index.html</loc>
     
     <lastmod>2020-08-10</lastmod>
     
@@ -66,69 +129,6 @@
   
   <url>
     <loc>https://reb.mallotec.com/gallery/katekyo_hitman_reborn/index.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/90d0bd8.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/dce274cc.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/739f7ebe.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/f0a8d55a.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/b05a5a01.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/4d2729e2.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/2b453e2f.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/b3fd4b52.html</loc>
-    
-    <lastmod>2020-08-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/posts/cda82088.html</loc>
     
     <lastmod>2020-08-10</lastmod>
     
@@ -298,6 +298,13 @@
   </url>
   
   <url>
+    <loc>https://reb.mallotec.com/tags/theme-hexo/</loc>
+    <lastmod>2020-08-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://reb.mallotec.com/tags/reverse/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
@@ -334,13 +341,6 @@
   
   <url>
     <loc>https://reb.mallotec.com/tags/MySQL/</loc>
-    <lastmod>2020-08-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/theme-hexo/</loc>
     <lastmod>2020-08-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
