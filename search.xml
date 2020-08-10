@@ -40,7 +40,11 @@
       
       <categories>
           
+          <category> 数据库 </category>
+          
           <category> 复习 </category>
+          
+          <category> 校招 </category>
           
       </categories>
       
@@ -75,6 +79,10 @@
           
           <category> 复习 </category>
           
+          <category> 校招 </category>
+          
+          <category> 设计模式 </category>
+          
       </categories>
       
       
@@ -106,7 +114,11 @@
       
       <categories>
           
+          <category> Android </category>
+          
           <category> 复习 </category>
+          
+          <category> 校招 </category>
           
       </categories>
       
@@ -141,6 +153,10 @@
           
           <category> 复习 </category>
           
+          <category> 校招 </category>
+          
+          <category> Java </category>
+          
       </categories>
       
       
@@ -173,6 +189,10 @@
       <categories>
           
           <category> 复习 </category>
+          
+          <category> 校招 </category>
+          
+          <category> 计算机网络 </category>
           
       </categories>
       
@@ -207,6 +227,10 @@
           
           <category> 复习 </category>
           
+          <category> 校招 </category>
+          
+          <category> 操作系统 </category>
+          
       </categories>
       
       
@@ -240,6 +264,10 @@
           
           <category> 复习 </category>
           
+          <category> 校招 </category>
+          
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -272,6 +300,10 @@
       <categories>
           
           <category> 复习 </category>
+          
+          <category> 校招 </category>
+          
+          <category> 数据结构 </category>
           
       </categories>
       
