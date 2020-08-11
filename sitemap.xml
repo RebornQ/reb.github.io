@@ -65,14 +65,14 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/categories/index.html</loc>
+    <loc>https://reb.mallotec.com/about/index.html</loc>
     
     <lastmod>2020-08-11</lastmod>
     
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/about/index.html</loc>
+    <loc>https://reb.mallotec.com/categories/index.html</loc>
     
     <lastmod>2020-08-11</lastmod>
     
@@ -375,6 +375,27 @@
   </url>
   
   <url>
+    <loc>https://reb.mallotec.com/tags/Nginx/</loc>
+    <lastmod>2020-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/tags/server/</loc>
+    <lastmod>2020-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://reb.mallotec.com/tags/operation/</loc>
+    <lastmod>2020-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://reb.mallotec.com/tags/useful/</loc>
     <lastmod>2020-08-11</lastmod>
     <changefreq>daily</changefreq>
@@ -397,27 +418,6 @@
   
   <url>
     <loc>https://reb.mallotec.com/tags/learning/</loc>
-    <lastmod>2020-08-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/Nginx/</loc>
-    <lastmod>2020-08-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/server/</loc>
-    <lastmod>2020-08-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://reb.mallotec.com/tags/operation/</loc>
     <lastmod>2020-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -580,14 +580,14 @@
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/categories/python/</loc>
+    <loc>https://reb.mallotec.com/categories/log-server/</loc>
     <lastmod>2020-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://reb.mallotec.com/categories/log-server/</loc>
+    <loc>https://reb.mallotec.com/categories/python/</loc>
     <lastmod>2020-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
