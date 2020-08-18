@@ -96,7 +96,7 @@ if (workbox) {
 
     // external resources
     workbox.routing.registerRoute(
-        /(^https:\/\/cdn\.jsdelivr\.net)|(^https:\/\/cdnjs\.cloudflare\.com)/,
+        /(^https:\/\/cdn\.jsdelivr\.net.*?(\.js|\.css))|(^https:\/\/cdnjs\.cloudflare\.com)/,
         new workbox.strategies.CacheFirst({
             cacheName: "external-resources",
             plugins: [
