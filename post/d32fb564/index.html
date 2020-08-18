@@ -1,0 +1,210 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Disqus API科学评论大法 - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Disqus API科学评论大法"><meta property="og:description" content="背景 Disqus 不用说，大家都知道他的主域名disqus.com在国内被屏蔽了，导致在国内不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/d32fb564/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-08-03T17:51:48+08:00"><meta property="article:modified_time" content="2018-08-05T12:17:32+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="Disqus API科学评论大法"><meta name=twitter:description content="背景 Disqus 不用说，大家都知道他的主域名disqus.com在国内被屏蔽了，导致在国内不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/d32fb564/><link rel=prev href=https://reb.mallotec.com/post/b84ba97/><link rel=next href=https://reb.mallotec.com/post/357640ff/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Disqus API科学评论大法","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/d32fb564\/"},"genre":"posts","keywords":"hexo, Disqus","wordcount":2515,"url":"https:\/\/reb.mallotec.com\/post\/d32fb564\/","datePublished":"2018-08-03T17:51:48+08:00","dateModified":"2018-08-05T12:17:32+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Disqus API科学评论大法</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/hexo/><i class="far fa-folder fa-fw"></i>hexo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-08-03>2018-08-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2515 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#后端配置>后端配置</a><ul><li><a href=#获取-disqus-php-api>获取 <code>disqus-php-api</code></a></li><li><a href=#移动并重命名>移动并重命名</a></li><li><a href=#修改-configphp>修改 <code>config.php</code></a></li></ul></li><li><a href=#前端配置>前端配置</a><ul><li><a href=#disqus-php-api集成至hexo>disqus-php-api集成至hexo</a></li><li><a href=#添加-disqusapi-模块>添加 disqusapi 模块</a></li></ul></li></ul><ul><li><a href=#1没有权限>1.没有权限</a></li><li><a href=#2由于disqus没有本页面的项管thread故需先创建thread>2.由于disqus没有本页面的项管thread，故需先创建thread</a></li></ul></nav></div></div><div class=content id=content><h1 id=背景>背景</h1><p>Disqus 不用说，大家都知道他的主域名<code>disqus.com</code>在国内被屏蔽了，导致在国内不能评论也不能看评论，体验十分不好。看了一下 Disqus 官方发现有个 API 反代加速访问的用法，于是去找了相关资料，原本想自己造轮子，后来发现已经有现成的，我就先拿来用着吧。</p><h1 id=原理>原理</h1><p>我们可以来看看disqus反向代理的原理图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png data-sub-html="<h2>disqus-api-diagra</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-api-diagram.png></a><figcaption class=image-caption>disqus-api-diagra</figcaption></figure></p><p>整体流程是这样的，在前端页面上测试disqus加载是否成功，如果成功则显示disqus的评论框，反之加载独立的评论框，并将请求发送给自己在国外的vps，利用vps做反向代理，接收来自客户端的请求到disqus服务器并再转发给客户端。</p><p>一句话概括就是：客户端发送请求给服务器，服务器通过Disqus Api提交评论。</p><h1 id=工具介绍>工具介绍</h1><p><strong>目前现成的disqus反代主要有以下两种：</strong></p><ul><li><p><a href=https://github.com/ciqulover/disqus-proxy target=_blank rel="noopener noreffer">disqus-proxy</a> <font color=gray>&ndash;NodeJS实现</font><figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png data-sub-html="<h2>disqus-proxy</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-proxy.png></a><figcaption class=image-caption>disqus-proxy</figcaption></figure></p></li><li><p><a href=https://github.com/fooleap/disqus-php-api target=_blank rel="noopener noreffer">disqus-php-api</a> <font color=gray>&ndash;PHP实现</font><figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif data-sub-html="<h2>disqus-php-api</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api.gif></a><figcaption class=image-caption>disqus-php-api</figcaption></figure></p></li></ul><p>上述两种方案均支持根据网络情况判断加载简易/原版评论框，看完UI后我很果断的选择了<code>disqus-php-api</code>&mldr;&mldr;</p><p>以下为替换为<code>disqus-php-api</code>的具体步骤，供大家参考，也给自己留下一个记录。</p><h1 id=配置>配置</h1><ul><li>一台国外的VPS服务器</li></ul><h2 id=后端配置>后端配置</h2><h3 id=获取-disqus-php-api>获取 <code>disqus-php-api</code></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>git clone https://github.com/fooleap/disqus-php-api.git
+</code></pre></td></tr></table></div></div><h3 id=移动并重命名>移动并重命名</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>mv -r disqus-php-api /path/to/disqus-php-api
+</code></pre></td></tr></table></div></div><blockquote><p><strong>注意：</strong>
+此处建议新建一个 Nginx 站点，如：api.xxx.com这类，专门放 API 的地方，注意DNS解析添加A记录和写好 Nginx 配置，尤其是要配置SSL证书。</p></blockquote><h3 id=修改-configphp>修改 <code>config.php</code></h3><p>根据 <code>disqus-php-api/api/config.php</code> 中的注释修改相应配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-php data-lang=php>define(&#39;DISQUS_PUBKEY&#39;, &#39;E8Uh5l5fHZ6gD8U3KycjAIAk46f68Zw7C6eW8WSjZvCLXebZ7p0r1yrYDrLilk2F&#39;);
+define(&#39;PUBLIC_KEY&#39;, &#39;your-public-key&#39;);
+define(&#39;SECRET_KEY&#39;, &#39;your-secret-key&#39;);
+define(&#39;DISQUS_USERNAME&#39;, &#39;your-disqus-username&#39;);
+define(&#39;DISQUS_EMAIL&#39;, &#39;your-email@gmail.com&#39;);
+define(&#39;DISQUS_PASSWORD&#39;, &#39;your-disqus-password&#39;);
+define(&#39;DISQUS_WEBSITE&#39;, &#39;https:/\/your-website.com&#39;);  // 实际使用时要去掉链接的 \ ，这里是为了避免md直接吧双斜杠解析成注释了
+define(&#39;DISQUS_SHORTNAME&#39;, &#39;your-disqus-shortname&#39;);
+define(&#39;DISQUS_APPROVED&#39;, true);
+</code></pre></td></tr></table></div></div><blockquote><p><strong>这里要注意的是，<code>DISQUS_WEBSITE</code>选项中，域名<font color=orange>不能</font>这样写：‘<a style=underline:none><a href=https://reb.mallotec.com/>https://reb.mallotec.com/</a></a>&rsquo;，域名后不能以&rsquo;/&lsquo;结尾，否则会出现一直创建<code>Thread</code>的情况</strong></p></blockquote><h2 id=前端配置>前端配置</h2><h3 id=disqus-php-api集成至hexo>disqus-php-api集成至hexo</h3><p><strong>修改 hexo 的主题配置文件</strong>
+在<code>主题配置</code>文件<code>_config.yml</code>中添加 disqusapi 相关参数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>disqusapi</span><span class=o>:</span>
+  <span class=nx>forum</span><span class=o>:</span> <span class=s1>&#39;your-short-name&#39;</span>
+  <span class=nx>site</span><span class=o>:</span> <span class=s1>&#39;https://your-site&#39;</span>
+  <span class=nx>api</span><span class=o>:</span> <span class=s1>&#39;https://your-site/.../disqus-php-api/api&#39;</span>
+  <span class=nx>mode</span><span class=o>:</span> <span class=mi>1</span>
+  <span class=nx>badge</span><span class=o>:</span> <span class=s1>&#39;博主&#39;</span>
+  <span class=nx>timeout</span><span class=o>:</span> <span class=mi>3000</span>
+</code></pre></td></tr></table></div></div><blockquote><p>参数参考文档：<a href=https://github.com/fooleap/disqus-php-api/blob/master/readme.md target=_blank rel="noopener noreffer">https://github.com/fooleap/disqus-php-api/blob/master/readme.md</a></p></blockquote><ul><li>forum：Disqus form的shortname</li><li>site：网站域名</li><li>api：PHP代码部署的网址：https://yoursite.com/disqus/api</li><li>mode：<ul><li>1 检测能否访问 Disqus，若能则加载 Disqus 原生评论框，超时则加载简易评论框</li><li>2 仅加载简易评论框</li><li>3 同时加载两种评论框，先显示简易评论框，Disqus 加载完成则切换至 Disqus 评论框</li></ul></li><li>badge：管理员徽章文本</li><li>timeout：当mode为1时的超时时间</li></ul><h3 id=添加-disqusapi-模块>添加 disqusapi 模块</h3><p>Material主题的 disqusapi 模块添加可以参考官方文档的<a href=https://material.viosey.com/docs/#/dev_comment target=_blank rel="noopener noreffer">评论系统适配指南</a>。
+直接拷贝一份官方提供的 disqus 评论模块到<code>&lt;主题根目录>/layout/_widget/comment/disqusapi/</code>下。下面是<code>common.ejs</code>、<code>enter.ejs</code>、<code>main.ejs</code>的具体代码：</p><ul><li><p>common.ejs</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=c>&lt;!-- 使用 DISQUS js 代码 --&gt;</span>
+</code></pre></td></tr></table></div></div><p>common.ejs为空</p></li><li><p>enter.ejs</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=c>&lt;!-- 使用 DISQUS --&gt;</span>
+<span class=err>&lt;</span>% if(page.comments) {%&gt;
+<span class=p>&lt;</span><span class=nt>link</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;stylesheet&#34;</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/disqus-php-api-dist/iDisqus.min.css&#34;</span> <span class=p>/&gt;</span>
+<span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;/disqus-php-api-dist/iDisqus.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;comment&#34;</span><span class=p>&gt;</span>
+    <span class=err>&lt;</span>%- partial(&#39;_widget/comment/&#39; + theme.comment.use + &#39;/main&#39;) %&gt;
+<span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>style</span><span class=p>&gt;</span>
+    <span class=p>#</span><span class=nn>comment</span><span class=p>{</span>
+        <span class=k>background-color</span><span class=p>:</span> <span class=mh>#eee</span><span class=p>;</span>
+        <span class=k>padding</span><span class=p>:</span> <span class=mi>2</span><span class=kt>pc</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
+<span class=err>&lt;</span>% } %&gt;
+</code></pre></td></tr></table></div></div><blockquote><ul><li><code>page.comments</code>是为了控制每一篇文章是否需要开启评论功能，需要在每一篇文章的<code>Front-matter</code>中设置<code>comments={Boolean}</code></li><li>如果服务器很远，连接比较慢，建议把<code>iDisqus.min.css</code>和<code>iDisqus.min.js</code>放到<code>主题目录</code>的<code>source</code>里会更方便，渲染调试的时候直接从本地加载，不然调试的时候从网络加载半年网页都没加载完。当然，放到了CDN那更好，此处主要是为了方便<code>hexo s</code>调试。</li></ul></blockquote></li><li><p>main.ejs</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+        <span class=kd>var</span> <span class=nx>emojiList</span> <span class=o>=</span> <span class=p>[{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;smile&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;笑脸&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f604&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;mask&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;生病&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f637&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;joy&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;破涕为笑&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f602&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;stuck_out_tongue_closed_eyes&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;吐舌&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f61d&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;flushed&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;脸红&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f633&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;scream&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;恐惧&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f631&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;pensive&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;失望&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f614&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;unamused&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;无语&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f612&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;grin&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;露齿笑&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f601&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;heart_eyes&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;色&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f60d&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;sweat&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;汗&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f613&#39;</span>
+        <span class=p>},{</span>
+            <span class=nx>code</span><span class=o>:</span><span class=s1>&#39;smirk&#39;</span><span class=p>,</span>
+            <span class=nx>title</span><span class=o>:</span><span class=s1>&#39;得意&#39;</span><span class=p>,</span>
+            <span class=nx>unicode</span><span class=o>:</span><span class=s1>&#39;1f60f&#39;</span>
+        <span class=p>}];</span>
+        <span class=kd>var</span> <span class=nx>disq</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>iDisqus</span><span class=p>(</span><span class=s1>&#39;comment&#39;</span><span class=p>,</span> <span class=p>{</span>
+            <span class=nx>forum</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.forum %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>site</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.site %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>api</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.api %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>mode</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.mode %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>badge</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.badge %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>timeout</span><span class=o>:</span> <span class=s1>&#39;&lt;%= theme.disqusapi.timeout %&gt;&#39;</span><span class=p>,</span>
+            <span class=nx>init</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+            <span class=nx>emoji_list</span><span class=o>:</span> <span class=nx>emojiList</span>
+        <span class=p>});</span>
+        <span class=nx>disq</span><span class=p>.</span><span class=nx>count</span><span class=p>();</span>
+<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</code></pre></td></tr></table></div></div><p>最后编辑<code>主题配置文件</code>中的<code>comment</code>模块开启<code>disqusapi</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>comment</span><span class=o>:</span>
+    <span class=nx>use</span><span class=o>:</span> <span class=nx>disqusapi</span>
+</code></pre></td></tr></table></div></div><h1 id=问题>问题</h1><h2 id=1没有权限>1.没有权限</h2><blockquote><p>参考：</p><ul><li><a href=https://blog.fooleap.org/disqus-php-api.html#comment-3954303091 target=_blank rel="noopener noreffer">https://blog.fooleap.org/disqus-php-api.html#comment-3954303091</a></li><li><a href=https://blog.csdn.net/Axela30W/article/details/78981749 target=_blank rel="noopener noreffer">Linux查看、修改文件读写权限</a></li></ul></blockquote><p>问题如图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png data-sub-html="<h2>disqus-php-api-no-permission</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/disqus-php-api-no-permission.png></a><figcaption class=image-caption>disqus-php-api-no-permission</figcaption></figure></p><p>据作者 fooleap 所说，显示没有权限的话，就是没有权限在当前目录创建文件夹。
+于是我修改了 api 所在目录的权限就好了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo chown -R <span class=nv>$USER</span>:<span class=nv>$USER</span> path/to/disqus-php-api
+sudo chmod -R <span class=m>777</span> path/to/disqus-php-api
+</code></pre></td></tr></table></div></div><h2 id=2由于disqus没有本页面的项管thread故需先创建thread>2.由于disqus没有本页面的项管thread，故需先创建thread</h2><blockquote><p>参考：<a href=https://blog.fooleap.org/disqus-php-api.html#comment-3829428059 target=_blank rel="noopener noreffer">https://blog.fooleap.org/disqus-php-api.html#comment-3829428059</a></p></blockquote><p>据作者 fooleap 所说，加载评论框的页面，若在 Disqus 没有相关的 thread，是必须先手动创建的，不设置成自动是避免生成无用的 thread。若想自动创建可以在<code>配置参数</code>里添加<code>autoCreate: true</code>。</p><ul><li>还有一种解决方法**（推荐）**：
+如果出现创建<code>thread</code>的问题，那么可以通过 <code>mode</code>选择<code>1</code>，再翻墙访问你的文章页面，这时候加载原生Disqus评论系统，<code>thread</code>就创建成功了。</li><li>**特别要注意的是：**如果你的文章标题中带有中文，会无法创建thread，所以不要使用中文命名文章。</li></ul><h1 id=参考链接>参考链接</h1><blockquote><ul><li><a href=https://www.jianshu.com/p/9cc4cc8628c9 target=_blank rel="noopener noreffer">解决Hexo博客中 Disqus 在国内不能访问的方案</a></li><li><a href=https://www.jianshu.com/p/2671b28b79e5 target=_blank rel="noopener noreffer">Hexo折腾记之科学使用Disqus与Next的集成</a></li><li><a href=https://mou.science/2017/05/22/disqus-php-api/ target=_blank rel="noopener noreffer">disqus-php-api 科学评论</a></li><li><a href=https://blog.fooleap.org/use-disqus-correctly.html#note-3 target=_blank rel="noopener noreffer">科学使用 Disqus</a></li><li><a href=https://blog.kuroy.me/using-disqus-reverse-proxy-hexo-fexo-theme/ target=_blank rel="noopener noreffer">为Hexo主题fexo添加disqus反代</a></li><li><a href=http://smk17.cn/posts/104/ target=_blank rel="noopener noreffer">〖原创〗基于disqus-php-api在Hexo博客中使用Disqus</a></li></ul></blockquote></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2018-08-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法" data-hashtags=hexo,Disqus><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/d32fb564/ data-hashtag=hexo><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法" data-description><i data-svg-src=/lib/simple-icons/icons/myspace.min.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/d32fb564/ data-title="Disqus API科学评论大法"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hexo/>hexo</a>,&nbsp;<a href=/tags/disqus/>Disqus</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/b84ba97/ class=prev rel=prev title=测试专页><i class="fas fa-angle-left fa-fw"></i>测试专页</a>
+<a href=/post/357640ff/ class=next rel=next title=Nginx域名转发（反向代理）>Nginx域名转发（反向代理）<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js></script><div>🐼 本站已运行 <span class=liveTime><span class=timeDate>载入天数...</span><span class=times>载入时分秒...</span></span> 🐼</div></div><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://rebor.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/lightgallery/lightgallery.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-thumbnail.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-zoom.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script>if('serviceWorker'in navigator){window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>

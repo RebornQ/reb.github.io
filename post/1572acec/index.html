@@ -1,0 +1,190 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>第一次搭建Hexo博客过程 in MacOS - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="第一次搭建Hexo博客过程 in MacOS"><meta property="og:description" content="第一次在自己服务器搭建博客，总会有那么一点点失误，碰到一点坑，在这里总结一下搭建hexo的具体步骤。 参考： Hexo之旅(二)：Hexo博客搭"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/1572acec/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-07-16T17:47:39+08:00"><meta property="article:modified_time" content="2018-08-05T12:18:38+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="第一次搭建Hexo博客过程 in MacOS"><meta name=twitter:description content="第一次在自己服务器搭建博客，总会有那么一点点失误，碰到一点坑，在这里总结一下搭建hexo的具体步骤。 参考： Hexo之旅(二)：Hexo博客搭"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/1572acec/><link rel=next href=https://reb.mallotec.com/post/41e1ea07/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"第一次搭建Hexo博客过程 in MacOS","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/1572acec\/"},"genre":"posts","keywords":"教程, 个人经验, hexo","wordcount":2193,"url":"https:\/\/reb.mallotec.com\/post\/1572acec\/","datePublished":"2018-07-16T17:47:39+08:00","dateModified":"2018-08-05T12:18:38+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">第一次搭建Hexo博客过程 in MacOS</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/hexo/><i class="far fa-folder fa-fw"></i>hexo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-07-16>2018-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2193 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#安装依赖>安装依赖</a><ul><li><a href=#安装git>安装Git</a></li><li><a href=#安装nodejs>安装Node.js</a><ul><li><a href=#使用homebrew安裝nvm>使用Homebrew安裝nvm</a></li><li><a href=#使用nvm安裝nodejs>使用nvm安裝Node.js</a></li><li><a href=#使用nvm无痛切换nodejs版本>使用nvm无痛切换Node.js版本</a></li></ul></li></ul></li><li><a href=#部署hexo>部署Hexo</a><ul><li><a href=#安装hexo>安装Hexo</a></li><li><a href=#更新-hexo>更新 Hexo</a></li><li><a href=#安装-hexo-插件>安装 Hexo 插件</a></li></ul></li></ul><ul><li><a href=#部署-nginx>部署 Nginx</a><ul><li><a href=#安装-nginx--启动-nginx>安装 Nginx && 启动 Nginx</a></li><li><a href=#配置虚拟主机--创建新的网站目录--创建虚拟主机配置文件>配置虚拟主机 && 创建新的网站目录 && 创建虚拟主机配置文件</a></li></ul></li><li><a href=#部署-hexo-到服务器>部署 Hexo 到服务器</a></li><li><a href=#配置本机>配置本机</a></li></ul><ul><li><a href=#文档>文档</a></li><li><a href=#下载主题>下载主题</a></li><li><a href=#启用-next-主题>启用 NexT 主题</a></li><li><a href=#验证主题是否启用这步我没执行过->验证主题是否启用（这步我没执行过= =）</a></li><li><a href=#重新渲染博客>重新渲染博客</a></li></ul></nav></div></div><div class=content id=content><p>第一次在自己服务器搭建博客，总会有那么一点点失误，碰到一点坑，在这里总结一下搭建hexo的具体步骤。</p><blockquote><p>参考：</p><ul><li><a href=http://vinnyxiong.cn/blog/Hexo%E4%B9%8B%E6%97%85-%E4%BA%8C-%EF%BC%9AHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-%E5%9C%A8%20Mac%20OS%20%E5%B9%B3%E5%8F%B0-.html target=_blank rel="noopener noreffer">Hexo之旅(二)：Hexo博客搭建(在 Mac OS 平台)</a></li><li><a href=https://segmentfault.com/a/1190000009363890 target=_blank rel="noopener noreffer">如何在服务器上搭建hexo博客</a></li></ul></blockquote><h1 id=hexo架构>Hexo架构</h1><p>首先我们要理解hexo是如何生成静态博客以及如何实现通过服务器访问静态博客的
+<a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/15317408001743.jpg></a></p><blockquote><p>通过上图我们可以知道，整个流程就是在本地通过 <font color=orange><strong>hexo g</strong></font> 渲染博客的静态文件，然后通过 <font color=orange><strong>hexo d</strong></font> 把静态文件 push到服务器上我们自己创建的git仓库,服务器再通过 git-hooks 同步网站根目录，这样就可以访问了</p></blockquote><h1 id=配置本地环境>配置本地环境</h1><h2 id=安装依赖>安装依赖</h2><p>Hexo 依赖于 Node.js 和 Git，需要先安装。</p><h3 id=安装git>安装Git</h3><blockquote><p><a href=https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000 target=_blank rel="noopener noreffer">Git安装（廖雪峰教程）</a></p></blockquote><h3 id=安装nodejs>安装Node.js</h3><p>Node的话建议用nvm管理，否则很容易出现 <code>command not found: hexo</code> 的情况，出现这种情况主要是node的版本问题 可以通过nvm来控制一下node的版本来解决</p><blockquote><p>参考：<a href=http://www.gengzhibo.com/2017/04/23/Hexo%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/ target=_blank rel="noopener noreffer">Hexo安装后hexo指令无法被找到的解决方法</a></p></blockquote><h4 id=使用homebrew安裝nvm>使用Homebrew安裝nvm</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew install nvm
+//这个过程中可能需要安装gcc或者其它需要依赖的工具 按照提示一次安装好即可
+mkdir ~/.nvm
+<span class=nb>echo</span> <span class=s2>&#34;export NVM_DIR=~/.nvm&#34;</span> &gt;&gt; .bash_profile
+<span class=nb>echo</span> <span class=s2>&#34;. </span><span class=k>$(</span>brew --prefix nvm<span class=k>)</span><span class=s2>/nvm.sh&#34;</span> &gt;&gt; .bash_profile
+//这个步骤中mac下的brew需要通过--prefix这种形式完成，如果是zsh的话可以输出到.zshrc文件
+</code></pre></td></tr></table></div></div><p>重启终端后用 nvm help 来验证nvm是否正确安装</p><h4 id=使用nvm安裝nodejs>使用nvm安裝Node.js</h4><p>安裝完了nvm，接著安裝主角 Node.js。先用 <code>nvm ls-remote</code> 指令看一下有哪些版本可以安裝：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash> nvm ls-remote
+         .
+         .
+         .
+        v9.10.0
+        v9.10.1
+        v9.11.0
+        v9.11.1
+        v9.11.2
+        v10.0.0
+        v10.1.0
+        v10.2.0
+        v10.2.1
+        v10.3.0
+        v10.4.0
+        .
+        .
+        .
+</code></pre></td></tr></table></div></div><p>然后直接用一下命令安装最新稳定版node</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nvm install stable
+</code></pre></td></tr></table></div></div><h4 id=使用nvm无痛切换nodejs版本>使用nvm无痛切换Node.js版本</h4><p>检查当前使用的 Node.js 版本使用命令 nvm ls。如果输出结果如下表示正确：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nvm ls
+       v0.12.10
+-&gt;      v10.6.0
+         system
+default -&gt; v10.6.0
+node -&gt; stable <span class=o>(</span>-&gt; v10.6.0<span class=o>)</span> <span class=o>(</span>default<span class=o>)</span>
+stable -&gt; 10.6 <span class=o>(</span>-&gt; v10.6.0<span class=o>)</span> <span class=o>(</span>default<span class=o>)</span>
+iojs -&gt; N/A <span class=o>(</span>default<span class=o>)</span>
+lts/* -&gt; lts/carbon <span class=o>(</span>-&gt; N/A<span class=o>)</span>
+lts/argon -&gt; v4.9.1 <span class=o>(</span>-&gt; N/A<span class=o>)</span>
+lts/boron -&gt; v6.14.3 <span class=o>(</span>-&gt; N/A<span class=o>)</span>
+lts/carbon -&gt; v8.11.3 <span class=o>(</span>-&gt; N/A<span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>第一个 -> 表示当前使用的版本，default -> 表示默认版本，必须保证这两个，不然后面安装hexo会提示 <code>-bash: hexo: command not found</code> ，不能在命令行使用。
+设置的方法是，先通过 <code>nvm ls</code> 看看本地安装了什么版本，如果本地没有，则应该使用上一步的方法先安装，然后执行这个命令指定版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nvm use v10.6.0
+</code></pre></td></tr></table></div></div><p>再通过这个命令指定默认版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nvm <span class=nb>alias</span> default v10.6.0
+</code></pre></td></tr></table></div></div><h2 id=部署hexo>部署Hexo</h2><h3 id=安装hexo>安装Hexo</h3><p>所有必备的依赖都安装完成后，即可使用 npm 安装 Hexo：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm install -g hexo-cli
+</code></pre></td></tr></table></div></div><p>-g 或 –global 表示全局安装模块，如果没有这个参数，会安装在当前目录的node_modules子目录下。
+安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>hexo init &lt;folder&gt;
+<span class=nb>cd</span> &lt;folder&gt;
+npm install
+</code></pre></td></tr></table></div></div><p><code>npm install</code> 表示安装当前目录package.json文件中配置的dependencies模块。</p><h3 id=更新-hexo>更新 Hexo</h3><p>官方发布了新版本后，可以在Hexo建立的博客目录内运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm update
+</code></pre></td></tr></table></div></div><p>用如下命令可以检查package.json文件中配置的dependencies的版本号：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm ls --depth<span class=o>=</span><span class=m>0</span>
+</code></pre></td></tr></table></div></div><h3 id=安装-hexo-插件>安装 Hexo 插件</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm install &lt;module&gt; --save
+</code></pre></td></tr></table></div></div><p>下面是一些可选插件的安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm i hexo-all-minifier --save
+npm install hexo-admin --save
+npm install hexo-generator-archive --save
+npm install hexo-generator-tag --save
+npm install hexo-generator-feed --save
+npm install hexo-wordcount --save
+npm install hexo-helper-qrcode --save
+npm install hexo-generator-search --save
+npm install hexo-generator-searchdb --save
+npm i -S hexo-prism-plugin
+npm install hexo-abbrlink --save
+npm install hexo-generator-sitemap --save
+</code></pre></td></tr></table></div></div><h1 id=配置服务器环境>配置服务器环境</h1><h2 id=部署-nginx>部署 Nginx</h2><h3 id=安装-nginx--启动-nginx>安装 Nginx && 启动 Nginx</h3><p>我服务器的Nginx是用Docker部署的，早已经部署好。这步暂时跳过，日后补充&mldr;（又偷懒了（逃～</p><h3 id=配置虚拟主机--创建新的网站目录--创建虚拟主机配置文件>配置虚拟主机 && 创建新的网站目录 && 创建虚拟主机配置文件</h3><p>同上（逃～</p><h2 id=部署-hexo-到服务器>部署 Hexo 到服务器</h2><p>Hexo 可以使用 git 方式部署。
+(网站的目录在下面统一用 <code>&lt;your-website></code> 代替，如你的目录在 <code>/var/www/html</code> ，那就用 <code>/var/www/html</code> 替换 <code>&lt;your-website></code> )</p><p>创建空白 git 仓库，并且设置 git hook</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> ~
+mkdir blog_hexo.git <span class=o>&amp;&amp;</span> <span class=nb>cd</span> blog_hexo.git
+git init --bare
+</code></pre></td></tr></table></div></div><p>新建 post-receive 脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> hooks
+touch post-receive
+</code></pre></td></tr></table></div></div><p>编辑 <font color=red>~/blog_hexo.git/hooks/post-receive</font> 脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
+</span><span class=cp></span><span class=nv>GIT_REPO</span><span class=o>=</span>/home/xxx/blog_hexo.git
+<span class=nv>TMP_GIT_CLONE</span><span class=o>=</span>/tmp/HexoBlog
+<span class=nv>PUBLIC_WWW</span><span class=o>=</span>&lt;your-website&gt;
+rm -rf <span class=si>${</span><span class=nv>TMP_GIT_CLONE</span><span class=si>}</span>
+git clone <span class=nv>$GIT_REPO</span> <span class=nv>$TMP_GIT_CLONE</span>
+rm -rf <span class=si>${</span><span class=nv>PUBLIC_WWW</span><span class=si>}</span>/*
+cp -rf <span class=si>${</span><span class=nv>TMP_GIT_CLONE</span><span class=si>}</span>/* <span class=si>${</span><span class=nv>PUBLIC_WWW</span><span class=si>}</span>
+</code></pre></td></tr></table></div></div><p>赋予脚本执行权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>chmod <span class=m>755</span> post-receive
+//或 chmod +x post-receive
+</code></pre></td></tr></table></div></div><p>注意：</p><ol><li><p>这里要先确保 <font color=red>&lt;your-website></font> 目录下没有任何文件。备份好文件后执行一下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo rm -rf &lt;your-website&gt;/*
+</code></pre></td></tr></table></div></div></li><li><p>执行 <code>ls -l &lt;your-website></code> 命令检查该目录及其子目录（文件）所有者和用户组是否为你当前使用的用户。
+若显示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>drwxr-xr-x  <span class=m>2</span> root   root   <span class=m>4096</span> Jun  <span class=m>4</span> 07:00 &lt;your-website&gt;
+</code></pre></td></tr></table></div></div><p>则说明你的网站目录的所有者以及用户组都是root，那么当你用git-hooks把tmp目录的静态博客拷贝到 <code>&lt;your-website></code> 时，会由于没有权限而导致拷贝失败，所以我们需要把<your-website>的所有者和用户组都改为你当前使用的用户。执行以下命令即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo chown <span class=nv>$USER</span>:<span class=nv>$USER</span> -R &lt;your-website&gt;
+</code></pre></td></tr></table></div></div></li></ol><h2 id=配置本机>配置本机</h2><p>在博客目录下运行下面命令，安装 git 部署插件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>npm install hexo-deployer-git --save
+</code></pre></td></tr></table></div></div><p>修改博客的配置文件 _config.yml，修改deploy选项：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>deploy:
+  type: git
+  message: update
+  repo: xxx@127.0.0.1:/home/xxx/blog_hexo.git
+  branch: master
+</code></pre></td></tr></table></div></div><p>然后运行 <code>hexo clean && hexo g && hexo d</code> 即可部署本地渲染网页到服务器上，之后只需要访问额你的域名就可以访问你的hexo博客啦！如我的博客是 <a href=http://reb.mallotec.com target=_blank rel="noopener noreffer">reb.mallotec.com</a>
+**注：**请把127.0.0.1替换成自己服务器的ip</p><h1 id=附hexo-个性化--next主题>附：Hexo 个性化&ndash;>NexT主题</h1><blockquote><p>参考：<a href=http://vinnyxiong.cn/blog/Hexo%E4%B9%8B%E6%97%85-%E4%B8%89-%EF%BC%9AHexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E5%8F%8ANexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE.html target=_blank rel="noopener noreffer">Hexo之旅(三)：Hexo博客个性化及NexT主题配置</a></p></blockquote><h2 id=文档>文档</h2><p>NexT 主题提供了详细的 <a href=http://theme-next.iissnan.com/ target=_blank rel="noopener noreffer">使用文档</a> 。</p><h2 id=下载主题>下载主题</h2><p>主题的安装很简单，执行以下命令即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> your-hexo-folder
+mkdir themes/next
+curl -s https://api.github.com/repos/iissnan/hexo-theme-next/releases/latest <span class=p>|</span> grep tarball_url <span class=p>|</span> cut -d <span class=s1>&#39;&#34;&#39;</span> -f <span class=m>4</span> <span class=p>|</span> wget -i - -O- <span class=p>|</span> tar -zx -C themes/next --strip-components<span class=o>=</span><span class=m>1</span>
+</code></pre></td></tr></table></div></div><p>或</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> your-hexo-site
+git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre></td></tr></table></div></div><h2 id=启用-next-主题>启用 NexT 主题</h2><p>克隆/下载 完成后，打开 站点配置文件，找到<code>theme</code>字段，并将其值更改为<code>next</code>。</p><blockquote><p>这里注意区分两个配置文件：
+站点配置文件：是你的 hexo 博客目录下面的 _config.yml 文件。
+主题配置文件：是 themes/next 目录下的 _config.yml 文件。</p></blockquote><h2 id=验证主题是否启用这步我没执行过->验证主题是否启用（这步我没执行过= =）</h2><p>运行<code>hexo s --debug</code>，并访问<code>http://localhost:4000</code>，确保站点正确运行。</p><h2 id=重新渲染博客>重新渲染博客</h2><p>启用主题后最好重新渲染一遍博客，命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>hexo clean <span class=o>&amp;&amp;</span> hexo g <span class=o>&amp;&amp;</span> hexo d
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2018-08-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS" data-hashtags=教程,个人经验,hexo><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/1572acec/ data-hashtag=教程><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS" data-description><i data-svg-src=/lib/simple-icons/icons/myspace.min.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/1572acec/ data-title="第一次搭建Hexo博客过程 in MacOS"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E6%95%99%E7%A8%8B/>教程</a>,&nbsp;<a href=/tags/%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C/>个人经验</a>,&nbsp;<a href=/tags/hexo/>hexo</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/41e1ea07/ class=next rel=next title=全站开启https总结（艰苦历程？）>全站开启https总结（艰苦历程？）<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js></script><div>🐼 本站已运行 <span class=liveTime><span class=timeDate>载入天数...</span><span class=times>载入时分秒...</span></span> 🐼</div></div><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://rebor.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/lightgallery/lightgallery.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-thumbnail.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-zoom.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script>if('serviceWorker'in navigator){window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>

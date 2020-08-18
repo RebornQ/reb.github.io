@@ -4,6 +4,7 @@ Allow: /about/
 Allow: /archives/
 Allow: /gallery/
 Allow: /posts/
+Allow: /post/
 Allow: /categories/
 Allow: /tags/
 
