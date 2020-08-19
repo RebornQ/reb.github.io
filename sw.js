@@ -3,17 +3,26 @@ importScripts('https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js');
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉`);
 
+    workbox.setConfig({ debug: false });
+
     workbox.core.setCacheNameDetails({
-        prefix: "Reborn"
+        prefix: "Reborn",
+        suffix: 'v2',
+        precache: 'precache',
+        runtime: 'runtime'
     });
 
+    // 一旦激活就开始控制任何现有客户机（通常是与skipWaiting配合使用）
     workbox.core.skipWaiting();
+    // 跳过等待期
     workbox.core.clientsClaim();
+    // 删除过期缓存
+    workbox.precaching.cleanupOutdatedCaches();
 
     workbox.precaching.precacheAndRoute([
         {
             "url": "/index.html",
-            "revision": "20e5f6f1230939490b94bb1653da9912"
+            "revision": "8c662f5186e0482bf5ad382beeb71d8f"
         },
         {
             "url": "/js/theme.min.js",
@@ -26,11 +35,11 @@ if (workbox) {
     ], {});
 
     workbox.routing.registerRoute(/(?:\/)$/,
-        new workbox.strategies.StaleWhileRevalidate({
-            cacheName: "html",
+        new workbox.strategies.NetworkFirst({
+            cacheName: "html-" + workbox.core.cacheNames.suffix,
             plugins: [
                 new workbox.expiration.ExpirationPlugin({
-                    maxAgeSeconds: 60 * 60 * 24 * 7,
+                    maxAgeSeconds: 60 * 60 * 24 * 2,
                     // purgeOnQuotaError: !0
                 })
             ]
@@ -39,26 +48,28 @@ if (workbox) {
     workbox.routing.registerRoute(
         /\.(?:js|css)$/,
         new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'static-resources'
+            cacheName: 'static-resources-' + workbox.core.cacheNames.suffix
         })
-    )
+    );
 
     workbox.routing.registerRoute(
         /\.(?:png|jpg|jpeg|gif|bmp|webp|svg|ico)$/,
         new workbox.strategies.CacheFirst({
-            cacheName: "images",
-            plugins: [new workbox.expiration.ExpirationPlugin({
-                maxEntries: 100,
-                maxAgeSeconds: 7 * 24 * 60 * 60,
-                // purgeOnQuotaError: !0
-            })]
+            cacheName: "images-" + workbox.core.cacheNames.suffix,
+            plugins: [
+                new workbox.expiration.ExpirationPlugin({
+                    maxEntries: 100,
+                    maxAgeSeconds: 7 * 24 * 60 * 60,
+                    // purgeOnQuotaError: !0
+                })
+            ]
         }), "GET");
 
     // Fonts
     workbox.routing.registerRoute(
         /\.(?:eot|ttf|woff|woff2)$/,
         new workbox.strategies.CacheFirst({
-            cacheName: "fonts",
+            cacheName: "fonts-" + workbox.core.cacheNames.suffix,
             plugins: [
                 new workbox.expiration.ExpirationPlugin({
                     maxEntries: 1000,
@@ -74,14 +85,14 @@ if (workbox) {
     workbox.routing.registerRoute(
         /^https:\/\/fonts\.googleapis\.com/,
         new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'google-fonts-stylesheets'
+            cacheName: 'google-fonts-stylesheets-' + workbox.core.cacheNames.suffix
         })
     );
 
     workbox.routing.registerRoute(
         /^https:\/\/fonts\.gstatic\.com/,
         new workbox.strategies.CacheFirst({
-            cacheName: 'google-fonts-webfonts',
+            cacheName: 'google-fonts-webfonts-' + workbox.core.cacheNames.suffix,
             plugins: [
                 new workbox.cacheableResponse.CacheableResponsePlugin({
                     statuses: [0, 200]
@@ -98,7 +109,7 @@ if (workbox) {
     workbox.routing.registerRoute(
         /(^https:\/\/cdn\.jsdelivr\.net.*?(\.js|\.css))|(^https:\/\/cdnjs\.cloudflare\.com)/,
         new workbox.strategies.CacheFirst({
-            cacheName: "external-resources",
+            cacheName: "external-resources-" + workbox.core.cacheNames.suffix,
             plugins: [
                 new workbox.expiration.ExpirationPlugin({
                     maxEntries: 1000,
