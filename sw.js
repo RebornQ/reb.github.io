@@ -7,7 +7,7 @@ if (workbox) {
 
     workbox.core.setCacheNameDetails({
         prefix: "Reborn",
-        suffix: 'v2',
+        suffix: 'v3',
         precache: 'precache',
         runtime: 'runtime'
     });
@@ -106,7 +106,7 @@ if (workbox) {
     );
 
     // external resources
-    workbox.routing.registerRoute(
+    /*workbox.routing.registerRoute(
         /(^https:\/\/cdn\.jsdelivr\.net.*?(\.js|\.css))|(^https:\/\/cdnjs\.cloudflare\.com)/,
         new workbox.strategies.CacheFirst({
             cacheName: "external-resources-" + workbox.core.cacheNames.suffix,
@@ -120,7 +120,7 @@ if (workbox) {
                 })
             ]
         })
-    );
+    );*/
 
     workbox.googleAnalytics.initialize({});
 
