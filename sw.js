@@ -25,10 +25,6 @@ if (workbox) {
             "revision": "8c662f5186e0482bf5ad382beeb71d8f"
         },
         {
-            "url": "/js/theme.min.js",
-            "revision": "7bc7989e979c4a19d97db3ab311a80fe"
-        },
-        {
             "url": "/css/style.min.css",
             "revision": "f03a2ec71b16efbe4f24352e542c93a9"
         }
