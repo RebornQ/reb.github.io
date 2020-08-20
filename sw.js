@@ -120,11 +120,6 @@ if (workbox) {
 
     workbox.googleAnalytics.initialize({});
 
-    // 安装阶段跳过等待，直接进入 active
-    self.addEventListener('install', function (event) {
-        event.waitUntil(self.skipWaiting());
-    });
-
     // Call Activate Event to remove old cache
     self.addEventListener('activate', function (event) {
         event.waitUntil(
