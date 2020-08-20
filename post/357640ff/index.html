@@ -1,409 +1,140 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <title>Nginx域名转发（反向代理） - Reborn&#39;s Blog</title><meta name="Description" content="欢迎来到Reborn&#39;s Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Nginx域名转发（反向代理）" />
-<meta property="og:description" content="参考： 【Nginx】关于域名转发proxy_pass 另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法 背景 在开发过程中，有时候我" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://reb.mallotec.com/post/357640ff/" />
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
-<meta property="article:published_time" content="2018-08-21T00:47:45+08:00" />
-<meta property="article:modified_time" content="2018-08-23T17:02:09+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
-
-<meta name="twitter:title" content="Nginx域名转发（反向代理）"/>
-<meta name="twitter:description" content="参考： 【Nginx】关于域名转发proxy_pass 另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法 背景 在开发过程中，有时候我"/>
-<meta name="application-name" content="Reborn&#39;s Blog">
-<meta name="apple-mobile-web-app-title" content="Reborn&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://reb.mallotec.com/post/357640ff/" /><link rel="prev" href="https://reb.mallotec.com/post/d32fb564/" /><link rel="next" href="https://reb.mallotec.com/post/48ffa897/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Nginx域名转发（反向代理）",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/reb.mallotec.com\/post\/357640ff\/"
-        },"genre": "posts","keywords": "Nginx, 服务器, 运维","wordcount":  1318 ,
-        "url": "https:\/\/reb.mallotec.com\/post\/357640ff\/","datePublished": "2018-08-21T00:47:45+08:00","dateModified": "2018-08-23T17:02:09+08:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "Reborn"
-            },"description": ""
-    }
-    </script></head>
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-<div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/posts"> 时间轴 </a><a class="menu-item" href="/categories"> 分类 </a><a class="menu-item" href="/tags"> 标签 </a><a class="menu-item" href="/about"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search for Posts" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search for Posts" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/posts" title="">时间轴</a><a class="menu-item" href="/categories" title="">分类</a><a class="menu-item" href="/tags" title="">标签</a><a class="menu-item" href="/about" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-        <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Nginx域名转发（反向代理）</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://reb.mallotec.com" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%BF%90%E7%BB%B4%E6%97%A5%E5%BF%97/"><i class="far fa-folder fa-fw"></i>运维日志</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-08-21">2018-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1318 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="true">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#背景">背景</a></li>
-    <li><a href="#配置文件示例">配置文件示例</a>
-      <ul>
-        <li><a href="#参数解释">参数解释</a></li>
-        <li><a href="#建立-nginx-配置文件">建立 Nginx 配置文件</a></li>
-        <li><a href="#http-示例">HTTP 示例</a></li>
-        <li><a href="#https-示例">HTTPS 示例</a></li>
-        <li><a href="#注意事项">注意事项</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><blockquote>
-<p>参考：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/linxiong945/p/4182928.html" target="_blank" rel="noopener noreffer">【Nginx】关于域名转发proxy_pass</a></li>
-<li><a href="https://doub.io/wlzy-3/" target="_blank" rel="noopener noreffer">另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法</a></li>
-</ul>
-</blockquote>
-<h2 id="背景">背景</h2>
-<p>在开发过程中，有时候我们会有一个这样的需求：访问<code>m.XXX.com</code>的时候，需要实际访问<code>www.YYY.com/m</code>，并且域名不能发生变化（这种也可称为镜像？）。</p>
-<!-- more -->
-<p>达成这个需求可以使用Nginx，有两种做法：</p>
-<ul>
-<li>第一种就是301跳转，使用rewrite来跳转域名，不过这样域名就会发生变化，与需求不符。</li>
-<li>第二种就是用proxy_pass跳转，只要指定跳转目的域名，就可以在访问的时候自动跳转访问目的域名，而且域名也不会发生变化。所以这里需要使用第二种方法。</li>
-</ul>
-<h2 id="配置文件示例">配置文件示例</h2>
-<p>以下教程 域名以<code>m.XXX.com</code>为例，被镜像网站以<code>www.YYY.com/m</code>为例</p>
-<p>然后访问你的域名看一看是否成功镜像，需要注意的一点是，如果被镜像的网站设置了<strong>防盗链</strong>，那么<strong>静态文件(js/css/图片)可能无法显示</strong>，这就没办法了。</p>
-<h3 id="参数解释">参数解释</h3>
-<p>一般情况下只需要更改这几个参数。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">server_name</span> <span class="nx">你的域名</span><span class="p">;</span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Nginx域名转发（反向代理） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Nginx域名转发（反向代理）"><meta property="og:description" content="参考： 【Nginx】关于域名转发proxy_pass 另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法 背景 在开发过程中，有时候我"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/357640ff/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-08-21T00:47:45+08:00"><meta property="article:modified_time" content="2018-08-23T17:02:09+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="Nginx域名转发（反向代理）"><meta name=twitter:description content="参考： 【Nginx】关于域名转发proxy_pass 另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法 背景 在开发过程中，有时候我"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/357640ff/><link rel=prev href=https://reb.mallotec.com/post/d32fb564/><link rel=next href=https://reb.mallotec.com/post/48ffa897/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Nginx域名转发（反向代理）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/357640ff\/"},"genre":"posts","keywords":"Nginx, 服务器, 运维","wordcount":1318,"url":"https:\/\/reb.mallotec.com\/post\/357640ff\/","datePublished":"2018-08-21T00:47:45+08:00","dateModified":"2018-08-23T17:02:09+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Nginx域名转发（反向代理）</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E8%BF%90%E7%BB%B4%E6%97%A5%E5%BF%97/><i class="far fa-folder fa-fw"></i>运维日志</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-08-21>2018-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1318 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#背景>背景</a></li><li><a href=#配置文件示例>配置文件示例</a><ul><li><a href=#参数解释>参数解释</a></li><li><a href=#建立-nginx-配置文件>建立 Nginx 配置文件</a></li><li><a href=#http-示例>HTTP 示例</a></li><li><a href=#https-示例>HTTPS 示例</a></li><li><a href=#注意事项>注意事项</a></li></ul></li></ul></nav></div></div><div class=content id=content><blockquote><p>参考：</p><ul><li><a href=https://www.cnblogs.com/linxiong945/p/4182928.html target=_blank rel="noopener noreffer">【Nginx】关于域名转发proxy_pass</a></li><li><a href=https://doub.io/wlzy-3/ target=_blank rel="noopener noreffer">另一种利用Nginx反向代理来简单镜像 HTTP(S)网站 的方法</a></li></ul></blockquote><h2 id=背景>背景</h2><p>在开发过程中，有时候我们会有一个这样的需求：访问<code>m.XXX.com</code>的时候，需要实际访问<code>www.YYY.com/m</code>，并且域名不能发生变化（这种也可称为镜像？）。</p><p>达成这个需求可以使用Nginx，有两种做法：</p><ul><li>第一种就是301跳转，使用rewrite来跳转域名，不过这样域名就会发生变化，与需求不符。</li><li>第二种就是用proxy_pass跳转，只要指定跳转目的域名，就可以在访问的时候自动跳转访问目的域名，而且域名也不会发生变化。所以这里需要使用第二种方法。</li></ul><h2 id=配置文件示例>配置文件示例</h2><p>以下教程 域名以<code>m.XXX.com</code>为例，被镜像网站以<code>www.YYY.com/m</code>为例</p><p>然后访问你的域名看一看是否成功镜像，需要注意的一点是，如果被镜像的网站设置了<strong>防盗链</strong>，那么<strong>静态文件(js/css/图片)可能无法显示</strong>，这就没办法了。</p><h3 id=参数解释>参数解释</h3><p>一般情况下只需要更改这几个参数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>server_name</span> <span class=nx>你的域名</span><span class=p>;</span>
  
-<span class="nx">sub_filter</span> <span class="nx">欲被镜像的域名</span> <span class="nx">你的域名</span><span class="p">;</span>
+<span class=nx>sub_filter</span> <span class=nx>欲被镜像的域名</span> <span class=nx>你的域名</span><span class=p>;</span>
  
-<span class="nx">proxy_set_header</span> <span class="nx">Referer</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//欲被镜像的域名;
-</span><span class="c1"></span> 
-<span class="nx">proxy_set_header</span> <span class="nx">Host</span> <span class="nx">欲被镜像的域名</span><span class="p">;</span>
+<span class=nx>proxy_set_header</span> <span class=nx>Referer</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//欲被镜像的域名;
+</span><span class=c1></span> 
+<span class=nx>proxy_set_header</span> <span class=nx>Host</span> <span class=nx>欲被镜像的域名</span><span class=p>;</span>
  
-<span class="nx">proxy_pass</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//欲被镜像的域名;
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="建立-nginx-配置文件">建立 Nginx 配置文件</h3>
-<p><strong>首先</strong>
-在<code>/etc/nginx/sites-available/</code>建立一个<code>m.XXX.com.conf</code>配置文件，内容参考<a href="#HTTP-%e7%a4%ba%e4%be%8b" rel="">HTTP 示例</a>和<a href="#HTTPS-%e7%a4%ba%e4%be%8b" rel="">HTTPS 示例</a>。</p>
-<h3 id="http-示例">HTTP 示例</h3>
-<p>以下示例是以<code> m.XXX.com </code>镜像<code> www.YYY.com/m </code>为例。自行替换 其中的参数：</p>
-<p><strong>第二段是 屏蔽搜索引擎收录</strong>，比如镜像自己的网站，如果不屏蔽会导致 收录流失。</p>
-<blockquote>
-<p>注意：不管你是镜像 <strong><a href="http://www.baidu.com">www.baidu.com</a></strong> 还是 <strong><a href="http://www.google.com.hk">www.google.com.hk</a></strong> （不要直接使用 .com 会被谷歌自动根据VPS所在地区重定向的），他们两个目前都是强制重定向到 https ，这意味着如果你只配置了 http 反向代理，那么访问反向代理域名后会重定向到 https 的目标域名，所以你也<strong>必须配置 https 才行。</strong></p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="err">#</span> <span class="nx">下面这段代码才是</span> <span class="nx">HTTP</span> <span class="nx">完整示例配置文件</span><span class="err">，</span><span class="nx">注意使用时修改里面的默认域名等信息</span><span class="err">。</span>
-<span class="nx">server</span> <span class="p">{</span>
-		<span class="nx">listen</span> <span class="mi">80</span><span class="p">;</span>
-		<span class="nx">server_name</span> <span class="nx">m</span><span class="p">.</span><span class="nx">XXX</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
+<span class=nx>proxy_pass</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//欲被镜像的域名;
+</span></code></pre></td></tr></table></div></div><h3 id=建立-nginx-配置文件>建立 Nginx 配置文件</h3><p><strong>首先</strong>
+在<code>/etc/nginx/sites-available/</code>建立一个<code>m.XXX.com.conf</code>配置文件，内容参考<a href=#HTTP-%e7%a4%ba%e4%be%8b rel>HTTP 示例</a>和<a href=#HTTPS-%e7%a4%ba%e4%be%8b rel>HTTPS 示例</a>。</p><h3 id=http-示例>HTTP 示例</h3><p>以下示例是以<code> m.XXX.com </code>镜像<code> www.YYY.com/m </code>为例。自行替换 其中的参数：</p><p><strong>第二段是 屏蔽搜索引擎收录</strong>，比如镜像自己的网站，如果不屏蔽会导致 收录流失。</p><blockquote><p>注意：不管你是镜像 <strong><a href=http://www.baidu.com>www.baidu.com</a></strong> 还是 <strong><a href=http://www.google.com.hk>www.google.com.hk</a></strong> （不要直接使用 .com 会被谷歌自动根据VPS所在地区重定向的），他们两个目前都是强制重定向到 https ，这意味着如果你只配置了 http 反向代理，那么访问反向代理域名后会重定向到 https 的目标域名，所以你也<strong>必须配置 https 才行。</strong></p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=err>#</span> <span class=nx>下面这段代码才是</span> <span class=nx>HTTP</span> <span class=nx>完整示例配置文件</span><span class=err>，</span><span class=nx>注意使用时修改里面的默认域名等信息</span><span class=err>。</span>
+<span class=nx>server</span> <span class=p>{</span>
+		<span class=nx>listen</span> <span class=mi>80</span><span class=p>;</span>
+		<span class=nx>server_name</span> <span class=nx>m</span><span class=p>.</span><span class=nx>XXX</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
 		
-		<span class="k">if</span> <span class="p">(</span><span class="nx">$http_user_agent</span> <span class="o">~*</span> <span class="p">(</span><span class="nx">baiduspider</span><span class="o">|</span><span class="mi">360</span><span class="nx">spider</span><span class="o">|</span><span class="nx">haosouspider</span><span class="o">|</span><span class="nx">googlebot</span><span class="o">|</span><span class="nx">soso</span><span class="o">|</span><span class="nx">bing</span><span class="o">|</span><span class="nx">sogou</span><span class="o">|</span><span class="nx">yahoo</span><span class="o">|</span><span class="nx">sohu</span><span class="o">-</span><span class="nx">search</span><span class="o">|</span><span class="nx">yodao</span><span class="o">|</span><span class="nx">YoudaoBot</span><span class="o">|</span><span class="nx">robozilla</span><span class="o">|</span><span class="nx">msnbot</span><span class="o">|</span><span class="nx">MJ12bot</span><span class="o">|</span><span class="nx">NHN</span><span class="o">|</span><span class="nx">Twiceler</span><span class="p">))</span> <span class="p">{</span>
-		  <span class="k">return</span>  <span class="mi">403</span><span class="p">;</span>
-		<span class="p">}</span>
+		<span class=k>if</span> <span class=p>(</span><span class=nx>$http_user_agent</span> <span class=o>~*</span> <span class=p>(</span><span class=nx>baiduspider</span><span class=o>|</span><span class=mi>360</span><span class=nx>spider</span><span class=o>|</span><span class=nx>haosouspider</span><span class=o>|</span><span class=nx>googlebot</span><span class=o>|</span><span class=nx>soso</span><span class=o>|</span><span class=nx>bing</span><span class=o>|</span><span class=nx>sogou</span><span class=o>|</span><span class=nx>yahoo</span><span class=o>|</span><span class=nx>sohu</span><span class=o>-</span><span class=nx>search</span><span class=o>|</span><span class=nx>yodao</span><span class=o>|</span><span class=nx>YoudaoBot</span><span class=o>|</span><span class=nx>robozilla</span><span class=o>|</span><span class=nx>msnbot</span><span class=o>|</span><span class=nx>MJ12bot</span><span class=o>|</span><span class=nx>NHN</span><span class=o>|</span><span class=nx>Twiceler</span><span class=p>))</span> <span class=p>{</span>
+		  <span class=k>return</span>  <span class=mi>403</span><span class=p>;</span>
+		<span class=p>}</span>
   
-		<span class="nx">location</span> <span class="o">/</span> <span class="p">{</span>
-		  <span class="nx">sub_filter</span> <span class="nx">www</span><span class="p">.</span><span class="nx">YYY</span><span class="p">.</span><span class="nx">com</span> <span class="nx">m</span><span class="p">.</span><span class="nx">XXX</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
-		  <span class="nx">sub_filter_once</span> <span class="nx">off</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Real</span><span class="o">-</span><span class="nx">IP</span> <span class="nx">$remote_addr</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span> <span class="nx">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">Referer</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//www.YYY.com;
-</span><span class="c1"></span>		  <span class="nx">proxy_set_header</span> <span class="nx">Host</span> <span class="nx">www</span><span class="p">.</span><span class="nx">YYY</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
-		  <span class="nx">proxy_pass</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//www.YYY.com/m;
-</span><span class="c1"></span>		  <span class="nx">proxy_set_header</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
-		<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="https-示例">HTTPS 示例</h3>
-<p>当你要镜像的网站不开放 HTTP 或者 强制HTTPS 的时候，你就需要加上 SSL 来转成 HTTPS 了。</p>
-<p>假设SSL证书文件位置是：<strong>/root/ssl.crt</strong></p>
-<p>假设SSL密匙文件位置是：<strong>/root/ssl.key</strong></p>
-<p><strong>第二段的 301 代码</strong>是，强制走HTTPS，如果不需要可以去掉。</p>
-<p><strong>第三段是 屏蔽搜索引擎收录</strong>，比如镜像自己的网站，如果不屏蔽会导致 收录流失。</p>
-<p>同时下面这两个选项的记得把<code>http://</code>改成<code>https://</code>。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">proxy_set_header</span> <span class="nx">Referer</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//www.YYY.com;
-</span><span class="c1"></span><span class="nx">proxy_pass</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//www.YYY.com/m;
-</span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="err">#</span> <span class="nx">下面这段代码才是</span> <span class="nx">HTTPS</span> <span class="nx">完整示例配置文件</span><span class="err">，</span><span class="nx">注意使用时修改里面的默认域名等信息</span><span class="err">。</span>
-<span class="nx">server</span>
-	<span class="p">{</span>
-		<span class="nx">listen</span> <span class="mi">80</span><span class="p">;</span>
-		<span class="nx">listen</span> <span class="mi">443</span> <span class="nx">ssl</span><span class="p">;</span>
-		<span class="nx">ssl</span> <span class="nx">on</span><span class="p">;</span>
-		<span class="nx">ssl_certificate</span> <span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">ssl</span><span class="p">.</span><span class="nx">crt</span><span class="p">;</span>
-		<span class="nx">ssl_certificate_key</span> <span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">ssl</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
-		<span class="nx">ssl_session_cache</span> <span class="nx">shared</span><span class="o">:</span><span class="nx">SSL</span><span class="o">:</span><span class="mi">10</span><span class="nx">m</span><span class="p">;</span>
-		<span class="nx">ssl_session_timeout</span>  <span class="mi">10</span><span class="nx">m</span><span class="p">;</span>
-		<span class="nx">server_name</span> <span class="nx">m</span><span class="p">.</span><span class="nx">XXX</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
-		<span class="nx">add_header</span> <span class="nx">Strict</span><span class="o">-</span><span class="nx">Transport</span><span class="o">-</span><span class="nx">Security</span> <span class="s2">&#34;max-age=31536000&#34;</span><span class="p">;</span>
+		<span class=nx>location</span> <span class=o>/</span> <span class=p>{</span>
+		  <span class=nx>sub_filter</span> <span class=nx>www</span><span class=p>.</span><span class=nx>YYY</span><span class=p>.</span><span class=nx>com</span> <span class=nx>m</span><span class=p>.</span><span class=nx>XXX</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
+		  <span class=nx>sub_filter_once</span> <span class=nx>off</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>X</span><span class=o>-</span><span class=nx>Real</span><span class=o>-</span><span class=nx>IP</span> <span class=nx>$remote_addr</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>X</span><span class=o>-</span><span class=nx>Forwarded</span><span class=o>-</span><span class=nx>For</span> <span class=nx>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>Referer</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//www.YYY.com;
+</span><span class=c1></span>		  <span class=nx>proxy_set_header</span> <span class=nx>Host</span> <span class=nx>www</span><span class=p>.</span><span class=nx>YYY</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
+		  <span class=nx>proxy_pass</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//www.YYY.com/m;
+</span><span class=c1></span>		  <span class=nx>proxy_set_header</span> <span class=nx>Accept</span><span class=o>-</span><span class=nx>Encoding</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+		<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=https-示例>HTTPS 示例</h3><p>当你要镜像的网站不开放 HTTP 或者 强制HTTPS 的时候，你就需要加上 SSL 来转成 HTTPS 了。</p><p>假设SSL证书文件位置是：<strong>/root/ssl.crt</strong></p><p>假设SSL密匙文件位置是：<strong>/root/ssl.key</strong></p><p><strong>第二段的 301 代码</strong>是，强制走HTTPS，如果不需要可以去掉。</p><p><strong>第三段是 屏蔽搜索引擎收录</strong>，比如镜像自己的网站，如果不屏蔽会导致 收录流失。</p><p>同时下面这两个选项的记得把<code>http://</code>改成<code>https://</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>proxy_set_header</span> <span class=nx>Referer</span> <span class=nx>https</span><span class=o>:</span><span class=c1>//www.YYY.com;
+</span><span class=c1></span><span class=nx>proxy_pass</span> <span class=nx>https</span><span class=o>:</span><span class=c1>//www.YYY.com/m;
+</span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=err>#</span> <span class=nx>下面这段代码才是</span> <span class=nx>HTTPS</span> <span class=nx>完整示例配置文件</span><span class=err>，</span><span class=nx>注意使用时修改里面的默认域名等信息</span><span class=err>。</span>
+<span class=nx>server</span>
+	<span class=p>{</span>
+		<span class=nx>listen</span> <span class=mi>80</span><span class=p>;</span>
+		<span class=nx>listen</span> <span class=mi>443</span> <span class=nx>ssl</span><span class=p>;</span>
+		<span class=nx>ssl</span> <span class=nx>on</span><span class=p>;</span>
+		<span class=nx>ssl_certificate</span> <span class=o>/</span><span class=nx>root</span><span class=o>/</span><span class=nx>ssl</span><span class=p>.</span><span class=nx>crt</span><span class=p>;</span>
+		<span class=nx>ssl_certificate_key</span> <span class=o>/</span><span class=nx>root</span><span class=o>/</span><span class=nx>ssl</span><span class=p>.</span><span class=nx>key</span><span class=p>;</span>
+		<span class=nx>ssl_session_cache</span> <span class=nx>shared</span><span class=o>:</span><span class=nx>SSL</span><span class=o>:</span><span class=mi>10</span><span class=nx>m</span><span class=p>;</span>
+		<span class=nx>ssl_session_timeout</span>  <span class=mi>10</span><span class=nx>m</span><span class=p>;</span>
+		<span class=nx>server_name</span> <span class=nx>m</span><span class=p>.</span><span class=nx>XXX</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
+		<span class=nx>add_header</span> <span class=nx>Strict</span><span class=o>-</span><span class=nx>Transport</span><span class=o>-</span><span class=nx>Security</span> <span class=s2>&#34;max-age=31536000&#34;</span><span class=p>;</span>
 		
-		<span class="k">if</span> <span class="p">(</span> <span class="nx">$scheme</span> <span class="o">=</span> <span class="nx">http</span> <span class="p">){</span>
-			<span class="k">return</span> <span class="mi">301</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//$server_name$request_uri;
-</span><span class="c1"></span>		<span class="p">}</span>
+		<span class=k>if</span> <span class=p>(</span> <span class=nx>$scheme</span> <span class=o>=</span> <span class=nx>http</span> <span class=p>){</span>
+			<span class=k>return</span> <span class=mi>301</span> <span class=nx>https</span><span class=o>:</span><span class=c1>//$server_name$request_uri;
+</span><span class=c1></span>		<span class=p>}</span>
 		
-		<span class="k">if</span> <span class="p">(</span><span class="nx">$http_user_agent</span> <span class="o">~*</span> <span class="p">(</span><span class="nx">baiduspider</span><span class="o">|</span><span class="mi">360</span><span class="nx">spider</span><span class="o">|</span><span class="nx">haosouspider</span><span class="o">|</span><span class="nx">googlebot</span><span class="o">|</span><span class="nx">soso</span><span class="o">|</span><span class="nx">bing</span><span class="o">|</span><span class="nx">sogou</span><span class="o">|</span><span class="nx">yahoo</span><span class="o">|</span><span class="nx">sohu</span><span class="o">-</span><span class="nx">search</span><span class="o">|</span><span class="nx">yodao</span><span class="o">|</span><span class="nx">YoudaoBot</span><span class="o">|</span><span class="nx">robozilla</span><span class="o">|</span><span class="nx">msnbot</span><span class="o">|</span><span class="nx">MJ12bot</span><span class="o">|</span><span class="nx">NHN</span><span class="o">|</span><span class="nx">Twiceler</span><span class="p">))</span> <span class="p">{</span>
-		  <span class="k">return</span>  <span class="mi">403</span><span class="p">;</span>
-		<span class="p">}</span>
+		<span class=k>if</span> <span class=p>(</span><span class=nx>$http_user_agent</span> <span class=o>~*</span> <span class=p>(</span><span class=nx>baiduspider</span><span class=o>|</span><span class=mi>360</span><span class=nx>spider</span><span class=o>|</span><span class=nx>haosouspider</span><span class=o>|</span><span class=nx>googlebot</span><span class=o>|</span><span class=nx>soso</span><span class=o>|</span><span class=nx>bing</span><span class=o>|</span><span class=nx>sogou</span><span class=o>|</span><span class=nx>yahoo</span><span class=o>|</span><span class=nx>sohu</span><span class=o>-</span><span class=nx>search</span><span class=o>|</span><span class=nx>yodao</span><span class=o>|</span><span class=nx>YoudaoBot</span><span class=o>|</span><span class=nx>robozilla</span><span class=o>|</span><span class=nx>msnbot</span><span class=o>|</span><span class=nx>MJ12bot</span><span class=o>|</span><span class=nx>NHN</span><span class=o>|</span><span class=nx>Twiceler</span><span class=p>))</span> <span class=p>{</span>
+		  <span class=k>return</span>  <span class=mi>403</span><span class=p>;</span>
+		<span class=p>}</span>
   
-		<span class="nx">location</span> <span class="o">/</span> <span class="p">{</span>
-		  <span class="nx">sub_filter</span> <span class="nx">www</span><span class="p">.</span><span class="nx">YYY</span><span class="p">.</span><span class="nx">com</span> <span class="nx">m</span><span class="p">.</span><span class="nx">XXX</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
-		  <span class="nx">sub_filter_once</span> <span class="nx">off</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Real</span><span class="o">-</span><span class="nx">IP</span> <span class="nx">$remote_addr</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span> <span class="nx">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-		  <span class="nx">proxy_set_header</span> <span class="nx">Referer</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//www.YYY.com;
-</span><span class="c1"></span>		  <span class="nx">proxy_set_header</span> <span class="nx">Host</span> <span class="nx">www</span><span class="p">.</span><span class="nx">YYY</span><span class="p">.</span><span class="nx">com</span><span class="p">;</span>
-		  <span class="nx">proxy_pass</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//www.YYY.com/m;
-</span><span class="c1"></span>		  <span class="nx">proxy_set_header</span> <span class="nx">Accept</span><span class="o">-</span><span class="nx">Encoding</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
-		<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="注意事项">注意事项</h3>
-<ol>
-<li>
-<p>若是转发的地址含二级目录如：<code>www.YYY.com/m</code>，只需要把<code>proxy_pass</code>值修改为具体地址即可，若是不行则将<code>proxy_set_header</code>值也修改为具体地址。</p>
-</li>
-<li>
-<p>若是你输入的地址中要有二级目录如<code>m.XXX.com/tools/a</code>，则<code>location</code>模块要改为：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">location</span> <span class="o">/</span><span class="nx">tools</span><span class="o">/</span><span class="nx">a</span> <span class="p">{</span>
-      <span class="c1">// ...
-</span><span class="c1"></span>  <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2018-08-23</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）" data-hashtags="Nginx,服务器,运维"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://reb.mallotec.com/post/357640ff/" data-hashtag="Nginx"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://reb.mallotec.com/post/357640ff/" data-title="Nginx域名转发（反向代理）"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nginx/">Nginx</a>,&nbsp;<a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>,&nbsp;<a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/post/d32fb564/" class="prev" rel="prev" title="Disqus API科学评论大法"><i class="fas fa-angle-left fa-fw"></i>Disqus API科学评论大法</a>
-            <a href="/post/48ffa897/" class="next" rel="next" title="推荐几个能自动转换粘贴内容为Markdown的工具">推荐几个能自动转换粘贴内容为Markdown的工具<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
-            <script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
-            <div id="disqus_thread" class="comment"></div>
-            <script>
-                var dsqjs = new DisqusJS({
-                    shortname:"rebor",
-                    siteName:"Reborn Blog",
-                    api:"https://disqus.skk.moe/disqus/",
-                    apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",
-                    admin:"disqus_yQKQzyJhV3",
-                    adminLabel:"admin"});
-            </script></div></article></div>
-    </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js"></script><div>🐼 本站已运行 <span class="liveTime"><span class="timeDate">载入天数...</span><span class="times">载入时分秒...</span></span> 🐼</div></div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://reb.mallotec.com" target="_blank">Reborn</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-<div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-        <i class="fas fa-arrow-up fa-fw"></i>
-    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-        <i class="fas fa-comment fa-fw"></i>
-    </a>
-</div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'UA-175008981-1', { 'anonymize_ip': true });
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
-<script>
-    
-    if ('serviceWorker' in navigator) {
-        
-        window.onload = function () {
-            navigator.serviceWorker
-                .register('/sw.js', { scope: '/' })
-                .then(function(registration) {
-                    console.log('Service Worker Registered');
-                });
-
-            navigator.serviceWorker
-                .ready
-                .then(function(registration) {
-                    console.log('Service Worker Ready');
-                });
-        };
-    }
-</script>
-</html>
+		<span class=nx>location</span> <span class=o>/</span> <span class=p>{</span>
+		  <span class=nx>sub_filter</span> <span class=nx>www</span><span class=p>.</span><span class=nx>YYY</span><span class=p>.</span><span class=nx>com</span> <span class=nx>m</span><span class=p>.</span><span class=nx>XXX</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
+		  <span class=nx>sub_filter_once</span> <span class=nx>off</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>X</span><span class=o>-</span><span class=nx>Real</span><span class=o>-</span><span class=nx>IP</span> <span class=nx>$remote_addr</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>X</span><span class=o>-</span><span class=nx>Forwarded</span><span class=o>-</span><span class=nx>For</span> <span class=nx>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+		  <span class=nx>proxy_set_header</span> <span class=nx>Referer</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//www.YYY.com;
+</span><span class=c1></span>		  <span class=nx>proxy_set_header</span> <span class=nx>Host</span> <span class=nx>www</span><span class=p>.</span><span class=nx>YYY</span><span class=p>.</span><span class=nx>com</span><span class=p>;</span>
+		  <span class=nx>proxy_pass</span> <span class=nx>http</span><span class=o>:</span><span class=c1>//www.YYY.com/m;
+</span><span class=c1></span>		  <span class=nx>proxy_set_header</span> <span class=nx>Accept</span><span class=o>-</span><span class=nx>Encoding</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+		<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=注意事项>注意事项</h3><ol><li><p>若是转发的地址含二级目录如：<code>www.YYY.com/m</code>，只需要把<code>proxy_pass</code>值修改为具体地址即可，若是不行则将<code>proxy_set_header</code>值也修改为具体地址。</p></li><li><p>若是你输入的地址中要有二级目录如<code>m.XXX.com/tools/a</code>，则<code>location</code>模块要改为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>location</span> <span class=o>/</span><span class=nx>tools</span><span class=o>/</span><span class=nx>a</span> <span class=p>{</span>
+      <span class=c1>// ...
+</span><span class=c1></span>  <span class=p>}</span>
+</code></pre></td></tr></table></div></div></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2018-08-23</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理） data-hashtags=Nginx,服务器,运维><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/357640ff/ data-hashtag=Nginx><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理） data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理）><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理）><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理） data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理） data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/357640ff/ data-title=Nginx域名转发（反向代理）><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nginx/>Nginx</a>,&nbsp;<a href=/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/>服务器</a>,&nbsp;<a href=/tags/%E8%BF%90%E7%BB%B4/>运维</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/d32fb564/ class=prev rel=prev title="Disqus API科学评论大法"><i class="fas fa-angle-left fa-fw"></i>Disqus API科学评论大法</a>
+<a href=/post/48ffa897/ class=next rel=next title=推荐几个能自动转换粘贴内容为Markdown的工具>推荐几个能自动转换粘贴内容为Markdown的工具<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js></script><div>🐼 本站已运行 <span class=liveTime><span class=timeDate>载入天数...</span><span class=times>载入时分秒...</span></span> 🐼</div></div><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script>if('serviceWorker'in navigator){window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>

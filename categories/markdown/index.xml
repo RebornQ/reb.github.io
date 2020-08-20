@@ -1,15 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Markdown - 分类 - Reborn&#39;s Blog</title>
-        <link>https://reb.mallotec.com/categories/markdown/</link>
-        <description>Markdown - 分类 - Reborn&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor>
-            <webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Tue, 21 Aug 2018 01:45:09 &#43;0800</lastBuildDate><atom:link href="https://reb.mallotec.com/categories/markdown/" rel="self" type="application/rss+xml" /><item>
-    <title>推荐几个能自动转换粘贴内容为Markdown的工具</title>
-    <link>https://reb.mallotec.com/post/48ffa897/</link>
-    <pubDate>Tue, 21 Aug 2018 01:45:09 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://reb.mallotec.com/post/48ffa897/</guid>
-    <description><![CDATA[背景 今天在转载几篇文章的时候，看到别人的博文写的不错，想要转载到自己博客里。 但是由于我们是自己搭建的博客，发表的文章都是以源码方式编辑的，没]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Markdown - 分类 - Reborn's Blog</title><link>https://reb.mallotec.com/categories/markdown/</link><description>Markdown - 分类 - Reborn's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor><webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Tue, 21 Aug 2018 01:45:09 +0800</lastBuildDate><atom:link href="https://reb.mallotec.com/categories/markdown/" rel="self" type="application/rss+xml"/><item><title>推荐几个能自动转换粘贴内容为Markdown的工具</title><link>https://reb.mallotec.com/post/48ffa897/</link><pubDate>Tue, 21 Aug 2018 01:45:09 +0800</pubDate><author>作者</author><guid>https://reb.mallotec.com/post/48ffa897/</guid><description>背景 今天在转载几篇文章的时候，看到别人的博文写的不错，想要转载到自己博客里。 但是由于我们是自己搭建的博客，发表的文章都是以源码方式编辑的，没</description></item></channel></rss>

@@ -1,15 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>iframe - 标签 - Reborn&#39;s Blog</title>
-        <link>https://reb.mallotec.com/tags/iframe/</link>
-        <description>iframe - 标签 - Reborn&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor>
-            <webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Tue, 21 Aug 2018 23:21:40 &#43;0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/iframe/" rel="self" type="application/rss+xml" /><item>
-    <title>解决iframe跨域高度自适应问题</title>
-    <link>https://reb.mallotec.com/post/a29672a0/</link>
-    <pubDate>Tue, 21 Aug 2018 23:21:40 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://reb.mallotec.com/post/a29672a0/</guid>
-    <description><![CDATA[背景 我在前面写博文的时候，有遇到一次需要嵌套别人的网页来做预览，我想到了用iframe标签，结果发现根本没法自适应高度？？！！什么玩意，强迫]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iframe - 标签 - Reborn's Blog</title><link>https://reb.mallotec.com/tags/iframe/</link><description>iframe - 标签 - Reborn's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor><webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Tue, 21 Aug 2018 23:21:40 +0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/iframe/" rel="self" type="application/rss+xml"/><item><title>解决iframe跨域高度自适应问题</title><link>https://reb.mallotec.com/post/a29672a0/</link><pubDate>Tue, 21 Aug 2018 23:21:40 +0800</pubDate><author>作者</author><guid>https://reb.mallotec.com/post/a29672a0/</guid><description>背景 我在前面写博文的时候，有遇到一次需要嵌套别人的网页来做预览，我想到了用iframe标签，结果发现根本没法自适应高度？？！！什么玩意，强迫</description></item></channel></rss>

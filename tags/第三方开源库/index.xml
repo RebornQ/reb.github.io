@@ -1,15 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>第三方开源库 - 标签 - Reborn&#39;s Blog</title>
-        <link>https://reb.mallotec.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E5%BA%93/</link>
-        <description>第三方开源库 - 标签 - Reborn&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor>
-            <webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Sun, 08 Dec 2019 08:37:51 &#43;0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
-    <title>里包恩第一款开源第三方库 plugin-locale 面世！！</title>
-    <link>https://reb.mallotec.com/post/7afcff16/</link>
-    <pubDate>Sun, 08 Dec 2019 08:37:51 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://reb.mallotec.com/post/7afcff16/</guid>
-    <description><![CDATA[背景 项目历经9个月的演化，终于从一开始为宝可梦的那样记账研究的语言切换而写的Demo进化成第三方库。 这是我的第一个开源第三方库，说起来还挺激]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>第三方开源库 - 标签 - Reborn's Blog</title><link>https://reb.mallotec.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E5%BA%93/</link><description>第三方开源库 - 标签 - Reborn's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor><webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Sun, 08 Dec 2019 08:37:51 +0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E5%BA%93/" rel="self" type="application/rss+xml"/><item><title>里包恩第一款开源第三方库 plugin-locale 面世！！</title><link>https://reb.mallotec.com/post/7afcff16/</link><pubDate>Sun, 08 Dec 2019 08:37:51 +0800</pubDate><author>作者</author><guid>https://reb.mallotec.com/post/7afcff16/</guid><description>背景 项目历经9个月的演化，终于从一开始为宝可梦的那样记账研究的语言切换而写的Demo进化成第三方库。 这是我的第一个开源第三方库，说起来还挺激</description></item></channel></rss>

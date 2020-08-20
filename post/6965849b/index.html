@@ -1,212 +1,49 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <title>Mac通过brew安装的MySQL各种无法运行问题总结 - Reborn&#39;s Blog</title><meta name="Description" content="欢迎来到Reborn&#39;s Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Mac通过brew安装的MySQL各种无法运行问题总结" />
-<meta property="og:description" content="一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid). 参考：https://stackoverflow.com/a/36156848 问题描述 之前用的好好的，经过一次更新" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://reb.mallotec.com/post/6965849b/" />
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
-<meta property="article:published_time" content="2018-07-27T18:23:37+08:00" />
-<meta property="article:modified_time" content="2018-08-05T12:17:54+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Mac通过brew安装的MySQL各种无法运行问题总结 - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Mac通过brew安装的MySQL各种无法运行问题总结"><meta property="og:description" content="一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid). 参考：https://stackoverflow.com/a/36156848 问题描述 之前用的好好的，经过一次更新"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/6965849b/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-07-27T18:23:37+08:00"><meta property="article:modified_time" content="2018-08-05T12:17:54+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="Mac通过brew安装的MySQL各种无法运行问题总结"><meta name=twitter:description content="一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid). 参考：https://stackoverflow.com/a/36156848 问题描述 之前用的好好的，经过一次更新"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/6965849b/><link rel=prev href=https://reb.mallotec.com/post/e87d9191/><link rel=next href=https://reb.mallotec.com/post/a96dbfbe/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Mac通过brew安装的MySQL各种无法运行问题总结","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/6965849b\/"},"genre":"posts","keywords":"Mac, Homebrew, 数据库, MySQL","wordcount":1150,"url":"https:\/\/reb.mallotec.com\/post\/6965849b\/","datePublished":"2018-07-27T18:23:37+08:00","dateModified":"2018-08-05T12:17:54+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Mac通过brew安装的MySQL各种无法运行问题总结</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/><i class="far fa-folder fa-fw"></i>数据库</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-07-27>2018-07-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1150 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#一解决-error-the-server-quit-without-updating-pid-file-usrlocalvarmysqlxxxlocalpid>一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid).</a><ul><li><a href=#问题描述>问题描述</a></li><li><a href=#最终解决方法重装大法>最终解决方法：重装大法</a></li><li><a href=#附录>附录</a></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=一解决-error-the-server-quit-without-updating-pid-file-usrlocalvarmysqlxxxlocalpid>一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid).</h2><blockquote><p>参考：<a href=https://stackoverflow.com/a/36156848 target=_blank rel="noopener noreffer">https://stackoverflow.com/a/36156848</a></p></blockquote><h3 id=问题描述>问题描述</h3><p>之前用的好好的，经过一次更新（5.6->8.0）后某一天突然炸了。
+通过<code>brew services start mysql</code>启动 MySQL 后，使用 Navicat 连接提示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=m>2003</span> - Can<span class=s1>&#39;t connect to MySQL server on &#39;</span>127.0.0.1<span class=err>&#39;</span> <span class=o>(</span><span class=m>61</span> <span class=s2>&#34;Connection refused&#34;</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>经过一番查询，据说是 MySQL 服务没启动的问题（其实我觉得这说法有点不对），然后我就尝试启动MySQL服务，命令<code>mysql.server start</code>。
+接着我收到以下错误：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ERROR! The server quit without updating PID file <span class=o>(</span>/usr/local/var/mysql/xxx.local.pid<span class=o>)</span>.
+</code></pre></td></tr></table></div></div><p><code>xxx</code>为我的机器名字。</p><p>然后执行<code>mysql_secure_installation</code>又提示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>Securing the MySQL server deployment.
 
-<meta name="twitter:title" content="Mac通过brew安装的MySQL各种无法运行问题总结"/>
-<meta name="twitter:description" content="一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid). 参考：https://stackoverflow.com/a/36156848 问题描述 之前用的好好的，经过一次更新"/>
-<meta name="application-name" content="Reborn&#39;s Blog">
-<meta name="apple-mobile-web-app-title" content="Reborn&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://reb.mallotec.com/post/6965849b/" /><link rel="prev" href="https://reb.mallotec.com/post/e87d9191/" /><link rel="next" href="https://reb.mallotec.com/post/a96dbfbe/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Mac通过brew安装的MySQL各种无法运行问题总结",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/reb.mallotec.com\/post\/6965849b\/"
-        },"genre": "posts","keywords": "Mac, Homebrew, 数据库, MySQL","wordcount":  1150 ,
-        "url": "https:\/\/reb.mallotec.com\/post\/6965849b\/","datePublished": "2018-07-27T18:23:37+08:00","dateModified": "2018-08-05T12:17:54+08:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "Reborn"
-            },"description": ""
-    }
-    </script></head>
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-<div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/posts"> 时间轴 </a><a class="menu-item" href="/categories"> 分类 </a><a class="menu-item" href="/tags"> 标签 </a><a class="menu-item" href="/about"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search for Posts" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search for Posts" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/posts" title="">时间轴</a><a class="menu-item" href="/categories" title="">分类</a><a class="menu-item" href="/tags" title="">标签</a><a class="menu-item" href="/about" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-        <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Mac通过brew安装的MySQL各种无法运行问题总结</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://reb.mallotec.com" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-27">2018-07-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1150 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="true">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#一解决-error-the-server-quit-without-updating-pid-file-usrlocalvarmysqlxxxlocalpid">一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid).</a>
-      <ul>
-        <li><a href="#问题描述">问题描述</a></li>
-        <li><a href="#最终解决方法重装大法">最终解决方法：重装大法</a></li>
-        <li><a href="#附录">附录</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="一解决-error-the-server-quit-without-updating-pid-file-usrlocalvarmysqlxxxlocalpid">一、解决 ERROR! The server quit without updating PID file (/usr/local/var/mysql/xxx.local.pid).</h2>
-<blockquote>
-<p>参考：<a href="https://stackoverflow.com/a/36156848" target="_blank" rel="noopener noreffer">https://stackoverflow.com/a/36156848</a></p>
-</blockquote>
-<!-- more -->
-<h3 id="问题描述">问题描述</h3>
-<p>之前用的好好的，经过一次更新（5.6-&gt;8.0）后某一天突然炸了。
-通过<code>brew services start mysql</code>启动 MySQL 后，使用 Navicat 连接提示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">2003</span> - Can<span class="s1">&#39;t connect to MySQL server on &#39;</span>127.0.0.1<span class="err">&#39;</span> <span class="o">(</span><span class="m">61</span> <span class="s2">&#34;Connection refused&#34;</span><span class="o">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>经过一番查询，据说是 MySQL 服务没启动的问题（其实我觉得这说法有点不对），然后我就尝试启动MySQL服务，命令<code>mysql.server start</code>。
-接着我收到以下错误：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ERROR! The server quit without updating PID file <span class="o">(</span>/usr/local/var/mysql/xxx.local.pid<span class="o">)</span>.
-</code></pre></td></tr></table>
-</div>
-</div><p><code>xxx</code>为我的机器名字。</p>
-<p>然后执行<code>mysql_secure_installation</code>又提示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">Securing the MySQL server deployment.
-
-Enter password <span class="k">for</span> user root:
-Error: Can<span class="s1">&#39;t connect to local MySQL server through socket &#39;</span>/tmp/mysql.sock<span class="err">&#39;</span> <span class="o">(</span>2<span class="o">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>后来经过各种尝试如：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">rm /usr/local/var/mysql/*.err
+Enter password <span class=k>for</span> user root:
+Error: Can<span class=s1>&#39;t connect to local MySQL server through socket &#39;</span>/tmp/mysql.sock<span class=err>&#39;</span> <span class=o>(</span>2<span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>后来经过各种尝试如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>rm /usr/local/var/mysql/*.err
 rm /usr/local/var/mysql/xxx.local.err
 find / -name mysql.sock
-sudo chmod -R <span class="m">755</span> /usr/local/var/mysql/
+sudo chmod -R <span class=m>755</span> /usr/local/var/mysql/
 sudo chown -R _mysql:mysql /usr/local/var/mysql
 ls -laF /usr/local/var/mysql/
 sudo rm -f /tmp/mysql.sock.lock
 ls -laF /tmp
-</code></pre></td></tr></table>
-</div>
-</div><p>还有通过<code>ps aux | grep mysql</code>找出 MySQL 的 PID，再用<code>kill -9 [PID]</code>杀掉进程都没用。</p>
-<h3 id="最终解决方法重装大法">最终解决方法：重装大法</h3>
-<p>最后尝试完全重新安装 MySQL 终于解决了。
-**警告：**这将删除所有数据库，因此请确保先保存转储。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">brew remove mysql
+</code></pre></td></tr></table></div></div><p>还有通过<code>ps aux | grep mysql</code>找出 MySQL 的 PID，再用<code>kill -9 [PID]</code>杀掉进程都没用。</p><h3 id=最终解决方法重装大法>最终解决方法：重装大法</h3><p>最后尝试完全重新安装 MySQL 终于解决了。
+**警告：**这将删除所有数据库，因此请确保先保存转储。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew remove mysql
 brew cleanup --force
 launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
@@ -214,349 +51,251 @@ sudo rm -rf /usr/local/var/mysql
 
 brew install mysql
 mysqld --initialize --explicit_defaults_for_timestamp
-mysql.server start <span class="c1"># no sudo!</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>重装了MySQL后建议重新执行一次配置脚本：<code>mysql_secure_installation</code></p>
-<blockquote>
-<p>注意：
-安装后必须执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mysqld --initialize --explicit_defaults_for_timestamp
-</code></pre></td></tr></table>
-</div>
-</div><p>否则仍无法解决以下问题：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">Error: Can<span class="s1">&#39;t connect to local MySQL server through socket &#39;</span>/tmp/mysql.sock<span class="err">&#39;</span> <span class="o">(</span>2<span class="o">)</span>
-</code></pre></td></tr></table>
-</div>
-</div></blockquote>
-<h3 id="附录">附录</h3>
-<p>卸载过程如下（保留以便日后需要）：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ brew remove mysql
-Uninstalling /usr/local/Cellar/mysql/8.0.11... <span class="o">(</span><span class="m">254</span> files, 232.9MB<span class="o">)</span>
-mysql 5.7.21, 5.7.22 <span class="m">2</span> are still installed.
-Remove all versions with <span class="sb">`</span>brew uninstall --force mysql<span class="sb">`</span>.
+mysql.server start <span class=c1># no sudo!</span>
+</code></pre></td></tr></table></div></div><p>重装了MySQL后建议重新执行一次配置脚本：<code>mysql_secure_installation</code></p><blockquote><p>注意：
+安装后必须执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>mysqld --initialize --explicit_defaults_for_timestamp
+</code></pre></td></tr></table></div></div><p>否则仍无法解决以下问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>Error: Can<span class=s1>&#39;t connect to local MySQL server through socket &#39;</span>/tmp/mysql.sock<span class=err>&#39;</span> <span class=o>(</span>2<span class=o>)</span>
+</code></pre></td></tr></table></div></div></blockquote><h3 id=附录>附录</h3><p>卸载过程如下（保留以便日后需要）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ brew remove mysql
+Uninstalling /usr/local/Cellar/mysql/8.0.11... <span class=o>(</span><span class=m>254</span> files, 232.9MB<span class=o>)</span>
+mysql 5.7.21, 5.7.22 <span class=m>2</span> are still installed.
+Remove all versions with <span class=sb>`</span>brew uninstall --force mysql<span class=sb>`</span>.
 $ brew uninstall --force mysql
-Uninstalling mysql... <span class="o">(</span><span class="m">640</span> files, 467.8MB<span class="o">)</span>
+Uninstalling mysql... <span class=o>(</span><span class=m>640</span> files, 467.8MB<span class=o>)</span>
 $ brew cleanup --force
-Removing: /usr/local/Cellar/dash/0.5.10... <span class="o">(</span><span class="m">6</span> files, 196.2KB<span class="o">)</span>
-Removing: /usr/local/Cellar/dash/0.5.9.1... <span class="o">(</span><span class="m">5</span> files, 199KB<span class="o">)</span>
-Removing: /usr/local/Cellar/freetds/1.00.89... <span class="o">(</span>2,094 files, 11.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/freetds/1.00.91... <span class="o">(</span>2,094 files, 11.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/freetype/2.9... <span class="o">(</span><span class="m">60</span> files, 2.7MB<span class="o">)</span>
-Removing: /usr/local/Cellar/gdbm/1.14.1_1... <span class="o">(</span><span class="m">20</span> files, 555.8KB<span class="o">)</span>
-Removing: /usr/local/Cellar/icu4c/61.1... <span class="o">(</span><span class="m">249</span> files, 67.2MB<span class="o">)</span>
-Removing: /usr/local/Cellar/libidn2/2.0.4... <span class="o">(</span><span class="m">46</span> files, 580.8KB<span class="o">)</span>
-Removing: /usr/local/Cellar/libpq/10.3... <span class="o">(</span>2,425 files, 26.8MB<span class="o">)</span>
-Removing: /usr/local/Cellar/libunistring/0.9.9... <span class="o">(</span><span class="m">54</span> files, 4.4MB<span class="o">)</span>
-Removing: /usr/local/Cellar/nginx/1.13.12... <span class="o">(</span><span class="m">23</span> files, 1.4MB<span class="o">)</span>
-Removing: /usr/local/Cellar/nginx/1.15.0... <span class="o">(</span><span class="m">23</span> files, 1.4MB<span class="o">)</span>
-Removing: /usr/local/Cellar/node/10.0.0... <span class="o">(</span>5,301 files, 51.7MB<span class="o">)</span>
-Removing: /usr/local/Cellar/node/10.1.0... <span class="o">(</span>7,283 files, 55.4MB<span class="o">)</span>
-Removing: /usr/local/Cellar/node/10.2.1... <span class="o">(</span>5,301 files, 51.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/node/9.11.1... <span class="o">(</span>5,125 files, 49.7MB<span class="o">)</span>
-Removing: /usr/local/Cellar/openssl/1.0.2n... <span class="o">(</span>1,792 files, 12.3MB<span class="o">)</span>
-Removing: /usr/local/Cellar/openssl/1.0.2o_1... <span class="o">(</span>1,791 files, 12.3MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php/7.2.5... <span class="o">(</span><span class="m">515</span> files, 78.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php/7.2.6... <span class="o">(</span><span class="m">515</span> files, 78.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php@5.6/5.6.35_1... <span class="o">(</span><span class="m">498</span> files, 63.8MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php@5.6/5.6.36... <span class="o">(</span><span class="m">498</span> files, 63.8MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php@7.0/7.0.29_1... <span class="o">(</span><span class="m">502</span> files, 65.5MB<span class="o">)</span>
-Removing: /usr/local/Cellar/php@7.0/7.0.30... <span class="o">(</span><span class="m">502</span> files, 65.5MB<span class="o">)</span>
-Removing: /usr/local/Cellar/python/3.6.5... <span class="o">(</span>4,794 files, 99.9MB<span class="o">)</span>
-Removing: /usr/local/Cellar/readline/7.0.3_1... <span class="o">(</span><span class="m">46</span> files, 1.5MB<span class="o">)</span>
-Removing: /usr/local/Cellar/sqlite/3.23.1... <span class="o">(</span><span class="m">11</span> files, 3MB<span class="o">)</span>
-Removing: /usr/local/Cellar/webp/0.6.1... <span class="o">(</span><span class="m">38</span> files, 2MB<span class="o">)</span>
-Removing: /usr/local/Cellar/wget/1.19.4_1... <span class="o">(</span><span class="m">50</span> files, 3.7MB<span class="o">)</span>
-Removing: /usr/local/Cellar/xz/5.2.3... <span class="o">(</span><span class="m">92</span> files, 1.4MB<span class="o">)</span>
-Removing: /usr/local/Cellar/zsh/5.4.2_3... <span class="o">(</span>1,390 files, 11.8MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/dash-0.5.10.sierra.bottle.tar.gz... <span class="o">(</span>83.6KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/dash-0.5.9.1.sierra.bottle.tar.gz... <span class="o">(</span>83.2KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/freetds-1.00.89.sierra.bottle.tar.gz... <span class="o">(</span>2.3MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/freetds-1.00.91.sierra.bottle.tar.gz... <span class="o">(</span>2.3MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/freetype-2.9.sierra.bottle.1.tar.gz... <span class="o">(</span>896.8KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/gdbm-1.14.1_1.sierra.bottle.tar.gz... <span class="o">(</span>182.5KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/icu4c-61.1.sierra.bottle.tar.gz... <span class="o">(</span>25.4MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/libidn2-2.0.4.sierra.bottle.tar.gz... <span class="o">(</span>190.4KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/libpq-10.3.sierra.bottle.tar.gz... <span class="o">(</span>6MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/libunistring-0.9.9.sierra.bottle.tar.gz... <span class="o">(</span>1.4MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/mysql-5.7.21.sierra.bottle.tar.gz... <span class="o">(</span>72.2MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/mysql-5.7.22.sierra.bottle.tar.gz... <span class="o">(</span>72.2MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/nginx-1.13.12.sierra.bottle.tar.gz... <span class="o">(</span>570.5KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/nginx-1.15.0.sierra.bottle.tar.gz... <span class="o">(</span>572.6KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/node-10.0.0.sierra.bottle.tar.gz... <span class="o">(</span>13.7MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/node-10.1.0.sierra.bottle.tar.gz... <span class="o">(</span>13.7MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/node-10.2.1.sierra.bottle.tar.gz... <span class="o">(</span>13.8MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/node-9.11.1.sierra.bottle.tar.gz... <span class="o">(</span>13.3MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/openssl-1.0.2n.sierra.bottle.tar.gz... <span class="o">(</span>3.7MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/openssl-1.0.2o_1.sierra.bottle.tar.gz... <span class="o">(</span>3.7MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.4_1.sierra.bottle.tar.gz... <span class="o">(</span>21.6MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.5.sierra.bottle.tar.gz... <span class="o">(</span>21.6MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.6.sierra.bottle.tar.gz... <span class="o">(</span>21.6MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php@5.6-5.6.35_1.sierra.bottle.tar.gz... <span class="o">(</span>19.4MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php@5.6-5.6.36.sierra.bottle.tar.gz... <span class="o">(</span>19.4MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php@7.0-7.0.29_1.sierra.bottle.tar.gz... <span class="o">(</span>20MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php@7.0-7.0.30.sierra.bottle.tar.gz... <span class="o">(</span>20MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/php@7.1-7.1.16_1.sierra.bottle.tar.gz... <span class="o">(</span>20.5MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/python-3.6.5.sierra.bottle.1.tar.gz... <span class="o">(</span>21.9MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/readline-7.0.3_1.sierra.bottle.tar.gz... <span class="o">(</span>497.3KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/sqlite-3.23.1.sierra.bottle.tar.gz... <span class="o">(</span>1.4MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/tomcat-9.0.6.tar.gz.incomplete... <span class="o">(</span>572KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/webp-0.6.1.sierra.bottle.1.tar.gz... <span class="o">(</span>809.1KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/wget-1.19.4_1.sierra.bottle.tar.gz... <span class="o">(</span>1.3MB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/xz-5.2.3.sierra.bottle.tar.gz... <span class="o">(</span>462.1KB<span class="o">)</span>
-Removing: /Users/seal/Library/Caches/Homebrew/zsh-5.4.2_3.sierra.bottle.tar.gz... <span class="o">(</span>3.3MB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/apr... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/apr-util... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/argon2... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/aspell... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/autoconf... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/brew-php-switcher... <span class="o">(</span>119B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/dash... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/freetds... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/freetype... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/gdbm... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/gettext... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/glib... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/gmp... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/icu4c... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/jpeg... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libffi... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libidn2... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libpng... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libpq... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libsodium... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libtool... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libunistring... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/libzip... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/mcrypt... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/mhash... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/mysql... <span class="o">(</span>1.3KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/nginx... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/node... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/openssl... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/pcre... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/php... <span class="o">(</span><span class="m">12</span> files, 2.3KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/php@5.6... <span class="o">(</span><span class="m">12</span> files, 2.4KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/php@7.0... <span class="o">(</span><span class="m">12</span> files, 2.9KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/php@7.1... <span class="o">(</span><span class="m">12</span> files, 2.4KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/python... <span class="o">(</span><span class="m">3</span> files, 127.8KB<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/readline... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/sqlite... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/tomcat... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/tomcat@8... <span class="o">(</span>110B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/unixodbc... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/webp... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/wget... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/xz... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/zsh... <span class="o">(</span>68B<span class="o">)</span>
-Removing: /Users/seal/Library/Logs/Homebrew/zsh-completions... <span class="o">(</span>117B<span class="o">)</span>
-<span class="o">==</span>&gt; This operation has freed approximately 1.3GB of disk space.
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2018-08-05</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结" data-hashtags="Mac,Homebrew,数据库,MySQL"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://reb.mallotec.com/post/6965849b/" data-hashtag="Mac"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://reb.mallotec.com/post/6965849b/" data-title="Mac通过brew安装的MySQL各种无法运行问题总结"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mac/">Mac</a>,&nbsp;<a href="/tags/homebrew/">Homebrew</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>,&nbsp;<a href="/tags/mysql/">MySQL</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/post/e87d9191/" class="prev" rel="prev" title="Mac上使用brew安装MySQL"><i class="fas fa-angle-left fa-fw"></i>Mac上使用brew安装MySQL</a>
-            <a href="/post/a96dbfbe/" class="next" rel="next" title="Mac使用brew安装的MySQL版本切换">Mac使用brew安装的MySQL版本切换<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
-            <script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
-            <div id="disqus_thread" class="comment"></div>
-            <script>
-                var dsqjs = new DisqusJS({
-                    shortname:"rebor",
-                    siteName:"Reborn Blog",
-                    api:"https://disqus.skk.moe/disqus/",
-                    apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",
-                    admin:"disqus_yQKQzyJhV3",
-                    adminLabel:"admin"});
-            </script></div></article></div>
-    </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js"></script><div>🐼 本站已运行 <span class="liveTime"><span class="timeDate">载入天数...</span><span class="times">载入时分秒...</span></span> 🐼</div></div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://reb.mallotec.com" target="_blank">Reborn</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-<div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-        <i class="fas fa-arrow-up fa-fw"></i>
-    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-        <i class="fas fa-comment fa-fw"></i>
-    </a>
-</div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'UA-175008981-1', { 'anonymize_ip': true });
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
-<script>
-    
-    if ('serviceWorker' in navigator) {
-        
-        window.onload = function () {
-            navigator.serviceWorker
-                .register('/sw.js', { scope: '/' })
-                .then(function(registration) {
-                    console.log('Service Worker Registered');
-                });
-
-            navigator.serviceWorker
-                .ready
-                .then(function(registration) {
-                    console.log('Service Worker Ready');
-                });
-        };
-    }
-</script>
-</html>
+Removing: /usr/local/Cellar/dash/0.5.10... <span class=o>(</span><span class=m>6</span> files, 196.2KB<span class=o>)</span>
+Removing: /usr/local/Cellar/dash/0.5.9.1... <span class=o>(</span><span class=m>5</span> files, 199KB<span class=o>)</span>
+Removing: /usr/local/Cellar/freetds/1.00.89... <span class=o>(</span>2,094 files, 11.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/freetds/1.00.91... <span class=o>(</span>2,094 files, 11.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/freetype/2.9... <span class=o>(</span><span class=m>60</span> files, 2.7MB<span class=o>)</span>
+Removing: /usr/local/Cellar/gdbm/1.14.1_1... <span class=o>(</span><span class=m>20</span> files, 555.8KB<span class=o>)</span>
+Removing: /usr/local/Cellar/icu4c/61.1... <span class=o>(</span><span class=m>249</span> files, 67.2MB<span class=o>)</span>
+Removing: /usr/local/Cellar/libidn2/2.0.4... <span class=o>(</span><span class=m>46</span> files, 580.8KB<span class=o>)</span>
+Removing: /usr/local/Cellar/libpq/10.3... <span class=o>(</span>2,425 files, 26.8MB<span class=o>)</span>
+Removing: /usr/local/Cellar/libunistring/0.9.9... <span class=o>(</span><span class=m>54</span> files, 4.4MB<span class=o>)</span>
+Removing: /usr/local/Cellar/nginx/1.13.12... <span class=o>(</span><span class=m>23</span> files, 1.4MB<span class=o>)</span>
+Removing: /usr/local/Cellar/nginx/1.15.0... <span class=o>(</span><span class=m>23</span> files, 1.4MB<span class=o>)</span>
+Removing: /usr/local/Cellar/node/10.0.0... <span class=o>(</span>5,301 files, 51.7MB<span class=o>)</span>
+Removing: /usr/local/Cellar/node/10.1.0... <span class=o>(</span>7,283 files, 55.4MB<span class=o>)</span>
+Removing: /usr/local/Cellar/node/10.2.1... <span class=o>(</span>5,301 files, 51.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/node/9.11.1... <span class=o>(</span>5,125 files, 49.7MB<span class=o>)</span>
+Removing: /usr/local/Cellar/openssl/1.0.2n... <span class=o>(</span>1,792 files, 12.3MB<span class=o>)</span>
+Removing: /usr/local/Cellar/openssl/1.0.2o_1... <span class=o>(</span>1,791 files, 12.3MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php/7.2.5... <span class=o>(</span><span class=m>515</span> files, 78.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php/7.2.6... <span class=o>(</span><span class=m>515</span> files, 78.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php@5.6/5.6.35_1... <span class=o>(</span><span class=m>498</span> files, 63.8MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php@5.6/5.6.36... <span class=o>(</span><span class=m>498</span> files, 63.8MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php@7.0/7.0.29_1... <span class=o>(</span><span class=m>502</span> files, 65.5MB<span class=o>)</span>
+Removing: /usr/local/Cellar/php@7.0/7.0.30... <span class=o>(</span><span class=m>502</span> files, 65.5MB<span class=o>)</span>
+Removing: /usr/local/Cellar/python/3.6.5... <span class=o>(</span>4,794 files, 99.9MB<span class=o>)</span>
+Removing: /usr/local/Cellar/readline/7.0.3_1... <span class=o>(</span><span class=m>46</span> files, 1.5MB<span class=o>)</span>
+Removing: /usr/local/Cellar/sqlite/3.23.1... <span class=o>(</span><span class=m>11</span> files, 3MB<span class=o>)</span>
+Removing: /usr/local/Cellar/webp/0.6.1... <span class=o>(</span><span class=m>38</span> files, 2MB<span class=o>)</span>
+Removing: /usr/local/Cellar/wget/1.19.4_1... <span class=o>(</span><span class=m>50</span> files, 3.7MB<span class=o>)</span>
+Removing: /usr/local/Cellar/xz/5.2.3... <span class=o>(</span><span class=m>92</span> files, 1.4MB<span class=o>)</span>
+Removing: /usr/local/Cellar/zsh/5.4.2_3... <span class=o>(</span>1,390 files, 11.8MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/dash-0.5.10.sierra.bottle.tar.gz... <span class=o>(</span>83.6KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/dash-0.5.9.1.sierra.bottle.tar.gz... <span class=o>(</span>83.2KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/freetds-1.00.89.sierra.bottle.tar.gz... <span class=o>(</span>2.3MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/freetds-1.00.91.sierra.bottle.tar.gz... <span class=o>(</span>2.3MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/freetype-2.9.sierra.bottle.1.tar.gz... <span class=o>(</span>896.8KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/gdbm-1.14.1_1.sierra.bottle.tar.gz... <span class=o>(</span>182.5KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/icu4c-61.1.sierra.bottle.tar.gz... <span class=o>(</span>25.4MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/libidn2-2.0.4.sierra.bottle.tar.gz... <span class=o>(</span>190.4KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/libpq-10.3.sierra.bottle.tar.gz... <span class=o>(</span>6MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/libunistring-0.9.9.sierra.bottle.tar.gz... <span class=o>(</span>1.4MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/mysql-5.7.21.sierra.bottle.tar.gz... <span class=o>(</span>72.2MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/mysql-5.7.22.sierra.bottle.tar.gz... <span class=o>(</span>72.2MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/nginx-1.13.12.sierra.bottle.tar.gz... <span class=o>(</span>570.5KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/nginx-1.15.0.sierra.bottle.tar.gz... <span class=o>(</span>572.6KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/node-10.0.0.sierra.bottle.tar.gz... <span class=o>(</span>13.7MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/node-10.1.0.sierra.bottle.tar.gz... <span class=o>(</span>13.7MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/node-10.2.1.sierra.bottle.tar.gz... <span class=o>(</span>13.8MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/node-9.11.1.sierra.bottle.tar.gz... <span class=o>(</span>13.3MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/openssl-1.0.2n.sierra.bottle.tar.gz... <span class=o>(</span>3.7MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/openssl-1.0.2o_1.sierra.bottle.tar.gz... <span class=o>(</span>3.7MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.4_1.sierra.bottle.tar.gz... <span class=o>(</span>21.6MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.5.sierra.bottle.tar.gz... <span class=o>(</span>21.6MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php-7.2.6.sierra.bottle.tar.gz... <span class=o>(</span>21.6MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php@5.6-5.6.35_1.sierra.bottle.tar.gz... <span class=o>(</span>19.4MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php@5.6-5.6.36.sierra.bottle.tar.gz... <span class=o>(</span>19.4MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php@7.0-7.0.29_1.sierra.bottle.tar.gz... <span class=o>(</span>20MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php@7.0-7.0.30.sierra.bottle.tar.gz... <span class=o>(</span>20MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/php@7.1-7.1.16_1.sierra.bottle.tar.gz... <span class=o>(</span>20.5MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/python-3.6.5.sierra.bottle.1.tar.gz... <span class=o>(</span>21.9MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/readline-7.0.3_1.sierra.bottle.tar.gz... <span class=o>(</span>497.3KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/sqlite-3.23.1.sierra.bottle.tar.gz... <span class=o>(</span>1.4MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/tomcat-9.0.6.tar.gz.incomplete... <span class=o>(</span>572KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/webp-0.6.1.sierra.bottle.1.tar.gz... <span class=o>(</span>809.1KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/wget-1.19.4_1.sierra.bottle.tar.gz... <span class=o>(</span>1.3MB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/xz-5.2.3.sierra.bottle.tar.gz... <span class=o>(</span>462.1KB<span class=o>)</span>
+Removing: /Users/seal/Library/Caches/Homebrew/zsh-5.4.2_3.sierra.bottle.tar.gz... <span class=o>(</span>3.3MB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/apr... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/apr-util... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/argon2... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/aspell... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/autoconf... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/brew-php-switcher... <span class=o>(</span>119B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/dash... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/freetds... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/freetype... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/gdbm... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/gettext... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/glib... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/gmp... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/icu4c... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/jpeg... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libffi... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libidn2... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libpng... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libpq... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libsodium... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libtool... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libunistring... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/libzip... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/mcrypt... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/mhash... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/mysql... <span class=o>(</span>1.3KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/nginx... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/node... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/openssl... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/pcre... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/php... <span class=o>(</span><span class=m>12</span> files, 2.3KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/php@5.6... <span class=o>(</span><span class=m>12</span> files, 2.4KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/php@7.0... <span class=o>(</span><span class=m>12</span> files, 2.9KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/php@7.1... <span class=o>(</span><span class=m>12</span> files, 2.4KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/python... <span class=o>(</span><span class=m>3</span> files, 127.8KB<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/readline... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/sqlite... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/tomcat... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/tomcat@8... <span class=o>(</span>110B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/unixodbc... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/webp... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/wget... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/xz... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/zsh... <span class=o>(</span>68B<span class=o>)</span>
+Removing: /Users/seal/Library/Logs/Homebrew/zsh-completions... <span class=o>(</span>117B<span class=o>)</span>
+<span class=o>==</span>&gt; This operation has freed approximately 1.3GB of disk space.
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2018-08-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结 data-hashtags=Mac,Homebrew,数据库,MySQL><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/6965849b/ data-hashtag=Mac><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结 data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结 data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结 data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/6965849b/ data-title=Mac通过brew安装的MySQL各种无法运行问题总结><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mac/>Mac</a>,&nbsp;<a href=/tags/homebrew/>Homebrew</a>,&nbsp;<a href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>,&nbsp;<a href=/tags/mysql/>MySQL</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/e87d9191/ class=prev rel=prev title=Mac上使用brew安装MySQL><i class="fas fa-angle-left fa-fw"></i>Mac上使用brew安装MySQL</a>
+<a href=/post/a96dbfbe/ class=next rel=next title=Mac使用brew安装的MySQL版本切换>Mac使用brew安装的MySQL版本切换<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js></script><div>🐼 本站已运行 <span class=liveTime><span class=timeDate>载入天数...</span><span class=times>载入时分秒...</span></span> 🐼</div></div><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script>if('serviceWorker'in navigator){window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>
