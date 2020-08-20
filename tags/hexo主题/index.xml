@@ -1,1 +1,15 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>hexo主题 - 标签 - Reborn's Blog</title><link>https://reb.mallotec.com/tags/hexo%E4%B8%BB%E9%A2%98/</link><description>hexo主题 - 标签 - Reborn's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor><webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Sun, 22 Jul 2018 18:49:05 +0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/hexo%E4%B8%BB%E9%A2%98/" rel="self" type="application/rss+xml"/><item><title>关于Material主题源码的一些小修改（修复Bug？）</title><link>https://reb.mallotec.com/post/832fa05b/</link><pubDate>Sun, 22 Jul 2018 18:49:05 +0800</pubDate><author>作者</author><guid>https://reb.mallotec.com/post/832fa05b/</guid><description>一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md&amp;#43;code" document-md+code 由于我使用的</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hexo主题 - 标签 - Reborn&#39;s Blog</title>
+        <link>https://reb.mallotec.com/tags/hexo%E4%B8%BB%E9%A2%98/</link>
+        <description>hexo主题 - 标签 - Reborn&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor>
+            <webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Sun, 22 Jul 2018 18:49:05 &#43;0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/hexo%E4%B8%BB%E9%A2%98/" rel="self" type="application/rss+xml" /><item>
+    <title>关于Material主题源码的一些小修改（修复Bug？）</title>
+    <link>https://reb.mallotec.com/post/832fa05b/</link>
+    <pubDate>Sun, 22 Jul 2018 18:49:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://reb.mallotec.com/post/832fa05b/</guid>
+    <description><![CDATA[一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md&#43;code" document-md+code 由于我使用的]]></description>
+</item></channel>
+</rss>

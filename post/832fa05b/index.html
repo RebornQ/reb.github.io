@@ -1,205 +1,587 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>关于Material主题源码的一些小修改（修复Bug？） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="关于Material主题源码的一些小修改（修复Bug？）"><meta property="og:description" content="一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md+code&#34; document-md+code 由于我使用的"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/832fa05b/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-07-22T18:49:05+08:00"><meta property="article:modified_time" content="2018-08-11T10:08:20+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="关于Material主题源码的一些小修改（修复Bug？）"><meta name=twitter:description content="一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md+code&#34; document-md+code 由于我使用的"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/832fa05b/><link rel=prev href=https://reb.mallotec.com/post/41e1ea07/><link rel=next href=https://reb.mallotec.com/post/e87d9191/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"关于Material主题源码的一些小修改（修复Bug？）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/832fa05b\/"},"genre":"posts","keywords":"hexo, hexo主题","wordcount":2103,"url":"https:\/\/reb.mallotec.com\/post\/832fa05b\/","datePublished":"2018-07-22T18:49:05+08:00","dateModified":"2018-08-11T10:08:20+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">关于Material主题源码的一些小修改（修复Bug？）</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/hexo/><i class="far fa-folder fa-fw"></i>hexo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-07-22>2018-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2103 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#一插件hexo-prism-plugin实现代码高亮导致的行号不显示问题>一、插件<code>hexo-prism-plugin</code>实现代码高亮导致的行号不显示问题</a><ul><li><a href=#敲黑板重点重点>敲黑板，重点重点！！！</a></li></ul></li><li><a href=#二文章结尾添加版权声明>二、文章结尾添加版权声明</a></li><li><a href=#三disqus延迟加载>三、Disqus延迟加载</a></li></ul></li></ul></nav></div></div><div class=content id=content><h3 id=一插件hexo-prism-plugin实现代码高亮导致的行号不显示问题>一、插件<code>hexo-prism-plugin</code>实现代码高亮导致的行号不显示问题</h3><p>从<a href=https://material.viosey.com/docs/#/expert target=_blank rel="noopener noreffer">官方文档</a>我们可以看到md主题支持的代码高亮方式：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png data-sub-html="<h2>document-md+code</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md+code.png></a><figcaption class=image-caption>document-md+code</figcaption></figure></p><p>由于我使用的是<a href=https://github.com/viosey/hexo-theme-material/releases/tag/1.4.0 target=_blank rel="noopener noreffer">1.4.0稳定版</a>（时间20180722），所以只能使用 <code>hexo-prism-plugin</code> 插件，具体用法<a href=https://github.com/ele828/hexo-prism-plugin target=_blank rel="noopener noreffer">官方文档</a>讲的很详细我就不多说了。</p><h4 id=敲黑板重点重点>敲黑板，重点重点！！！</h4><p>我在这里主要说一下1.4.0版的md主题对 <code>hexo-prism-plugin</code> 插件似乎不太兼容。</p><p>这是我的 prism 插件配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>prism_plugin:</span>
-  <span class=err>mode:</span> <span class=err>&#39;preprocess&#39;</span>    <span class=err>#</span> <span class=err>realtime/preprocess</span>
-  <span class=err>theme:</span> <span class=err>&#39;solarizedlight&#39;</span>
-  <span class=err>line_number:</span> <span class=kc>true</span>    <span class=err>#</span> <span class=err>default</span> <span class=kc>false</span>
-</code></pre></td></tr></table></div></div><p>再给你们看一下截图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png data-sub-html="<h2>bug-MD+pris</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD+prism.png></a><figcaption class=image-caption>bug-MD+pris</figcaption></figure></p><p>是不是感觉有什么不对劲？？</p><p>相信看到这里大家应该都知道什么回事了，<code>line_number</code>我设置为<code>true</code>表示我开了行号显示，那么问题来了，我们的行号呢？还有那个诡异的竖线是什么鬼？</p><p>于是我用chrome的开发者模式调试了一下，发现了一个很眼熟的CSS属性——<code>padding</code>。如图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png data-sub-html="<h2>md-css-contentpre-padding</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png></a><figcaption class=image-caption>md-css-contentpre-padding</figcaption></figure></p><blockquote><p>这里给没学过编程的同学科普一下<code>padding</code>是什么意思：</p><p>先放个W3School的链接压压惊= =：<a href=http://www.w3school.com.cn/cssref/pr_padding.asp target=_blank rel="noopener noreffer">CSS padding 属性</a></p><p><strong>padding定义和用法：</strong>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>关于Material主题源码的一些小修改（修复Bug？） - Reborn&#39;s Blog</title><meta name="Description" content="欢迎来到Reborn&#39;s Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="关于Material主题源码的一些小修改（修复Bug？）" />
+<meta property="og:description" content="一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md&#43;code&#34; document-md&#43;code 由于我使用的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://reb.mallotec.com/post/832fa05b/" />
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
+<meta property="article:published_time" content="2018-07-22T18:49:05+08:00" />
+<meta property="article:modified_time" content="2018-08-11T10:08:20+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"/>
+
+<meta name="twitter:title" content="关于Material主题源码的一些小修改（修复Bug？）"/>
+<meta name="twitter:description" content="一、插件hexo-prism-plugin实现代码高亮导致的行号不显示问题 从官方文档我们可以看到md主题支持的代码高亮方式： document-md&#43;code&#34; document-md&#43;code 由于我使用的"/>
+<meta name="application-name" content="Reborn&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Reborn&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://reb.mallotec.com/post/832fa05b/" /><link rel="prev" href="https://reb.mallotec.com/post/41e1ea07/" /><link rel="next" href="https://reb.mallotec.com/post/e87d9191/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "关于Material主题源码的一些小修改（修复Bug？）",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/reb.mallotec.com\/post\/832fa05b\/"
+        },"genre": "posts","keywords": "hexo, hexo主题","wordcount":  2103 ,
+        "url": "https:\/\/reb.mallotec.com\/post\/832fa05b\/","datePublished": "2018-07-22T18:49:05+08:00","dateModified": "2018-08-11T10:08:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Reborn"
+            },"description": ""
+    }
+    </script></head>
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+<div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/posts"> 时间轴 </a><a class="menu-item" href="/categories"> 分类 </a><a class="menu-item" href="/tags"> 标签 </a><a class="menu-item" href="/about"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search for Posts" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Reborn&#39;s Blog">Reborn&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search for Posts" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/posts" title="">时间轴</a><a class="menu-item" href="/categories" title="">分类</a><a class="menu-item" href="/tags" title="">标签</a><a class="menu-item" href="/about" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+        <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">关于Material主题源码的一些小修改（修复Bug？）</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://reb.mallotec.com" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/hexo/"><i class="far fa-folder fa-fw"></i>hexo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-22">2018-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2103 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一插件hexo-prism-plugin实现代码高亮导致的行号不显示问题">一、插件<code>hexo-prism-plugin</code>实现代码高亮导致的行号不显示问题</a>
+          <ul>
+            <li><a href="#敲黑板重点重点">敲黑板，重点重点！！！</a></li>
+          </ul>
+        </li>
+        <li><a href="#二文章结尾添加版权声明">二、文章结尾添加版权声明</a></li>
+        <li><a href="#三disqus延迟加载">三、Disqus延迟加载</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="一插件hexo-prism-plugin实现代码高亮导致的行号不显示问题">一、插件<code>hexo-prism-plugin</code>实现代码高亮导致的行号不显示问题</h3>
+<p>从<a href="https://material.viosey.com/docs/#/expert" target="_blank" rel="noopener noreffer">官方文档</a>我们可以看到md主题支持的代码高亮方式：
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png" data-sub-html="<h2>document-md&#43;code</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/document-md&#43;code.png" />
+    </a><figcaption class="image-caption">document-md+code</figcaption>
+    </figure></p>
+<p>由于我使用的是<a href="https://github.com/viosey/hexo-theme-material/releases/tag/1.4.0" target="_blank" rel="noopener noreffer">1.4.0稳定版</a>（时间20180722），所以只能使用 <code>hexo-prism-plugin</code> 插件，具体用法<a href="https://github.com/ele828/hexo-prism-plugin" target="_blank" rel="noopener noreffer">官方文档</a>讲的很详细我就不多说了。</p>
+<h4 id="敲黑板重点重点">敲黑板，重点重点！！！</h4>
+<p>我在这里主要说一下1.4.0版的md主题对 <code>hexo-prism-plugin</code> 插件似乎不太兼容。</p>
+<!-- more -->
+<p>这是我的 prism 插件配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">prism_plugin:</span>
+  <span class="err">mode:</span> <span class="err">&#39;preprocess&#39;</span>    <span class="err">#</span> <span class="err">realtime/preprocess</span>
+  <span class="err">theme:</span> <span class="err">&#39;solarizedlight&#39;</span>
+  <span class="err">line_number:</span> <span class="kc">true</span>    <span class="err">#</span> <span class="err">default</span> <span class="kc">false</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>再给你们看一下截图：
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png" data-sub-html="<h2>bug-MD&#43;pris</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/bug-MD&#43;prism.png" />
+    </a><figcaption class="image-caption">bug-MD+pris</figcaption>
+    </figure></p>
+<p>是不是感觉有什么不对劲？？</p>
+<p>相信看到这里大家应该都知道什么回事了，<code>line_number</code>我设置为<code>true</code>表示我开了行号显示，那么问题来了，我们的行号呢？还有那个诡异的竖线是什么鬼？</p>
+<p>于是我用chrome的开发者模式调试了一下，发现了一个很眼熟的CSS属性——<code>padding</code>。如图：
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png" data-sub-html="<h2>md-css-contentpre-padding</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-padding.png" />
+    </a><figcaption class="image-caption">md-css-contentpre-padding</figcaption>
+    </figure></p>
+<blockquote>
+<p>这里给没学过编程的同学科普一下<code>padding</code>是什么意思：</p>
+<p>先放个W3School的链接压压惊= =：<a href="http://www.w3school.com.cn/cssref/pr_padding.asp" target="_blank" rel="noopener noreffer">CSS padding 属性</a></p>
+<p><strong>padding定义和用法：</strong>
 padding 简写属性在一个声明中设置所有内边距属性。
-例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-css data-lang=css><span class=nt>padding</span><span class=p>:</span><span class=nd>10px</span><span class=o>;</span>
-</code></pre></td></tr></table></div></div><p>类似于这种的意思就是上下左右四个内边距都是 10px。</p></blockquote><blockquote><p>那么内边距又是什么东西呢？
-看图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg data-sub-html="<h2>explain-padding</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg></a><figcaption class=image-caption>explain-padding</figcaption></figure>所以<strong>内边距</strong>的意思就是<font color=#6EA1DF>组件的内容</font>到<font color=#D1AF40>边框</font>的<font color=#81A670>距离</font>。内边距的改变不会影响整个组件的大小，但是会影响组件内容的显示大小</p></blockquote><p>废话就不多说了&mldr;..
-我的直觉告诉我就是它的锅，我们现在来把它去掉试试！<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png data-sub-html="<h2>md-css-contentpre-nopadding</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png></a><figcaption class=image-caption>md-css-contentpre-nopadding</figcaption></figure></p><p>Unbelievable! <font color=red>**行号出现了！**</font>但是在Chrome的开发者模式改只是临时的，刷新就回到原来的样子了，我们要去主题的源代码修改。</p><p>经过一番查找终于找到了相关代码所在的文件<code>hexo根目录/themes/material/source/css/style.min.css</code><figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png data-sub-html="<h2>md-css-stylemin</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png></a><figcaption class=image-caption>md-css-stylemin</figcaption></figure></p><blockquote><p>**注意：**是<code>style.min.css</code>这个压缩过的css文件，而不是<code>style.css</code>！！</p></blockquote><p>打开<code>style.min.css</code>，查找<code>padding:1pc</code>或者<code>#post-content pre</code>都OK，然后把<code>padding:1pc;</code>注释掉即可。如图：<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png data-sub-html="<h2>md-css-stylemin-padding-commented</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png></a><figcaption class=image-caption>md-css-stylemin-padding-commented</figcaption></figure></p><hr><h3 id=二文章结尾添加版权声明>二、文章结尾添加版权声明</h3><blockquote><p>参考：<a href=http://tianma.space/post/1810369046/index.html target=_blank rel="noopener noreffer">http://tianma.space/post/1810369046/index.html</a></p></blockquote><p>现在是版权时代，很多博主都会在文章结尾出写上诸如“转载请保留声明信息”之类的。下面我来说下如何在 Hexo 中添加版权声明。这里我拿 Material 主题作为例子，其他主题可参考后自行修改。</p><ol><li><p>自定义字段：考虑到有些博文可能是不需要版权声明的，比如转载、翻译之类的，所以自定义 post_license 作为开关：</p><ul><li><p>主题配置文件 _config.yml 中添加字段，作为总开关：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>post_license:
-enable: <span class=nb>true</span> <span class=c1># or false</span>
-</code></pre></td></tr></table></div></div></li><li><p>文章的 Front-matter 中添加字段，作为独立开关：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>post_license: <span class=nb>true</span> <span class=c1># or false</span>
-</code></pre></td></tr></table></div></div></li></ul></li><li><p>创建 material/layout/_partial/post_license.ejs:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;</span>
-   <span class=p>&lt;</span><span class=nt>br</span><span class=p>/&gt;</span>
-   <span class=p>&lt;</span><span class=nt>ul</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;post-license&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-license&#34;</span><span class=p>&gt;</span>
-       <span class=p>&lt;</span><span class=nt>li</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-license-author&#34;</span><span class=p>&gt;</span>
-           <span class=p>&lt;</span><span class=nt>strong</span><span class=p>&gt;</span>本文作者：<span class=p>&lt;/</span><span class=nt>strong</span><span class=p>&gt;</span>
-           <span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;&lt;%= config.url %&gt;&#34;</span><span class=p>&gt;</span><span class=err>&lt;</span>%= theme.author %&gt;<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span>
-       <span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">padding</span><span class="p">:</span><span class="nd">10px</span><span class="o">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>类似于这种的意思就是上下左右四个内边距都是 10px。</p>
+</blockquote>
+<blockquote>
+<p>那么内边距又是什么东西呢？
+看图：
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg" data-sub-html="<h2>explain-padding</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/explain-padding.jpg" />
+    </a><figcaption class="image-caption">explain-padding</figcaption>
+    </figure>
+所以<strong>内边距</strong>的意思就是<font color='#6EA1DF'>组件的内容</font>到<font color='#D1AF40'>边框</font>的<font color='#81A670'>距离</font>。内边距的改变不会影响整个组件的大小，但是会影响组件内容的显示大小</p>
+</blockquote>
+<p>废话就不多说了&hellip;..
+我的直觉告诉我就是它的锅，我们现在来把它去掉试试！
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png" data-sub-html="<h2>md-css-contentpre-nopadding</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-contentpre-nopadding.png" />
+    </a><figcaption class="image-caption">md-css-contentpre-nopadding</figcaption>
+    </figure></p>
+<p>Unbelievable! <font color='red'>**行号出现了！**</font>但是在Chrome的开发者模式改只是临时的，刷新就回到原来的样子了，我们要去主题的源代码修改。</p>
+<p>经过一番查找终于找到了相关代码所在的文件<code>hexo根目录/themes/material/source/css/style.min.css</code>
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png" data-sub-html="<h2>md-css-stylemin</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin.png" />
+    </a><figcaption class="image-caption">md-css-stylemin</figcaption>
+    </figure></p>
+<blockquote>
+<p>**注意：**是<code>style.min.css</code>这个压缩过的css文件，而不是<code>style.css</code>！！</p>
+</blockquote>
+<p>打开<code>style.min.css</code>，查找<code>padding:1pc</code>或者<code>#post-content pre</code>都OK，然后把<code>padding:1pc;</code>注释掉即可。如图：
+<figure><a class="lightgallery" href="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png" title="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png" data-thumbnail="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png" data-sub-html="<h2>md-css-stylemin-padding-commented</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png"
+            data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/md-css-stylemin-padding-commented.png" />
+    </a><figcaption class="image-caption">md-css-stylemin-padding-commented</figcaption>
+    </figure></p>
+<hr>
+<h3 id="二文章结尾添加版权声明">二、文章结尾添加版权声明</h3>
+<blockquote>
+<p>参考：<a href="http://tianma.space/post/1810369046/index.html" target="_blank" rel="noopener noreffer">http://tianma.space/post/1810369046/index.html</a></p>
+</blockquote>
+<p>现在是版权时代，很多博主都会在文章结尾出写上诸如“转载请保留声明信息”之类的。下面我来说下如何在 Hexo 中添加版权声明。这里我拿 Material 主题作为例子，其他主题可参考后自行修改。</p>
+<ol>
+<li>
+<p>自定义字段：考虑到有些博文可能是不需要版权声明的，比如转载、翻译之类的，所以自定义 post_license 作为开关：</p>
+<ul>
+<li>
+<p>主题配置文件 _config.yml 中添加字段，作为总开关：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">post_license:
+enable: <span class="nb">true</span> <span class="c1"># or false</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>文章的 Front-matter 中添加字段，作为独立开关：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">post_license: <span class="nb">true</span> <span class="c1"># or false</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>创建 material/layout/_partial/post_license.ejs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+   <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;post-license&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-license&#34;</span><span class="p">&gt;</span>
+       <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-license-author&#34;</span><span class="p">&gt;</span>
+           <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>本文作者：<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+           <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;&lt;%= config.url %&gt;&#34;</span><span class="p">&gt;</span><span class="err">&lt;</span>%= theme.author %&gt;<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+       <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 
-       <span class=p>&lt;</span><span class=nt>li</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-license-link&#34;</span><span class=p>&gt;</span>
-           <span class=p>&lt;</span><span class=nt>strong</span><span class=p>&gt;</span>本文链接：<span class=p>&lt;/</span><span class=nt>strong</span><span class=p>&gt;</span>
-           <span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;&lt;%= page.permalink %&gt;&#34;</span><span class=p>&gt;</span><span class=err>&lt;</span>%= page.title %&gt;<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span>
-       <span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+       <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-license-link&#34;</span><span class="p">&gt;</span>
+           <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>本文链接：<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+           <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;&lt;%= page.permalink %&gt;&#34;</span><span class="p">&gt;</span><span class="err">&lt;</span>%= page.title %&gt;<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+       <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 
-       <span class=p>&lt;</span><span class=nt>li</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-license-statement&#34;</span><span class=p>&gt;</span>
-           <span class=p>&lt;</span><span class=nt>strong</span><span class=p>&gt;</span>版权声明： <span class=p>&lt;/</span><span class=nt>strong</span><span class=p>&gt;</span>
-           本文由 <span class=err>&lt;</span>%= config.author %&gt; 原创，采用 <span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh&#34;</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;license&#34;</span> <span class=na>target</span><span class=o>=</span><span class=s>&#34;_blank&#34;</span><span class=p>&gt;</span>署名-非商业性使用-相同方式共享（CC BY-NC-SA）4.0 国际许可协议<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span> <span class=p>&lt;/</span><span class=nt>br</span><span class=p>&gt;</span>转载请保留以上声明信息！
-       <span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
-   <span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
-<span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div></li><li><p>在 material/layout/_partial/post-content.ejs 引入 post_license.ejs:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&lt;%</span> <span class=k>if</span><span class=p>(</span><span class=nx>theme</span><span class=p>.</span><span class=nx>post_license</span><span class=p>.</span><span class=nx>enable</span> <span class=o>&amp;&amp;</span> <span class=nx>page</span><span class=p>.</span><span class=nx>post_license</span> <span class=o>!==</span> <span class=kc>false</span><span class=p>){</span><span class=o>%&gt;</span>
-   <span class=o>&lt;%-</span> <span class=nx>partial</span><span class=p>(</span><span class=s1>&#39;_partial/post_license&#39;</span><span class=p>)</span> <span class=o>%&gt;</span>
-<span class=o>&lt;%</span> <span class=p>}</span> <span class=o>%&gt;</span>
-</code></pre></td></tr></table></div></div></li><li><p>在 material/source/css/style.min.css 中添加 版权声明 样式：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-css data-lang=css><span class=p>#</span><span class=nn>post-license</span> <span class=p>{</span>
-   <span class=k>margin</span><span class=p>:</span> <span class=mi>2</span><span class=kt>em</span> <span class=mi>0</span> <span class=mi>0</span><span class=p>;</span>
-   <span class=k>padding</span><span class=p>:</span> <span class=mf>0.5</span><span class=kt>em</span> <span class=mi>1</span><span class=kt>em</span><span class=p>;</span>
-   <span class=k>border-left</span><span class=p>:</span> <span class=mi>3</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#ff4081</span><span class=p>;</span>
-   <span class=k>background-color</span><span class=p>:</span> <span class=mh>#f9f9f9</span><span class=p>;</span>
-   <span class=k>list-style</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div></li></ol><h3 id=三disqus延迟加载>三、Disqus延迟加载</h3><p><font color=red>☆☆ 2018-08-11 更新：Material主题1.5.6版本开始<code>disqus_click</code>自带延迟加载 ☆☆</font></p><blockquote><p>参考：<a href=https://blog.itswincer.com/posts/e5d13eb/ target=_blank rel="noopener noreffer">https://blog.itswincer.com/posts/e5d13eb/</a></p></blockquote><p><strong>先讲下考虑延迟加载的初衷：</strong>
-好吧，其实是因为在大局域网内没法做到所有用户都能看评论，如果加载不出评论就会有一段时间在下方显示白块，强迫症的我怎么能忍受？？！！于是我就想把评论功能设计成网络好的话就自动显示评论，否则需要手动点击。正好看到网上有，于是就借鉴了。</p><p><strong>然后说下原理：</strong>
-原理嘛，先用 ajax 异步发送一个 get 请求至 Disqus 服务器，接收成功则屏蔽按钮，加载评论；超时则自动断开，并显示加载按钮：</p><p>修改文件位置：<code>&lt;Material主题目录>/layout/_widget/comment/disqus_click/main.ejs</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;btn_click_load&#34;</span><span class=p>&gt;</span>
-    <span class=p>&lt;</span><span class=nt>button</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;disqus_click_btn&#34;</span><span class=p>&gt;</span><span class=err>&lt;</span>%= __(&#39;post.comments_load_button&#39;) %&gt;<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
-<span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
-<span class=c>&lt;!--
-</span><span class=c>&lt;script type=&#34;text/ls-javascript&#34; id=&#34;disqus-lazy-load-script&#34;&gt;
-</span><span class=c>    $(&#39;.btn_click_load&#39;).click(function() {  //click to load comments
-</span><span class=c>        (function() { // DON&#39;T EDIT BELOW THIS LINE
-</span><span class=c>            var d = document;
-</span><span class=c>            var s = d.createElement(&#39;script&#39;);
-</span><span class=c>            s.src = &#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;;
-</span><span class=c>            s.setAttribute(&#39;data-timestamp&#39;, + new Date());
-</span><span class=c>            (d.head || d.body).appendChild(s);
-</span><span class=c>        })();
-</span><span class=c>        $(&#39;.btn_click_load&#39;).css(&#39;display&#39;,&#39;none&#39;);
-</span><span class=c>    });
-</span><span class=c>&lt;/script&gt;
-</span><span class=c> --&gt;</span>
+       <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-license-statement&#34;</span><span class="p">&gt;</span>
+           <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>版权声明： <span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+           本文由 <span class="err">&lt;</span>%= config.author %&gt; 原创，采用 <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;license&#34;</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;_blank&#34;</span><span class="p">&gt;</span>署名-非商业性使用-相同方式共享（CC BY-NC-SA）4.0 国际许可协议<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">br</span><span class="p">&gt;</span>转载请保留以上声明信息！
+       <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在 material/layout/_partial/post-content.ejs 引入 post_license.ejs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;%</span> <span class="k">if</span><span class="p">(</span><span class="nx">theme</span><span class="p">.</span><span class="nx">post_license</span><span class="p">.</span><span class="nx">enable</span> <span class="o">&amp;&amp;</span> <span class="nx">page</span><span class="p">.</span><span class="nx">post_license</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">){</span><span class="o">%&gt;</span>
+   <span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;_partial/post_license&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在 material/source/css/style.min.css 中添加 版权声明 样式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">post-license</span> <span class="p">{</span>
+   <span class="k">margin</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">em</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+   <span class="k">border-left</span><span class="p">:</span> <span class="mi">3</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#ff4081</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="p">:</span> <span class="mh">#f9f9f9</span><span class="p">;</span>
+   <span class="k">list-style</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="三disqus延迟加载">三、Disqus延迟加载</h3>
+<p><font color='red'>☆☆ 2018-08-11 更新：Material主题1.5.6版本开始<code>disqus_click</code>自带延迟加载 ☆☆</font></p>
+<blockquote>
+<p>参考：<a href="https://blog.itswincer.com/posts/e5d13eb/" target="_blank" rel="noopener noreffer">https://blog.itswincer.com/posts/e5d13eb/</a></p>
+</blockquote>
+<p><strong>先讲下考虑延迟加载的初衷：</strong>
+好吧，其实是因为在大局域网内没法做到所有用户都能看评论，如果加载不出评论就会有一段时间在下方显示白块，强迫症的我怎么能忍受？？！！于是我就想把评论功能设计成网络好的话就自动显示评论，否则需要手动点击。正好看到网上有，于是就借鉴了。</p>
+<p><strong>然后说下原理：</strong>
+原理嘛，先用 ajax 异步发送一个 get 请求至 Disqus 服务器，接收成功则屏蔽按钮，加载评论；超时则自动断开，并显示加载按钮：</p>
+<p>修改文件位置：<code>&lt;Material主题目录&gt;/layout/_widget/comment/disqus_click/main.ejs</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn_click_load&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;disqus_click_btn&#34;</span><span class="p">&gt;</span><span class="err">&lt;</span>%= __(&#39;post.comments_load_button&#39;) %&gt;<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="c">&lt;!--
+</span><span class="c">&lt;script type=&#34;text/ls-javascript&#34; id=&#34;disqus-lazy-load-script&#34;&gt;
+</span><span class="c">    $(&#39;.btn_click_load&#39;).click(function() {  //click to load comments
+</span><span class="c">        (function() { // DON&#39;T EDIT BELOW THIS LINE
+</span><span class="c">            var d = document;
+</span><span class="c">            var s = d.createElement(&#39;script&#39;);
+</span><span class="c">            s.src = &#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;;
+</span><span class="c">            s.setAttribute(&#39;data-timestamp&#39;, + new Date());
+</span><span class="c">            (d.head || d.body).appendChild(s);
+</span><span class="c">        })();
+</span><span class="c">        $(&#39;.btn_click_load&#39;).css(&#39;display&#39;,&#39;none&#39;);
+</span><span class="c">    });
+</span><span class="c">&lt;/script&gt;
+</span><span class="c"> --&gt;</span>
 
 
-<span class=err>&lt;</span>%
+<span class="err">&lt;</span>%
 /*
 延迟加载 disqus，timeout 可以自己设置时长
 */
 %&gt;
-<span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;disqus-lazy-load-script&#34;</span><span class=p>&gt;</span>
-    <span class=nx>$</span><span class=p>.</span><span class=nx>ajax</span><span class=p>({</span>
-    <span class=nx>url</span><span class=o>:</span> <span class=s1>&#39;https://disqus.com/next/config.json&#39;</span><span class=p>,</span>
-    <span class=nx>timeout</span><span class=o>:</span> <span class=mi>1000</span><span class=p>,</span>
-    <span class=nx>type</span><span class=o>:</span> <span class=s1>&#39;GET&#39;</span><span class=p>,</span>
-    <span class=nx>success</span><span class=o>:</span> <span class=kd>function</span><span class=p>(){</span>
-        <span class=kd>var</span> <span class=nx>d</span> <span class=o>=</span> <span class=nb>document</span><span class=p>;</span>
-        <span class=kd>var</span> <span class=nx>s</span> <span class=o>=</span> <span class=nx>d</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;script&#39;</span><span class=p>);</span>
-        <span class=nx>s</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=s1>&#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;</span><span class=p>;</span>
-        <span class=nx>s</span><span class=p>.</span><span class=nx>setAttribute</span><span class=p>(</span><span class=s1>&#39;data-timestamp&#39;</span><span class=p>,</span> <span class=o>+</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>());</span>
-        <span class=p>(</span><span class=nx>d</span><span class=p>.</span><span class=nx>head</span> <span class=o>||</span> <span class=nx>d</span><span class=p>.</span><span class=nx>body</span><span class=p>).</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>s</span><span class=p>);</span>
-        <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.disqus_click_btn&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;display&#39;</span><span class=p>,</span> <span class=s1>&#39;none&#39;</span><span class=p>);</span>
-    <span class=p>},</span>
-    <span class=nx>error</span><span class=o>:</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
-        <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.disqus_click_btn&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;display&#39;</span><span class=p>,</span> <span class=s1>&#39;block&#39;</span><span class=p>);</span>
-    <span class=p>}</span>
-    <span class=p>});</span>
-<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
-<span class=err>&lt;</span>%
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;disqus-lazy-load-script&#34;</span><span class="p">&gt;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;https://disqus.com/next/config.json&#39;</span><span class="p">,</span>
+    <span class="nx">timeout</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+        <span class="nx">s</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;</span><span class="p">;</span>
+        <span class="nx">s</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;data-timestamp&#39;</span><span class="p">,</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+        <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">head</span> <span class="o">||</span> <span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.disqus_click_btn&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.disqus_click_btn&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="err">&lt;</span>%
 /*
 由于我超时时长设置得比较短，所以可能翻墙了还是没有自动加载评论，这时就需要手动点击加载了
 */
 %&gt;
-<span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;disqus-click-load&#34;</span><span class=p>&gt;</span>
-    <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.btn_click_load&#39;</span><span class=p>).</span><span class=nx>click</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>  <span class=c1>//click to load comments
-</span><span class=c1></span>        <span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span> <span class=c1>// DON&#39;T EDIT BELOW THIS LINE
-</span><span class=c1></span>            <span class=kd>var</span> <span class=nx>d</span> <span class=o>=</span> <span class=nb>document</span><span class=p>;</span>
-            <span class=kd>var</span> <span class=nx>s</span> <span class=o>=</span> <span class=nx>d</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;script&#39;</span><span class=p>);</span>
-            <span class=nx>s</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=s1>&#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;</span><span class=p>;</span>
-            <span class=nx>s</span><span class=p>.</span><span class=nx>setAttribute</span><span class=p>(</span><span class=s1>&#39;data-timestamp&#39;</span><span class=p>,</span> <span class=o>+</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>());</span>
-            <span class=p>(</span><span class=nx>d</span><span class=p>.</span><span class=nx>head</span> <span class=o>||</span> <span class=nx>d</span><span class=p>.</span><span class=nx>body</span><span class=p>).</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>s</span><span class=p>);</span>
-        <span class=p>})();</span>
-        <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.disqus_click_btn&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;display&#39;</span><span class=p>,</span><span class=s1>&#39;none&#39;</span><span class=p>);</span>
-    <span class=p>});</span>
-<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p>我是把原来的注释掉再加后面的，链接中说超时时间设为<code>300</code>比较短，的确短，我测试了一下，设置为<code>1000</code>就不影响阅读了。</p><blockquote><p>**注意：**改完后记得确认<code>主题配置文件</code>是否启用了<code>disqus_click</code></p></blockquote></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2018-08-11</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？） data-hashtags=hexo,hexo主题><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/832fa05b/ data-hashtag=hexo><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？） data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？）><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？）><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？） data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？） data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/832fa05b/ data-title=关于Material主题源码的一些小修改（修复Bug？）><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hexo/>hexo</a>,&nbsp;<a href=/tags/hexo%E4%B8%BB%E9%A2%98/>hexo主题</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/41e1ea07/ class=prev rel=prev title=全站开启https总结（艰苦历程？）><i class="fas fa-angle-left fa-fw"></i>全站开启https总结（艰苦历程？）</a>
-<a href=/post/e87d9191/ class=next rel=next title=Mac上使用brew安装MySQL>Mac上使用brew安装MySQL<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js></script><div>🐼 本站已运行 <span class=liveTime><span class=timeDate>载入天数...</span><span class=times>载入时分秒...</span></span> 🐼</div></div><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script>if('serviceWorker'in navigator){window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;disqus-click-load&#34;</span><span class="p">&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.btn_click_load&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>  <span class="c1">//click to load comments
+</span><span class="c1"></span>        <span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="c1">// DON&#39;T EDIT BELOW THIS LINE
+</span><span class="c1"></span>            <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+            <span class="nx">s</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&lt;%= theme.comment.shortname %&gt;.disqus.com/embed.js&#39;</span><span class="p">;</span>
+            <span class="nx">s</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;data-timestamp&#39;</span><span class="p">,</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+            <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">head</span> <span class="o">||</span> <span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+        <span class="p">})();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.disqus_click_btn&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我是把原来的注释掉再加后面的，链接中说超时时间设为<code>300</code>比较短，的确短，我测试了一下，设置为<code>1000</code>就不影响阅读了。</p>
+<blockquote>
+<p>**注意：**改完后记得确认<code>主题配置文件</code>是否启用了<code>disqus_click</code></p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2018-08-11</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）" data-hashtags="hexo,hexo主题"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://reb.mallotec.com/post/832fa05b/" data-hashtag="hexo"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://reb.mallotec.com/post/832fa05b/" data-title="关于Material主题源码的一些小修改（修复Bug？）"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hexo/">hexo</a>,&nbsp;<a href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/post/41e1ea07/" class="prev" rel="prev" title="全站开启https总结（艰苦历程？）"><i class="fas fa-angle-left fa-fw"></i>全站开启https总结（艰苦历程？）</a>
+            <a href="/post/e87d9191/" class="next" rel="next" title="Mac上使用brew安装MySQL">Mac上使用brew安装MySQL<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css">
+            <script src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js"></script>
+            <div id="disqus_thread" class="comment"></div>
+            <script>
+                var dsqjs = new DisqusJS({
+                    shortname:"rebor",
+                    siteName:"Reborn Blog",
+                    api:"https://disqus.skk.moe/disqus/",
+                    apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",
+                    admin:"disqus_yQKQzyJhV3",
+                    adminLabel:"admin"});
+            </script></div></article></div>
+    </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/js/create-time-to-now.js"></script><div>🐼 本站已运行 <span class="liveTime"><span class="timeDate">载入天数...</span><span class="times">载入时分秒...</span></span> 🐼</div></div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.71.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://reb.mallotec.com" target="_blank">Reborn</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+<div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+        <i class="fas fa-arrow-up fa-fw"></i>
+    </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+        <i class="fas fa-comment fa-fw"></i>
+    </a>
+</div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-175008981-1', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
+<script>
+    
+    if ('serviceWorker' in navigator) {
+        
+        window.onload = function () {
+            navigator.serviceWorker
+                .register('/sw.js', { scope: '/' })
+                .then(function(registration) {
+                    console.log('Service Worker Registered');
+                });
+
+            navigator.serviceWorker
+                .ready
+                .then(function(registration) {
+                    console.log('Service Worker Ready');
+                });
+        };
+    }
+</script>
+</html>

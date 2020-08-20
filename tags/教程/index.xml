@@ -1,1 +1,15 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>教程 - 标签 - Reborn's Blog</title><link>https://reb.mallotec.com/tags/%E6%95%99%E7%A8%8B/</link><description>教程 - 标签 - Reborn's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor><webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Mon, 16 Jul 2018 17:47:39 +0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/%E6%95%99%E7%A8%8B/" rel="self" type="application/rss+xml"/><item><title>第一次搭建Hexo博客过程 in MacOS</title><link>https://reb.mallotec.com/post/1572acec/</link><pubDate>Mon, 16 Jul 2018 17:47:39 +0800</pubDate><author>作者</author><guid>https://reb.mallotec.com/post/1572acec/</guid><description>第一次在自己服务器搭建博客，总会有那么一点点失误，碰到一点坑，在这里总结一下搭建hexo的具体步骤。 参考： Hexo之旅(二)：Hexo博客搭</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>教程 - 标签 - Reborn&#39;s Blog</title>
+        <link>https://reb.mallotec.com/tags/%E6%95%99%E7%A8%8B/</link>
+        <description>教程 - 标签 - Reborn&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>ren.xiaoyao58@gmail.com (Reborn)</managingEditor>
+            <webMaster>ren.xiaoyao58@gmail.com (Reborn)</webMaster><lastBuildDate>Mon, 16 Jul 2018 17:47:39 &#43;0800</lastBuildDate><atom:link href="https://reb.mallotec.com/tags/%E6%95%99%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>第一次搭建Hexo博客过程 in MacOS</title>
+    <link>https://reb.mallotec.com/post/1572acec/</link>
+    <pubDate>Mon, 16 Jul 2018 17:47:39 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://reb.mallotec.com/post/1572acec/</guid>
+    <description><![CDATA[第一次在自己服务器搭建博客，总会有那么一点点失误，碰到一点坑，在这里总结一下搭建hexo的具体步骤。 参考： Hexo之旅(二)：Hexo博客搭]]></description>
+</item></channel>
+</rss>
