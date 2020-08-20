@@ -7,7 +7,7 @@ if (workbox) {
 
     workbox.core.setCacheNameDetails({
         prefix: "Reborn",
-        suffix: 'v3',
+        suffix: 'v4',
         precache: 'precache',
         runtime: 'runtime'
     });
