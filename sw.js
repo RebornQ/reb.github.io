@@ -7,7 +7,7 @@ if (workbox) {
 
     workbox.core.setCacheNameDetails({
         prefix: "Reborn",
-        suffix: 'v6',
+        suffix: 'v5',
         precache: 'precache',
         runtime: 'runtime'
     });
@@ -22,14 +22,10 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
         {
             "url": "/index.html",
-            "revision": "c71f910f39e30d15199b59567394b801"
+            "revision": "27531028ec5bb3e719ab3b9ddec586f5"
         },
         {
-            "url": "/js/theme.min.js",
-            "revision": "7bc7989e979c4a19d97db3ab311a80fe"
-        },
-        {
-            "url": "/css/style.min.css",
+            "url": "https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css",
             "revision": "7874eca090efe385534dd977d279fa7b"
         }
     ], {});
