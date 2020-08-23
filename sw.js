@@ -29,7 +29,7 @@ if (workbox) {
             "revision": "7bc7989e979c4a19d97db3ab311a80fe"
         },
         {
-            "url": "https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css",
+            "url": "/css/style.min.css",
             "revision": "7874eca090efe385534dd977d279fa7b"
         }
     ], {});
