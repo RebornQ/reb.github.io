@@ -27,7 +27,7 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
         {
             "url": "/index.html",
-            "revision": "c6fffaf17bc1f15b5db36aafc3dc631d"
+            "revision": "288cd9b205e1df08f9b3bb0c216e6ad5"
         },
         {
             "url": "https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css",
