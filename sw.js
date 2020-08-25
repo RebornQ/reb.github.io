@@ -27,7 +27,7 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
         {
             "url": "/index.html",
-            "revision": "cd0e930cb168b827f75833b2ea17da30"
+            "revision": "4bd415df52425f13e5e03f896f90ca7a"
         },
         {
             "url": "https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css",
@@ -135,7 +135,7 @@ if (workbox) {
             caches.keys().then(function (cacheList) {
                 return Promise.all(
                     cacheList.map(function (cacheName) {
-                        if (/(v[\d+\.]+)/.test(cacheName) === false || versionName !== RegExp.$1) {
+                        if (/(v[\d+.]+)/.test(cacheName) === false || versionName !== RegExp.$1) {
                             // When it doesn't match any condition, delete it.
                             console.info('version changed, clean the cache, SW: deleting ' + cacheName);
                             return caches.delete(cacheName);
