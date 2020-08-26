@@ -6,7 +6,7 @@ if (workbox) {
     workbox.setConfig({debug: false});
 
     version = "v5";
-    versionTag = ".1";
+    versionTag = ".2";
     versionName = version + versionTag;
 
     workbox.core.setCacheNameDetails({
