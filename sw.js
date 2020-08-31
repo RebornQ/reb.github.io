@@ -6,7 +6,7 @@ if (workbox) {
     workbox.setConfig({debug: false});
 
     version = "v5";
-    versionTag = ".3";
+    versionTag = ".4";
     versionName = version + versionTag;
 
     workbox.core.setCacheNameDetails({
@@ -27,7 +27,7 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
         {
             "url": "/index.html",
-            "revision": "d4f28b84b2a028dcd385ff7e6a3d3690"
+            "revision": "3da2ca76ea7072b81443057c51046ee4"
         },
         {
             "url": "https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css",
