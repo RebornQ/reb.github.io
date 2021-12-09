@@ -1,12 +1,177 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><meta property="og:description" content="背景 终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/ee00472d/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2018-09-14T01:05:28+08:00"><meta property="article:modified_time" content="2019-11-29T03:12:58+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><meta name=twitter:description content="背景 终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/ee00472d/><link rel=prev href=https://reb.mallotec.com/post/90d0bd8/><link rel=next href=https://reb.mallotec.com/post/d94bd648/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/ee00472d\/"},"genre":"posts","keywords":"逆向, 破解, UML","wordcount":3858,"url":"https:\/\/reb.mallotec.com\/post\/ee00472d\/","datePublished":"2018-09-14T01:05:28+08:00","dateModified":"2019-11-29T03:12:58+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习 </a><a class=menu-item href=/friends>友链 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习</a><a class=menu-item href=/friends>友链</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E9%80%86%E5%90%91/><i class="far fa-folder fa-fw"></i>逆向</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-09-14>2018-09-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3858 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#背景>背景</a></li><li><a href=#关于-staruml-的破解原理>关于 StarUML 的破解原理</a></li><li><a href=#为什么网上那么多破解教程我还要写>为什么网上那么多破解教程我还要写？</a></li><li><a href=#开始分析>开始分析</a><ul><li><a href=#破解的核心license-managerjs>破解的核心：<code>license-manager.js</code></a><ul><li><a href=#根据注册码验证流程分析>根据注册码验证流程分析</a><ul><li><a href=#流程图>流程图</a></li><li><a href=#打开-app>打开 app</a></li><li><a href=#输入注册码>输入注册码</a></li><li><a href=#验证许可证信息>验证许可证信息</a><ul><li><a href=#本地验证>本地验证</a></li><li><a href=#网络验证>网络验证</a></li></ul></li><li><a href=#注册成功>注册成功！！</a></li></ul></li></ul></li></ul></li><li><a href=#附录1关于appasar的解压与重打包>附录1：关于<code>app.asar</code>的解压与重打包</a><ul><li><a href=#安装asar>安装asar</a></li><li><a href=#解压appasar>解压app.asar</a></li><li><a href=#重新打包appasar>重新打包app.asar</a></li></ul></li><li><a href=#附录2自定义关于界面>附录2：自定义关于界面</a><ul><li><a href=#找到代码所在文件>找到代码所在文件</a></li><li><a href=#开始分析-1>开始分析</a><ul><li><a href=#about-dialoghtml>about-dialog.html</a></li><li><a href=#about-dialogjs>about-dialog.js</a></li><li><a href=#修改成功>修改成功</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><h1 id=背景>背景</h1><p>终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑啊！！！而且，为什么这么难用啊！！！（马上开始怀疑是旧旧旧&mldr;&lt;省略一万个“旧”>&mldr;版）</p><p><strong>（图片下次上机后附上）</strong></p><p>好吧，颜值帝的我无奈翻了一下官方，发现还机房的还真的是超级旧版，一进去<a href=http://staruml.io/ target=_blank rel="noopener noreffer">官网</a>就能看到我最喜欢的暗黑风格😍。<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-sub-html="<h2>staruml-officialwebsite</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png></a><figcaption class=image-caption>staruml-officialwebsite</figcaption></figure></p><p>果断下载来试用了一下，哇！这个操作比机房的体验好超级多了好吗😂</p><p>这软件开源，但是却收费，穷得要死（铁公鸡）的我肯定是不会付费用的了(其实是想顺便看下这个软件的验证逻辑)，于是研究起了破解之道～</p><h1 id=关于-staruml-的破解原理>关于 StarUML 的破解原理</h1><blockquote><p>参考：<a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/b6b1f6ad0bd6</a></p></blockquote><p>StarUML 是用 nodejs 写的，确切的说是用 <a href=https://github.com/electron/electron target=_blank rel="noopener noreffer">Electron前端框架</a> 写的。</p><p>新版本中所有的 StarUML 源代码是通过 <a href=https://github.com/electron/asar target=_blank rel="noopener noreffer">asar</a> 工具打包而成，确切的代码位置在<code>%LOCALAPPDATA%\Programs\StarUML\resources\app.asar</code>。</p><p>我们可以通过asar工具解压修改达到破解目的，关于asar工具使用可看本文<a href=#%e9%99%84%e5%bd%951%ef%bc%9a%e5%85%b3%e4%ba%8eapp-asar%e7%9a%84%e8%a7%a3%e5%8e%8b%e4%b8%8e%e9%87%8d%e6%89%93%e5%8c%85 rel>附录1</a>。</p><blockquote><p><strong>提取 app.asar</strong>
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）">
+<meta property="og:description" content="背景 终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reb.mallotec.com/post/ee00472d/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2018-09-14T01:05:28+08:00">
+<meta property="article:modified_time" content="2019-11-29T03:12:58+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png">
+<meta name=twitter:title content="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）">
+<meta name=twitter:description content="背景 终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑">
+<meta name=application-name content="Reborn's Blog">
+<meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/ee00472d/><link rel=prev href=https://reb.mallotec.com/post/90d0bd8/><link rel=next href=https://reb.mallotec.com/post/d94bd648/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/ee00472d\/"},"genre":"posts","keywords":"逆向, 破解, UML","wordcount":3858,"url":"https:\/\/reb.mallotec.com\/post\/ee00472d\/","datePublished":"2018-09-14T01:05:28+08:00","dateModified":"2019-11-29T03:12:58+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/> 首页 </a><a class=menu-item href=/posts> 时间轴 </a><a class=menu-item href=/categories> 分类 </a><a class=menu-item href=/tags> 标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0> 复习 </a><a class=menu-item href=/friends> 友链 </a><a class=menu-item href=/about> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/ title>首页</a><a class=menu-item href=/posts title>时间轴</a><a class=menu-item href=/categories title>分类</a><a class=menu-item href=/tags title>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0 title>复习</a><a class=menu-item href=/friends title>友链</a><a class=menu-item href=/about title>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E9%80%86%E5%90%91/><i class="far fa-folder fa-fw"></i>逆向</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-09-14>2018-09-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3858 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#背景>背景</a></li>
+<li><a href=#关于-staruml-的破解原理>关于 StarUML 的破解原理</a></li>
+<li><a href=#为什么网上那么多破解教程我还要写>为什么网上那么多破解教程我还要写？</a></li>
+<li><a href=#开始分析>开始分析</a>
+<ul>
+<li><a href=#破解的核心license-managerjs>破解的核心：<code>license-manager.js</code></a>
+<ul>
+<li><a href=#根据注册码验证流程分析>根据注册码验证流程分析</a>
+<ul>
+<li><a href=#流程图>流程图</a></li>
+<li><a href=#打开-app>打开 app</a></li>
+<li><a href=#输入注册码>输入注册码</a></li>
+<li><a href=#验证许可证信息>验证许可证信息</a>
+<ul>
+<li><a href=#本地验证>本地验证</a></li>
+<li><a href=#网络验证>网络验证</a></li>
+</ul>
+</li>
+<li><a href=#注册成功>注册成功！！</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#附录1关于appasar的解压与重打包>附录1：关于<code>app.asar</code>的解压与重打包</a>
+<ul>
+<li><a href=#安装asar>安装asar</a></li>
+<li><a href=#解压appasar>解压app.asar</a></li>
+<li><a href=#重新打包appasar>重新打包app.asar</a></li>
+</ul>
+</li>
+<li><a href=#附录2自定义关于界面>附录2：自定义关于界面</a>
+<ul>
+<li><a href=#找到代码所在文件>找到代码所在文件</a></li>
+<li><a href=#开始分析-1>开始分析</a>
+<ul>
+<li><a href=#about-dialoghtml>about-dialog.html</a></li>
+<li><a href=#about-dialogjs>about-dialog.js</a></li>
+<li><a href=#修改成功>修改成功</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h1 id=背景>背景</h1>
+<p>终于开始新的学期了，这学期我有个 UML建模 的课程，上机作业就是要用到 StarUML 这个软件，但是&mldr;&mldr;啊——为什么 StarUML 那么丑啊！！！而且，为什么这么难用啊！！！（马上开始怀疑是旧旧旧&mldr;&lt;省略一万个“旧”>&mldr;版）</p>
+<p><strong>（图片下次上机后附上）</strong></p>
+<p>好吧，颜值帝的我无奈翻了一下官方，发现还机房的还真的是超级旧版，一进去<a href=http://staruml.io/ target=_blank rel="noopener noreffer">官网</a>就能看到我最喜欢的暗黑风格😍。
+<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-sub-html="<h2>staruml-officialwebsite</h2>">
+<img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-officialwebsite.png>
+</a><figcaption class=image-caption>staruml-officialwebsite</figcaption>
+</figure></p>
+<p>果断下载来试用了一下，哇！这个操作比机房的体验好超级多了好吗😂</p>
+<p>这软件开源，但是却收费，穷得要死（铁公鸡）的我肯定是不会付费用的了(其实是想顺便看下这个软件的验证逻辑)，于是研究起了破解之道～</p>
+<h1 id=关于-staruml-的破解原理>关于 StarUML 的破解原理</h1>
+<blockquote>
+<p>参考：<a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/b6b1f6ad0bd6</a></p>
+</blockquote>
+<p>StarUML 是用 nodejs 写的，确切的说是用 <a href=https://github.com/electron/electron target=_blank rel="noopener noreffer">Electron前端框架</a> 写的。</p>
+<p>新版本中所有的 StarUML 源代码是通过 <a href=https://github.com/electron/asar target=_blank rel="noopener noreffer">asar</a> 工具打包而成，确切的代码位置在<code>%LOCALAPPDATA%\Programs\StarUML\resources\app.asar</code>。</p>
+<p>我们可以通过asar工具解压修改达到破解目的，关于asar工具使用可看本文<a href=#%e9%99%84%e5%bd%951%ef%bc%9a%e5%85%b3%e4%ba%8eapp-asar%e7%9a%84%e8%a7%a3%e5%8e%8b%e4%b8%8e%e9%87%8d%e6%89%93%e5%8c%85 rel>附录1</a>。</p>
+<blockquote>
+<p><strong>提取 app.asar</strong>
 下载的 <code>StarUML.app</code>，右键显示包内容
 进入<code>Contents/Resources/</code>
-把<code>app.asar</code>复制出来</p></blockquote><h1 id=为什么网上那么多破解教程我还要写>为什么网上那么多破解教程我还要写？</h1><blockquote><p>参考： <a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">Mac StarUML 3.0 破解</a></p></blockquote><p>那&mldr;&mldr;当然不是为了存档！</p><p>相信搜过 StarUML3 破解的朋友都知道，想要破解就修改<code>app.asar</code>解压出来的<code>app/src/engine/license-manager.js</code>，把其中的<code>checkLicenseValidity</code>函数修改成：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+把<code>app.asar</code>复制出来</p>
+</blockquote>
+<h1 id=为什么网上那么多破解教程我还要写>为什么网上那么多破解教程我还要写？</h1>
+<blockquote>
+<p>参考： <a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">Mac StarUML 3.0 破解</a></p>
+</blockquote>
+<p>那&mldr;&mldr;当然不是为了存档！</p>
+<p>相信搜过 StarUML3 破解的朋友都知道，想要破解就修改<code>app.asar</code>解压出来的<code>app/src/engine/license-manager.js</code>，把其中的<code>checkLicenseValidity</code>函数修改成：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -18,7 +183,9 @@
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>checkLicenseValidity</span> <span class=p>()</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>checkLicenseValidity</span> <span class=p>()</span> <span class=p>{</span>
     <span class=k>this</span><span class=p>.</span><span class=nx>validate</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
       <span class=nx>setStatus</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
     <span class=p>},</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
@@ -30,8 +197,36 @@
 </span><span class=c1></span>      <span class=nx>setStatus</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
     <span class=p>})</span>
   <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>然后重新打包<code>app.asar</code>放回<code>StarUML.app/Contents/Resources/</code>，破解成功了。</p><p>那么，为什么网上那么多破解教程我还要写一个教程呢？</p><p>因为我是个完美主义者，我发现网上的教程都不能达到完美破解的效果——我的注册信息怎么没法显示（自定义）！！！于是我就着手研究起<code>app.asar</code>解压出来的代码了🌚</p><h1 id=开始分析>开始分析</h1><h2 id=破解的核心license-managerjs>破解的核心：<code>license-manager.js</code></h2><blockquote><p>参考： <a href=http://dxkite.cn/2018/06/15/bypass-staruml-3/ target=_blank rel="noopener noreffer">绕过StarUML3 正版验证，去除水印</a></p></blockquote><p>破解的核心还是<code>license-manager.js</code>这个跑不掉，那么我们先从这个文件开始分析。</p><h3 id=根据注册码验证流程分析>根据注册码验证流程分析</h3><h4 id=流程图>流程图</h4><p>在这之前，我们先想一下正常的注册码验证流程是什么：
-{% raw %}</p><!--[if IE]><meta http-equiv=x-ua-compatible content="IE=5,IE=9"><![endif]--><!doctype html><html><head><title>正常的注册码验证流程</title><meta charset=utf-8></head><body><div class=mxgraph style="max-width:100%;border:1px solid transparent" data-mxgraph='{"highlight":"#0000ff","nav":true,"resize":true,"toolbar":"zoom layers lightbox","edit":"_blank","xml":"<mxfile userAgent=\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/8.8.0 Chrome/61.0.3163.100 Electron/2.0.2 Safari/537.36\" version=\"9.1.3\" editor=\"www.draw.io\" type=\"device\"><diagram id=\"495560c4-b5ad-c4af-45a2-9c1f2401ae28\" name=\"第 1 页\">1VhNc5swEP01OtYDyGBxxI7THtKZzOTQ5NRRQAY1AjFCju38+kogvgxO3MZ2khwc6Wn19fYtuwDgIt1+FzhPfvKIMOBY0RbAK+A4vuWqXw3sKsCzYAXEgkYVZLfAHX0hBrQMuqYRKXqGknMmad4HQ55lJJQ9DAvBN32zFWf9XXMckwFwF2I2RH/RSCYGtT2/HfhBaJyYrZEzqwYecfgUC77OzH7AgavyrxpOcb2WuWiR4IhvOhBcArgQnMuqlW4XhGlqa9qqedcHRptzC5LJYyY4U3MOuavvTiJFhelmPFP/5uWFiJ5iqV4iU6aatmqSLZX3nfaDNpm4pndLBE2JJMJMVGcSu/tup7X/Q6TcGSHgteQK4kImPOYZZjec52aX6rj6jAdvbKCCr0VorByjISxiYqwc2NCtVEy4OqjYKRtBGJb0ub88NnqKG7uWU9UwtB6guFriGbO1WRQsPYB84EOwdMF8AZClt8jzgSsKKfhTo0Cnz72STq7t0m2sY3CyYnwTJljISaHuKX9rm01CJbnLccnDRpk1DI4Q9kyEJNsONCTHjCrZTEyEmwCHCNbIphMwlpF50okVz3o/p/4nUW3Z3Z/wb1J+Q7nuULloNAYuoGR3RMk+CAKAFmCJQHANkK21PYcgQFrbyCuHZiCw9NCJ5J0LHpKiOJ+8XTiQt3e0vBvwPUzbrz+WWzktW/Rtvbcaf6jl/On0joZ6t52PErztjSjeBb4FAm/gICUu2eddkIK+4MfSQBOVc5rJ8jjuHLhXCsGMxpkCQkWJ5nOuRUpVHRKYgZRGUelchh8JmzfVxYIzLsp96/pilN/pAek3lZM5Xa/6GAsJa2JBC/Vi4ptZ/GjWzeK3moXOMrA/g69WhfL8vpeaIx3nOPf88WN/mfixPix+ZqO1j1/miq8QP3XGO0H8OLP65eHE8TM9Q/ygUb8dyuuNS5tno0YWusbVDWWvZl3rStcfuv0/i4CIhLSgPDtfFeChD68CrKPc4Gl+Fe8aCU5IsYqolGZY6kA5F8louk/y1L3om0RdXLzBsQuCKZjbusydT0EwTC9fimNoX5TjsReH97y/nflbARymUPdCCbPeu8eUx3ReLHKcqXas26UMl+YDAnK1Hl977aoWUHv31tj3QJ06b3SmvOUFleXjtU2hB3NrV+mDMKi1r1jHjBHGVQikOpl3qqDeWKc8Go2IVhZ6QyxCowS73K1qq3QL66TfuUpTJgzqhoN5fiCWg2EGkdUPsrN+ElHd9ithleHbL7Fw+Rc=</diagram></mxfile>"}'></div><script type=text/javascript src=https://www.draw.io/js/viewer.min.js></script></body></html>{% endraw %}<h4 id=打开-app>打开 app</h4><p>可以看到，我们首先要<code>打开 app</code>，对应的代码是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>然后重新打包<code>app.asar</code>放回<code>StarUML.app/Contents/Resources/</code>，破解成功了。</p>
+<p>那么，为什么网上那么多破解教程我还要写一个教程呢？</p>
+<p>因为我是个完美主义者，我发现网上的教程都不能达到完美破解的效果——我的注册信息怎么没法显示（自定义）！！！于是我就着手研究起<code>app.asar</code>解压出来的代码了🌚</p>
+<h1 id=开始分析>开始分析</h1>
+<h2 id=破解的核心license-managerjs>破解的核心：<code>license-manager.js</code></h2>
+<blockquote>
+<p>参考： <a href=http://dxkite.cn/2018/06/15/bypass-staruml-3/ target=_blank rel="noopener noreffer">绕过StarUML3 正版验证，去除水印</a></p>
+</blockquote>
+<p>破解的核心还是<code>license-manager.js</code>这个跑不掉，那么我们先从这个文件开始分析。</p>
+<h3 id=根据注册码验证流程分析>根据注册码验证流程分析</h3>
+<h4 id=流程图>流程图</h4>
+<p>在这之前，我们先想一下正常的注册码验证流程是什么：
+{% raw %}</p><!--[if IE]><meta http-equiv=x-ua-compatible content="IE=5,IE=9"><![endif]--><!doctype html>
+<html>
+<head>
+<title>正常的注册码验证流程</title>
+<meta charset=utf-8>
+</head>
+<body><div class=mxgraph style="max-width:100%;border:1px solid transparent" data-mxgraph='{"highlight":"#0000ff","nav":true,"resize":true,"toolbar":"zoom layers lightbox","edit":"_blank","xml":"<mxfile userAgent=\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/8.8.0 Chrome/61.0.3163.100 Electron/2.0.2 Safari/537.36\" version=\"9.1.3\" editor=\"www.draw.io\" type=\"device\"><diagram id=\"495560c4-b5ad-c4af-45a2-9c1f2401ae28\" name=\"第 1 页\">1VhNc5swEP01OtYDyGBxxI7THtKZzOTQ5NRRQAY1AjFCju38+kogvgxO3MZ2khwc6Wn19fYtuwDgIt1+FzhPfvKIMOBY0RbAK+A4vuWqXw3sKsCzYAXEgkYVZLfAHX0hBrQMuqYRKXqGknMmad4HQ55lJJQ9DAvBN32zFWf9XXMckwFwF2I2RH/RSCYGtT2/HfhBaJyYrZEzqwYecfgUC77OzH7AgavyrxpOcb2WuWiR4IhvOhBcArgQnMuqlW4XhGlqa9qqedcHRptzC5LJYyY4U3MOuavvTiJFhelmPFP/5uWFiJ5iqV4iU6aatmqSLZX3nfaDNpm4pndLBE2JJMJMVGcSu/tup7X/Q6TcGSHgteQK4kImPOYZZjec52aX6rj6jAdvbKCCr0VorByjISxiYqwc2NCtVEy4OqjYKRtBGJb0ub88NnqKG7uWU9UwtB6guFriGbO1WRQsPYB84EOwdMF8AZClt8jzgSsKKfhTo0Cnz72STq7t0m2sY3CyYnwTJljISaHuKX9rm01CJbnLccnDRpk1DI4Q9kyEJNsONCTHjCrZTEyEmwCHCNbIphMwlpF50okVz3o/p/4nUW3Z3Z/wb1J+Q7nuULloNAYuoGR3RMk+CAKAFmCJQHANkK21PYcgQFrbyCuHZiCw9NCJ5J0LHpKiOJ+8XTiQt3e0vBvwPUzbrz+WWzktW/Rtvbcaf6jl/On0joZ6t52PErztjSjeBb4FAm/gICUu2eddkIK+4MfSQBOVc5rJ8jjuHLhXCsGMxpkCQkWJ5nOuRUpVHRKYgZRGUelchh8JmzfVxYIzLsp96/pilN/pAek3lZM5Xa/6GAsJa2JBC/Vi4ptZ/GjWzeK3moXOMrA/g69WhfL8vpeaIx3nOPf88WN/mfixPix+ZqO1j1/miq8QP3XGO0H8OLP65eHE8TM9Q/ygUb8dyuuNS5tno0YWusbVDWWvZl3rStcfuv0/i4CIhLSgPDtfFeChD68CrKPc4Gl+Fe8aCU5IsYqolGZY6kA5F8louk/y1L3om0RdXLzBsQuCKZjbusydT0EwTC9fimNoX5TjsReH97y/nflbARymUPdCCbPeu8eUx3ReLHKcqXas26UMl+YDAnK1Hl977aoWUHv31tj3QJ06b3SmvOUFleXjtU2hB3NrV+mDMKi1r1jHjBHGVQikOpl3qqDeWKc8Go2IVhZ6QyxCowS73K1qq3QL66TfuUpTJgzqhoN5fiCWg2EGkdUPsrN+ElHd9ithleHbL7Fw+Rc=</diagram></mxfile>"}'></div>
+<script type=text/javascript src=https://www.draw.io/js/viewer.min.js></script>
+</body>
+</html>
+{% endraw %}
+<h4 id=打开-app>打开 app</h4>
+<p>可以看到，我们首先要<code>打开 app</code>，对应的代码是：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -43,7 +238,9 @@
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>htmlReady</span> <span class=p>()</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>htmlReady</span> <span class=p>()</span> <span class=p>{</span>
     <span class=k>this</span><span class=p>.</span><span class=nx>projectManager</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;projectSaved&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>filename</span><span class=p>,</span> <span class=nx>project</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
       <span class=kd>var</span> <span class=nx>val</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>floor</span><span class=p>(</span><span class=nb>Math</span><span class=p>.</span><span class=nx>random</span><span class=p>()</span> <span class=o>*</span> <span class=p>(</span><span class=mf>1.0</span> <span class=o>/</span> <span class=nx>LICENSE_CHECK_PROBABILITY</span><span class=p>))</span>
       <span class=k>if</span> <span class=p>(</span><span class=nx>val</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
@@ -55,7 +252,15 @@
 <span class=nx>appReady</span> <span class=p>()</span> <span class=p>{</span>
     <span class=k>this</span><span class=p>.</span><span class=nx>checkLicenseValidity</span><span class=p>()</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>可以看到，这两个方法中都会用到<code>this.checkLicenseValidity()</code>，看英文意思明显是检查许可证是否有效，所以把<code>checkLicenseValidity</code>这个方法修改一下就可以破解了（修改方法看<a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e7%bd%91%e4%b8%8a%e9%82%a3%e4%b9%88%e5%a4%9a%e7%a0%b4%e8%a7%a3%e6%95%99%e7%a8%8b%e6%88%91%e8%bf%98%e8%a6%81%e5%86%99%ef%bc%9f rel>上面</a>)</p><p><strong>但是，这里我们先不修改！！！因为修改后没法弹出无法弹出输入注册码的窗口，就无法完美破解了！！</strong></p><h4 id=输入注册码>输入注册码</h4><p>接下来我们来看一下<strong>输入注册码</strong>也就是<strong>注册</strong>的逻辑：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，这两个方法中都会用到<code>this.checkLicenseValidity()</code>，看英文意思明显是检查许可证是否有效，所以把<code>checkLicenseValidity</code>这个方法修改一下就可以破解了（修改方法看<a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e7%bd%91%e4%b8%8a%e9%82%a3%e4%b9%88%e5%a4%9a%e7%a0%b4%e8%a7%a3%e6%95%99%e7%a8%8b%e6%88%91%e8%bf%98%e8%a6%81%e5%86%99%ef%bc%9f rel>上面</a>)</p>
+<p><strong>但是，这里我们先不修改！！！因为修改后没法弹出无法弹出输入注册码的窗口，就无法完美破解了！！</strong></p>
+<h4 id=输入注册码>输入注册码</h4>
+<p>接下来我们来看一下<strong>输入注册码</strong>也就是<strong>注册</strong>的逻辑：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -75,7 +280,9 @@
 </span><span class=lnt>18
 </span><span class=lnt>19
 </span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js>  <span class=nx>register</span> <span class=p>(</span><span class=nx>licenseKey</span><span class=p>)</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js>  <span class=nx>register</span> <span class=p>(</span><span class=nx>licenseKey</span><span class=p>)</span> <span class=p>{</span>
     <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
       <span class=nx>$</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=nx>app</span><span class=p>.</span><span class=nx>config</span><span class=p>.</span><span class=nx>validation_url</span><span class=p>,</span> <span class=p>{</span><span class=nx>licenseKey</span><span class=o>:</span> <span class=nx>licenseKey</span><span class=p>})</span>
         <span class=p>.</span><span class=nx>done</span><span class=p>(</span><span class=nx>data</span> <span class=p>=&gt;</span> <span class=p>{</span>
@@ -95,21 +302,38 @@
         <span class=p>})</span>
     <span class=p>})</span>
   <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>解释一下，这个<code>register</code>函数需要传入的参数<code>licenseKey</code>就是输入的注册码，然后用POST请求 balabala，请求成功后返回一个<code>data</code>，然后在 StarUML 的配置信息目录新建一个<code>license.key</code>的文件，里面包含着所有许可证信息。可以看到，这个许可证信息是<strong>用 JSON 格式储存的</strong>，而请求后获取的<code>data</code>就是许可证信息的内容，<strong>那么我们是不是只要模拟已经获取到了许可证信息是不是就ok了？</strong></p><p>那么问题又来了，我们怎么知道<code>data</code>的内容格式呢？</p><p>我们不妨参考一下 StarUML2 的破解：<a href=https://www.jianshu.com/p/0c49ebf342e0 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/0c49ebf342e0</a></p><p>在 StarUML2 的破解中我们可以看到如下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>解释一下，这个<code>register</code>函数需要传入的参数<code>licenseKey</code>就是输入的注册码，然后用POST请求 balabala，请求成功后返回一个<code>data</code>，然后在 StarUML 的配置信息目录新建一个<code>license.key</code>的文件，里面包含着所有许可证信息。可以看到，这个许可证信息是<strong>用 JSON 格式储存的</strong>，而请求后获取的<code>data</code>就是许可证信息的内容，<strong>那么我们是不是只要模拟已经获取到了许可证信息是不是就ok了？</strong></p>
+<p>那么问题又来了，我们怎么知道<code>data</code>的内容格式呢？</p>
+<p>我们不妨参考一下 StarUML2 的破解：<a href=https://www.jianshu.com/p/0c49ebf342e0 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/0c49ebf342e0</a></p>
+<p>在 StarUML2 的破解中我们可以看到如下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=k>return</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=k>return</span> <span class=p>{</span>
     <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;0xcb&#34;</span><span class=p>,</span>
     <span class=nx>product</span><span class=o>:</span> <span class=s2>&#34;StarUML&#34;</span><span class=p>,</span>
     <span class=nx>licenseType</span><span class=o>:</span> <span class=s2>&#34;vip&#34;</span><span class=p>,</span>
     <span class=nx>quantity</span><span class=o>:</span> <span class=s2>&#34;bbs.chinapyg.com&#34;</span><span class=p>,</span>
     <span class=nx>licenseKey</span><span class=o>:</span> <span class=s2>&#34;later equals never!&#34;</span>
 <span class=p>};</span>
-</code></pre></td></tr></table></div></div><p>我斗胆猜测这就是<code>data</code>的内容格式（也就是许可证信息的内容格式）！！！</p><p>我们广东人常常会说一句话：讲多无谓，行动最实际。我们下面就来尝试一下！</p><p>既然是本地模拟，那当然要把网络请求去掉然后模拟<code>data</code>的内容，修改整理后得到以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>我斗胆猜测这就是<code>data</code>的内容格式（也就是许可证信息的内容格式）！！！</p>
+<p>我们广东人常常会说一句话：讲多无谓，行动最实际。我们下面就来尝试一下！</p>
+<p>既然是本地模拟，那当然要把网络请求去掉然后模拟<code>data</code>的内容，修改整理后得到以下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -127,7 +351,9 @@
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js>  <span class=nx>register</span> <span class=p>(</span><span class=nx>licenseKey</span><span class=p>)</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js>  <span class=nx>register</span> <span class=p>(</span><span class=nx>licenseKey</span><span class=p>)</span> <span class=p>{</span>
     <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
           <span class=kd>var</span> <span class=nx>data</span> <span class=o>=</span> <span class=p>{</span>
             <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Reborn&#34;</span><span class=p>,</span>
@@ -145,7 +371,17 @@
           <span class=nx>resolve</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
     <span class=p>})</span>
   <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>到这里许可证信息应该是模拟成功了，看 StarUML 的配置信息目录下应该能看到一个<code>license.key</code>的文件。输完注册码后就要验证注册码是否有效，接下来我们看验证许可证信息模块。</p><blockquote><p><strong>这里要注意一下：</strong><code>licenseType</code>的设置是固定几个参数的，在这里我设置为<code>PS</code>，之前设置<code>Reborn Personal</code>导致关于那里显示<code>Unknown License</code>。关于这个大家可以去看看<code>app/src/dialogs/about-dialog.js</code>。</p></blockquote><h4 id=验证许可证信息>验证许可证信息</h4><p>先来看下代码吧：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>到这里许可证信息应该是模拟成功了，看 StarUML 的配置信息目录下应该能看到一个<code>license.key</code>的文件。输完注册码后就要验证注册码是否有效，接下来我们看验证许可证信息模块。</p>
+<blockquote>
+<p><strong>这里要注意一下：</strong><code>licenseType</code>的设置是固定几个参数的，在这里我设置为<code>PS</code>，之前设置<code>Reborn Personal</code>导致关于那里显示<code>Unknown License</code>。关于这个大家可以去看看<code>app/src/dialogs/about-dialog.js</code>。</p>
+</blockquote>
+<h4 id=验证许可证信息>验证许可证信息</h4>
+<p>先来看下代码吧：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -183,7 +419,9 @@
 </span><span class=lnt>36
 </span><span class=lnt>37
 </span><span class=lnt>38
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js>  <span class=nx>validate</span> <span class=p>()</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js>  <span class=nx>validate</span> <span class=p>()</span> <span class=p>{</span>
     <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
       <span class=k>try</span> <span class=p>{</span>
         <span class=c1>// Local check
@@ -221,7 +459,14 @@
       <span class=p>}</span>
     <span class=p>})</span>
   <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>可以看到验证分两部分：先<code>本地验证</code>再进行<code>网络验证</code>，网络验证成功后返回许可证信息。</p><h5 id=本地验证>本地验证</h5><p>我们一步步来，先处理本地验证：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到验证分两部分：先<code>本地验证</code>再进行<code>网络验证</code>，网络验证成功后返回许可证信息。</p>
+<h5 id=本地验证>本地验证</h5>
+<p>我们一步步来，先处理本地验证：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -238,7 +483,9 @@
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=c1>// Local check
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// Local check
 </span><span class=c1></span><span class=kd>var</span> <span class=nx>file</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>findLicense</span><span class=p>()</span>
 <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>file</span><span class=p>)</span> <span class=p>{</span>
     <span class=nx>reject</span><span class=p>(</span><span class=s1>&#39;License key not found&#39;</span><span class=p>)</span>
@@ -255,7 +502,16 @@
     <span class=p>}</span>
     <span class=p>.....</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>本地验证真正开始验证的地方是从第 8 行开始的。通过文件<code>license.key</code>中的部分许可证信息计算出一个注册码然后和许可证信息中的<code>licenseKey</code>进行比较，如果不相等那就返回注册码失效（从这里的<code>licenseInfo</code>调用也可以看出许可证信息包含了什么，与上一步的<code>data</code>验证）。</p><p>既然如此，我们就不让它比较嘛，我们直接返回成功不就得了！</p><p>好的，<strong>第 8 行之后的都删掉</strong>。</p><h5 id=网络验证>网络验证</h5><p>由于返回的逻辑不在本地验证，所以我们还要分析网络验证：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>本地验证真正开始验证的地方是从第 8 行开始的。通过文件<code>license.key</code>中的部分许可证信息计算出一个注册码然后和许可证信息中的<code>licenseKey</code>进行比较，如果不相等那就返回注册码失效（从这里的<code>licenseInfo</code>调用也可以看出许可证信息包含了什么，与上一步的<code>data</code>验证）。</p>
+<p>既然如此，我们就不让它比较嘛，我们直接返回成功不就得了！</p>
+<p>好的，<strong>第 8 行之后的都删掉</strong>。</p>
+<h5 id=网络验证>网络验证</h5>
+<p>由于返回的逻辑不在本地验证，所以我们还要分析网络验证：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -268,7 +524,9 @@
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=c1>// Server check
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// Server check
 </span><span class=c1></span><span class=nx>$</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=nx>app</span><span class=p>.</span><span class=nx>config</span><span class=p>.</span><span class=nx>validation_url</span><span class=p>,</span> <span class=p>{</span><span class=nx>licenseKey</span><span class=o>:</span> <span class=nx>licenseInfo</span><span class=p>.</span><span class=nx>licenseKey</span><span class=p>})</span>
     <span class=p>.</span><span class=nx>done</span><span class=p>(</span><span class=nx>data</span> <span class=p>=&gt;</span> <span class=p>{</span>
         <span class=nx>resolve</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
@@ -281,7 +539,15 @@
 </span><span class=c1></span>            <span class=nx>resolve</span><span class=p>(</span><span class=nx>licenseInfo</span><span class=p>)</span>
         <span class=p>}</span>
 <span class=p>})</span>
-</code></pre></td></tr></table></div></div><p>又是一个 POST 请求！又是返回<code>data</code>！认真看了一下还是与上一步<code>输入注册码</code>同样的网络请求！好了，多的我就不说了👀，大家应该知道怎么办，可以同上一步一样模拟<code>data</code>的内容，然后<code>resolve(data)</code>返回即可。</p><p><strong>但是，这里我选择直接返回<code>licenseInfo</code></strong>，为什么呢？</p><p>大家看一下本地验证，<code>licenseInfo</code>的内容是从文件<code>license.key</code>中转换而来，文件<code>license.key</code>的内容是上一步的 POST 请求而来，嗯&mldr;.不用我多说了吧！</p><p>整理代码后如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>又是一个 POST 请求！又是返回<code>data</code>！认真看了一下还是与上一步<code>输入注册码</code>同样的网络请求！好了，多的我就不说了👀，大家应该知道怎么办，可以同上一步一样模拟<code>data</code>的内容，然后<code>resolve(data)</code>返回即可。</p>
+<p><strong>但是，这里我选择直接返回<code>licenseInfo</code></strong>，为什么呢？</p>
+<p>大家看一下本地验证，<code>licenseInfo</code>的内容是从文件<code>license.key</code>中转换而来，文件<code>license.key</code>的内容是上一步的 POST 请求而来，嗯&mldr;.不用我多说了吧！</p>
+<p>整理代码后如下：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -298,7 +564,9 @@
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js>  <span class=nx>validate</span> <span class=p>()</span> <span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js>  <span class=nx>validate</span> <span class=p>()</span> <span class=p>{</span>
     <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
       <span class=k>try</span> <span class=p>{</span>
         <span class=c1>// Local check
@@ -315,15 +583,64 @@
       <span class=p>}</span>
     <span class=p>})</span>
   <span class=p>}</span>
-</code></pre></td></tr></table></div></div><h4 id=注册成功>注册成功！！</h4><p>完成以上流程后应该就能成功实现<strong>输入任意注册码</strong>都可以破解了，并且这种方法破解后还能在关于显示你自定义的破解信息！！完美～<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-sub-html="<h2>staruml-about</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png></a><figcaption class=image-caption>staruml-about</figcaption></figure></p><h1 id=附录1关于appasar的解压与重打包>附录1：关于<code>app.asar</code>的解压与重打包</h1><blockquote><p>参考：<a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/b6b1f6ad0bd6</a></p></blockquote><h2 id=安装asar>安装asar</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo npm install -g asar
-</code></pre></td></tr></table></div></div><h2 id=解压appasar>解压app.asar</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>asar extract app.asar app
-</code></pre></td></tr></table></div></div><h2 id=重新打包appasar>重新打包app.asar</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>asar pack app app.asar
-</code></pre></td></tr></table></div></div><h1 id=附录2自定义关于界面>附录2：自定义关于界面</h1><p>大家做完上面的操作肯定会发现，为什么你们的关于没有<code>Cracked By XXX</code>的字样，那是因为我修改了<code>关于</code>的 GUI，在前面并没有说，在这里我特别分出来写一下，算是个小彩蛋吧！</p><h2 id=找到代码所在文件>找到代码所在文件</h2><p>首先我们要找到<code>关于</code>这个界面的代码文件，经过分析和查找，我找到了<code>about-dialog.js</code>和<code>about-dialog.html</code></p><p>至于怎么找到的，大家看一下<code>about-dialog.js</code>的这句代码就知道了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>aboutDialogTemplate</span> <span class=o>=</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>readFileSync</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=s1>&#39;../static/html-contents/about-dialog.html&#39;</span><span class=p>),</span> <span class=s1>&#39;utf8&#39;</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><h2 id=开始分析-1>开始分析</h2><h3 id=about-dialoghtml>about-dialog.html</h3><p>我们先来看一下 html 吧，在这个文件中大家可以很明显看到这么一段：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=注册成功>注册成功！！</h4>
+<p>完成以上流程后应该就能成功实现<strong>输入任意注册码</strong>都可以破解了，并且这种方法破解后还能在关于显示你自定义的破解信息！！完美～
+<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-sub-html="<h2>staruml-about</h2>">
+<img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png>
+</a><figcaption class=image-caption>staruml-about</figcaption>
+</figure></p>
+<h1 id=附录1关于appasar的解压与重打包>附录1：关于<code>app.asar</code>的解压与重打包</h1>
+<blockquote>
+<p>参考：<a href=https://www.jianshu.com/p/b6b1f6ad0bd6 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/b6b1f6ad0bd6</a></p>
+</blockquote>
+<h2 id=安装asar>安装asar</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sudo npm install -g asar
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=解压appasar>解压app.asar</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>asar extract app.asar app
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=重新打包appasar>重新打包app.asar</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>asar pack app app.asar
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=附录2自定义关于界面>附录2：自定义关于界面</h1>
+<p>大家做完上面的操作肯定会发现，为什么你们的关于没有<code>Cracked By XXX</code>的字样，那是因为我修改了<code>关于</code>的 GUI，在前面并没有说，在这里我特别分出来写一下，算是个小彩蛋吧！</p>
+<h2 id=找到代码所在文件>找到代码所在文件</h2>
+<p>首先我们要找到<code>关于</code>这个界面的代码文件，经过分析和查找，我找到了<code>about-dialog.js</code>和<code>about-dialog.html</code></p>
+<p>至于怎么找到的，大家看一下<code>about-dialog.js</code>的这句代码就知道了：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>aboutDialogTemplate</span> <span class=o>=</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>readFileSync</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=s1>&#39;../static/html-contents/about-dialog.html&#39;</span><span class=p>),</span> <span class=s1>&#39;utf8&#39;</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=开始分析-1>开始分析</h2>
+<h3 id=about-dialoghtml>about-dialog.html</h3>
+<p>我们先来看一下 html 吧，在这个文件中大家可以很明显看到这么一段：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -331,7 +648,9 @@
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 20px;&#34;</span><span class=o>&gt;</span><span class=p>{{</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>name</span><span class=p>}}</span><span class=o>&lt;</span><span class=err>/div&gt;</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 20px;&#34;</span><span class=o>&gt;</span><span class=p>{{</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>name</span><span class=p>}}</span><span class=o>&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 14px;&#34;</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;license&#34;</span><span class=o>&gt;&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 14px;&#34;</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;licenseType&#34;</span><span class=o>&gt;&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 14px;&#34;</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;quantity&#34;</span><span class=o>&gt;&lt;</span><span class=err>/div&gt;</span>
@@ -339,17 +658,33 @@
 <span class=o>&lt;</span><span class=nx>div</span><span class=o>&gt;</span><span class=p>{{</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>copyright</span><span class=p>}}</span><span class=o>&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span><span class=o>&gt;&lt;</span><span class=nx>b</span><span class=o>&gt;</span><span class=nx>Version</span> <span class=p>{{</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>version</span><span class=p>}}</span><span class=o>&lt;</span><span class=err>/b&gt;&lt;/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span><span class=o>&gt;&lt;</span><span class=nx>a</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;thirdparty&#34;</span> <span class=nx>href</span><span class=o>=</span><span class=s2>&#34;#&#34;</span><span class=o>&gt;</span><span class=nx>Third</span> <span class=nx>party</span> <span class=nx>softwares</span><span class=o>&lt;</span><span class=err>/a&gt;&lt;/div&gt;</span>
-</code></pre></td></tr></table></div></div><p>对比一下关于的界面，是不是觉得刚好对上了🌚</p><p>好的那么接下来我们加一个破解者的信息：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>对比一下关于的界面，是不是觉得刚好对上了🌚</p>
+<p>好的那么接下来我们加一个破解者的信息：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=p>......</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=p>......</span>
 <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 14px;&#34;</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;quantity&#34;</span><span class=o>&gt;&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>style</span><span class=o>=</span><span class=s2>&#34;font-size: 16px;&#34;</span> <span class=kr>class</span><span class=o>=</span><span class=s2>&#34;crackedAuthor&#34;</span><span class=o>&gt;&lt;</span><span class=err>/div&gt;</span>
 <span class=o>&lt;</span><span class=nx>br</span><span class=o>&gt;</span>
 <span class=p>......</span>
-</code></pre></td></tr></table></div></div><p>这里第 3 行就是我添加的信息，其中<code>font-size</code>是调整字体大小，<code>class="crackedAuthor"</code>这个类选择器名<code>crackedAuthor</code>要记住，等下要用到。</p><p>接下来我们看<code>about-dialog.js</code></p><h3 id=about-dialogjs>about-dialog.js</h3><p>在这个 js 文件里面，我们可以看到这几行代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>这里第 3 行就是我添加的信息，其中<code>font-size</code>是调整字体大小，<code>class="crackedAuthor"</code>这个类选择器名<code>crackedAuthor</code>要记住，等下要用到。</p>
+<p>接下来我们看<code>about-dialog.js</code></p>
+<h3 id=about-dialogjs>about-dialog.js</h3>
+<p>在这个 js 文件里面，我们可以看到这几行代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -358,7 +693,9 @@
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=p>......</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=p>......</span>
 <span class=kd>var</span> <span class=nx>$license</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.license&#39;</span><span class=p>)</span>
 <span class=kd>var</span> <span class=nx>$licenseType</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.licenseType&#39;</span><span class=p>)</span>
 <span class=kd>var</span> <span class=nx>$quantity</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.quantity&#39;</span><span class=p>)</span>
@@ -367,8 +704,15 @@
 <span class=nx>$licenseType</span><span class=p>.</span><span class=nx>html</span><span class=p>(</span><span class=nx>licenseTypeName</span> <span class=o>+</span> <span class=s1>&#39; License&#39;</span><span class=p>)</span>
 <span class=nx>$quantity</span><span class=p>.</span><span class=nx>html</span><span class=p>(</span><span class=nx>info</span><span class=p>.</span><span class=nx>quantity</span> <span class=o>+</span> <span class=s1>&#39; User(s)&#39;</span><span class=p>)</span>
 <span class=p>......</span>
-</code></pre></td></tr></table></div></div><p>我们来分析一下这几行代码吧！</p><p><code>$dlg.find('.xxx')</code>的意思是搜索所有类选择器名为<code>.xxx</code>的元素。
-<code>$xxx.html('abc')</code>的意思是设置<code>xxx</code>元素的内容为<code>abc</code>。</p><p>说到这里大家应该知道怎么修改了吧！这是我修改的代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>我们来分析一下这几行代码吧！</p>
+<p><code>$dlg.find('.xxx')</code>的意思是搜索所有类选择器名为<code>.xxx</code>的元素。
+<code>$xxx.html('abc')</code>的意思是设置<code>xxx</code>元素的内容为<code>abc</code>。</p>
+<p>说到这里大家应该知道怎么修改了吧！这是我修改的代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -379,7 +723,9 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=p>......</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=p>......</span>
 <span class=kd>var</span> <span class=nx>$license</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.license&#39;</span><span class=p>)</span>
 <span class=kd>var</span> <span class=nx>$licenseType</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.licenseType&#39;</span><span class=p>)</span>
 <span class=kd>var</span> <span class=nx>$quantity</span> <span class=o>=</span> <span class=nx>$dlg</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;.quantity&#39;</span><span class=p>)</span>
@@ -390,5 +736,55 @@
 <span class=nx>$quantity</span><span class=p>.</span><span class=nx>html</span><span class=p>(</span><span class=nx>info</span><span class=p>.</span><span class=nx>quantity</span> <span class=o>+</span> <span class=s1>&#39; User(s)&#39;</span><span class=p>)</span>
 <span class=nx>$crackedAuthor</span><span class=p>.</span><span class=nx>html</span><span class=p>(</span><span class=s1>&#39;Cracked by &#39;</span> <span class=o>+</span> <span class=nx>info</span><span class=p>.</span><span class=nx>crackedAuthor</span><span class=p>)</span>
 <span class=p>......</span>
-</code></pre></td></tr></table></div></div><h3 id=修改成功>修改成功</h3><p>保存好代码<a href=#%e9%87%8d%e6%96%b0%e6%89%93%e5%8c%85app-asar rel>重新打包<code>app.asar</code></a>就可以看到修改后的关于界面啦！<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-sub-html="<h2>staruml-about</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png></a><figcaption class=image-caption>staruml-about</figcaption></figure></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2019-11-29</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-hashtags=逆向,破解,UML><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/ee00472d/ data-hashtag=逆向><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E9%80%86%E5%90%91/>逆向</a>,&nbsp;<a href=/tags/%E7%A0%B4%E8%A7%A3/>破解</a>,&nbsp;<a href=/tags/uml/>UML</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/90d0bd8/ class=prev rel=prev title=暴力查询四六级准考证号——真的很暴力><i class="fas fa-angle-left fa-fw"></i>暴力查询四六级准考证号——真的很暴力</a>
-<a href=/post/d94bd648/ class=next rel=next title="另一种 StarUML 3.x 完美破解的思路——比较暴力">另一种 StarUML 3.x 完美破解的思路——比较暴力<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.79.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"BFPHPFN20A","algoliaIndex":"blog-hugo","algoliaSearchKey":"31dc11feeaf9d622e463ea8436736465","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css><script>if('serviceWorker'in navigator){navigator.serviceWorker.addEventListener('controllerchange',function(ev){try{console.log("Cache Update！");new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload();}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点",}).show();}catch(e){}});window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=修改成功>修改成功</h3>
+<p>保存好代码<a href=#%e9%87%8d%e6%96%b0%e6%89%93%e5%8c%85app-asar rel>重新打包<code>app.asar</code></a>就可以看到修改后的关于界面啦！
+<figure><a class=lightgallery href=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png title=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-thumbnail=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-sub-html="<h2>staruml-about</h2>">
+<img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png data-srcset="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 1.5x, https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/staruml-about.png>
+</a><figcaption class=image-caption>staruml-about</figcaption>
+</figure></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2019-11-29</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-hashtags=逆向,破解,UML><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/ee00472d/ data-hashtag=逆向><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/ee00472d/ data-title="StarUML 3.x 完美破解全过程含详细分析（可自定义许可证信息）"><i class="fab fa-evernote fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E9%80%86%E5%90%91/>逆向</a>,&nbsp;<a href=/tags/%E7%A0%B4%E8%A7%A3/>破解</a>,&nbsp;<a href=/tags/uml/>UML</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/post/90d0bd8/ class=prev rel=prev title=暴力查询四六级准考证号——真的很暴力><i class="fas fa-angle-left fa-fw"></i>暴力查询四六级准考证号——真的很暴力</a>
+<a href=/post/d94bd648/ class=next rel=next title="另一种 StarUML 3.x 完美破解的思路——比较暴力">另一种 StarUML 3.x 完美破解的思路——比较暴力<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css>
+<script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script>
+<div id=disqus_thread class=comment></div>
+<script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"})</script></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:100},comment:{},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"BFPHPFN20A",algoliaIndex:"blog-hugo",algoliaSearchKey:"31dc11feeaf9d622e463ea8436736465",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-175008981-1',{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
+<script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css>
+<script>'serviceWorker'in navigator&&(navigator.serviceWorker.addEventListener('controllerchange',function(a){try{console.log("Cache Update！"),new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload()}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点"}).show()}catch(a){}}),window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(a){console.log('Service Worker Registered')}),navigator.serviceWorker.ready.then(function(a){console.log('Service Worker Ready')})})</script>
+</html>

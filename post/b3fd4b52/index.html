@@ -1,13 +1,265 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>5. Java 校招复习（持续更新~） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="5. Java 校招复习（持续更新~）"><meta property="og:description" content="多线程 Android多线程：你必须要了解的多线程基础知识汇总 Android：关于多线程的总结知识都在这里了！ HashMap Java：这是一份全面 & 详细的"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/b3fd4b52/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2019-08-12T10:21:11+08:00"><meta property="article:modified_time" content="2019-08-12T10:21:11+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="5. Java 校招复习（持续更新~）"><meta name=twitter:description content="多线程 Android多线程：你必须要了解的多线程基础知识汇总 Android：关于多线程的总结知识都在这里了！ HashMap Java：这是一份全面 & 详细的"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/b3fd4b52/><link rel=prev href=https://reb.mallotec.com/post/f0a8d55a/><link rel=next href=https://reb.mallotec.com/post/e7dd5054/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"5. Java 校招复习（持续更新~）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/b3fd4b52\/"},"genre":"posts","keywords":"校招, 秋招, 学习, 复习, Java","wordcount":5449,"url":"https:\/\/reb.mallotec.com\/post\/b3fd4b52\/","datePublished":"2019-08-12T10:21:11+08:00","dateModified":"2019-08-12T10:21:11+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习 </a><a class=menu-item href=/friends>友链 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习</a><a class=menu-item href=/friends>友链</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">5. Java 校招复习（持续更新~）</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E5%A4%8D%E4%B9%A0/><i class="far fa-folder fa-fw"></i>复习</a>&nbsp;<a href=/categories/%E6%A0%A1%E6%8B%9B/><i class="far fa-folder fa-fw"></i>校招</a>&nbsp;<a href=/categories/java/><i class="far fa-folder fa-fw"></i>Java</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-08-12>2019-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5449 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#多线程>多线程</a></li><li><a href=#hashmap>HashMap</a><ul><li><a href=#实现原理>实现原理</a></li><li><a href=#hash冲突碰撞解决方法>Hash冲突/碰撞解决方法</a></li><li><a href=#常见面试题>常见面试题</a><ul><li><a href=#hashmap和concurrenthashmap区别2020蘑菇街面试真题>HashMap和ConcurrentHashMap区别？(2020蘑菇街面试真题)</a></li><li><a href=#hashmap的value还是key能不能为null2020蘑菇街面试真题>HashMap的Value（还是Key？）能不能为null？(2020蘑菇街面试真题)</a></li><li><a href=#arraymap-的优势>ArrayMap 的优势？</a></li></ul></li></ul></li><li><a href=#string-相关>String 相关</a><ul><li><a href=#常见面试题-1>常见面试题</a><ul><li><a href=#stringstringbuffer-和-stringbuilder-的区别和应用场景>String、StringBuffer 和 StringBuilder 的区别和应用场景</a><ul><li><a href=#区别>区别</a></li><li><a href=#场景>场景</a></li></ul></li><li><a href=#字符串拼接后地址比较卓动2020秋招笔试真题>字符串拼接后地址比较（卓动2020秋招笔试真题）</a></li></ul></li></ul></li><li><a href=#list相关>List相关</a><ul><li><ul><li><a href=#arraylist和linkedlist区别从实现原理性能对比阐述>ArrayList和LinkedList区别?（从实现原理、性能对比阐述）</a></li><li><a href=#list迭代时移除元素造成的异常卓动2020秋招笔试真题>List迭代时移除元素造成的异常（卓动2020秋招笔试真题）</a><ul><li><a href=#异常原由>异常原由</a><ul><li><ul><li><a href=#笔面试简述>笔/面试简述</a></li></ul></li></ul></li><li><a href=#解决方法>解决方法</a><ul><li><a href=#单线程中的解决方法>单线程中的解决方法</a></li><li><a href=#多线程中的解决方法>多线程中的解决方法</a></li></ul></li><li><a href=#为什么要设置-modcount-与-expectedmodcount-变量>为什么要设置 modCount 与 expectedModCount 变量？</a></li></ul></li></ul></li></ul></li><li><a href=#文件相关>文件相关</a><ul><li><a href=#常见面试题-2>常见面试题</a><ul><li><a href=#用java实现对一个文件夹内所有文件包括子文件夹的删除卓动2020秋招笔试真题>用Java实现对一个文件夹内所有文件包括子文件夹的删除（卓动2020秋招笔试真题）</a></li></ul></li></ul></li><li><a href=#jvm>JVM</a><ul><li><a href=#gc算法垃圾回收机制>GC算法（垃圾回收机制）</a></li><li><a href=#内存泄漏和内存溢出>内存泄漏和内存溢出</a><ul><li><a href=#内存溢出oom>内存溢出(OOM)</a></li><li><a href=#内存泄漏>内存泄漏</a></li><li><a href=#区别-1>区别</a></li><li><a href=#什么时候会发生举例场景>什么时候会发生？举例场景</a></li></ul></li><li><a href=#java-类加载机制>Java 类加载机制</a><ul><li><a href=#双亲委派模型以及意义>双亲委派模型以及意义</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><h1 id=多线程>多线程</h1><blockquote><ul><li><a href=https://www.jianshu.com/p/7a8cb20cfd80 target=_blank rel="noopener noreffer">Android多线程：你必须要了解的多线程基础知识汇总</a></li><li><a href=https://www.jianshu.com/p/5225824ec967 target=_blank rel="noopener noreffer">Android：关于多线程的总结知识都在这里了！</a></li></ul></blockquote><h1 id=hashmap>HashMap</h1><blockquote><ul><li><a href=https://www.jianshu.com/p/e5c8a814c0ca target=_blank rel="noopener noreffer">Java：这是一份全面 & 详细的HashMap 1.7源码分析指南</a></li><li><a href=https://blog.csdn.net/carson_ho/article/details/79373134 target=_blank rel="noopener noreffer">Java源码分析：关于 HashMap 1.8 的重大更新</a></li><li><a href=https://www.jianshu.com/p/8324a34577a0 target=_blank rel="noopener noreffer">Java源码分析：HashMap 1.8 相对于1.7 到底更新了什么？</a></li></ul></blockquote><h2 id=实现原理>实现原理</h2><h2 id=hash冲突碰撞解决方法>Hash冲突/碰撞解决方法</h2><h2 id=常见面试题>常见面试题</h2><h3 id=hashmap和concurrenthashmap区别2020蘑菇街面试真题>HashMap和ConcurrentHashMap区别？(2020蘑菇街面试真题)</h3><p>线程安全？</p><blockquote><ul><li><a href=https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/ target=_blank rel="noopener noreffer">HashMap? ConcurrentHashMap? 相信看完这篇没人能难住你！</a></li><li><a href=https://zhuanlan.zhihu.com/p/31614308 target=_blank rel="noopener noreffer">漫画：什么是ConcurrentHashMap？</a></li></ul></blockquote><h3 id=hashmap的value还是key能不能为null2020蘑菇街面试真题>HashMap的Value（还是Key？）能不能为null？(2020蘑菇街面试真题)</h3><p>Key：
-源码中的<code>hash(Object key)</code>函数里有一句</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=k>return</span> <span class=o>(</span><span class=n>key</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>?</span> <span class=n>0</span> <span class=o>:</span> <span class=o>(</span><span class=n>h</span> <span class=o>=</span> <span class=n>key</span><span class=o>.</span><span class=na>hashCode</span><span class=o>())</span> <span class=o>^</span> <span class=o>(</span><span class=n>h</span> <span class=o>&gt;&gt;&gt;</span> <span class=n>16</span><span class=o>);</span>
-</code></pre></td></tr></table></div></div><p>可以看出，当<code>key == null</code>时，<code>hashCode</code>为0，而不是抛出异常，所以是<code>key</code>是可以为<code>null</code>的</p><p>Value:
-<code>HashMap</code>源码中并没有对<code>value</code>做限制，所以是<code>value</code>是可以为<code>null</code>的</p><h3 id=arraymap-的优势>ArrayMap 的优势？</h3><h1 id=string-相关>String 相关</h1><h2 id=常见面试题-1>常见面试题</h2><h3 id=stringstringbuffer-和-stringbuilder-的区别和应用场景>String、StringBuffer 和 StringBuilder 的区别和应用场景</h3><blockquote><ul><li><a href=https://www.cjavapy.com/article/63/ target=_blank rel="noopener noreffer">Java中String、StringBuffer、StringBuilder的区别以及使用场景总结</a></li><li><a href=https://juejin.im/post/5a5d5c66f265da3e261bf46c target=_blank rel="noopener noreffer">String,StringBuffer, StringBuilder 的区别是什么？String为什么是不可变的？</a></li><li><a href=https://blog.csdn.net/u013679744/article/details/58605645 target=_blank rel="noopener noreffer">详解String、StringBuffer和StringBuilder的区别和应用场景</a></li><li><a href=https://blog.csdn.net/u010653908/article/details/68060378 target=_blank rel="noopener noreffer">String、StringBuffer、StringBuilder的区别及应用场景</a></li></ul></blockquote><h4 id=区别>区别</h4><ol><li><p>是否可以改变？</p><ul><li><code>String</code>是字符串常量，由<code>String</code>创建的字符内容是<strong>不可改变</strong>的。我们对字符串进行拼接或重新赋值，是在字符串池中创建了新的字符串，原来那个字符串的值并没有改变。</li><li>而<code>StringBuffer</code>和<code>StringBuilder</code>是字符串变量，由<code>StringBuffer</code>和<code>StringBuilder</code>创建的字符内容是可以改变的。而且在字符串拼接的情况下，不会产生临时的字符串。</li></ul></li><li><p><code>StringBuffer</code>是线程安全的，而<code>StringBuilder</code>是非线程安全。<code>StringBuilder</code>是从 JDK5 开始，为<code>StringBuffer</code>补充的一个单线程的等价类。<strong>我们应该在使用时优先考虑 StringBuilder</strong>，因为它支持<code>StringBuffer</code>的所有操作，但是因为它不执行同步，不会有线程安全带来的额外系统消耗，所以速度更快。</p><blockquote><p>实际上<code>StringBuilder</code>和<code>StringBuffer</code>的方法是完全等价的，只是<code>StringBuffer</code>的方法加了<code>sychronized</code>描述。</p></blockquote></li></ol><h4 id=场景>场景</h4><ol><li>如果不常去改变<code>String</code>的值，<strong>不进行许多字符串拼接</strong>等操作，就比较适合使用<code>String</code>，因为<code>String</code>是不可变。</li><li>如果在一个<strong>单线程</strong>中，<strong>有许多字符串拼接</strong>操作，使用<code>StringBuilder</code>就可以满足了，并且它性能更好。</li><li>如果在<strong>多线程</strong>中，要考虑到<strong>线程安全</strong>问题，就只能用<code>StringBuffer</code></li></ol><h3 id=字符串拼接后地址比较卓动2020秋招笔试真题>字符串拼接后地址比较（卓动2020秋招笔试真题）</h3><p>写出以下3个方法的返回值：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>5. Java 校招复习（持续更新~） - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="5. Java 校招复习（持续更新~）">
+<meta property="og:description" content="多线程 Android多线程：你必须要了解的多线程基础知识汇总 Android：关于多线程的总结知识都在这里了！ HashMap Java：这是一份全面 & 详细的">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reb.mallotec.com/post/b3fd4b52/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-08-12T10:21:11+08:00">
+<meta property="article:modified_time" content="2019-08-12T10:21:11+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png">
+<meta name=twitter:title content="5. Java 校招复习（持续更新~）">
+<meta name=twitter:description content="多线程 Android多线程：你必须要了解的多线程基础知识汇总 Android：关于多线程的总结知识都在这里了！ HashMap Java：这是一份全面 & 详细的">
+<meta name=application-name content="Reborn's Blog">
+<meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/b3fd4b52/><link rel=prev href=https://reb.mallotec.com/post/f0a8d55a/><link rel=next href=https://reb.mallotec.com/post/e7dd5054/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"5. Java 校招复习（持续更新~）","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/b3fd4b52\/"},"genre":"posts","keywords":"校招, 秋招, 学习, 复习, Java","wordcount":5449,"url":"https:\/\/reb.mallotec.com\/post\/b3fd4b52\/","datePublished":"2019-08-12T10:21:11+08:00","dateModified":"2019-08-12T10:21:11+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/> 首页 </a><a class=menu-item href=/posts> 时间轴 </a><a class=menu-item href=/categories> 分类 </a><a class=menu-item href=/tags> 标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0> 复习 </a><a class=menu-item href=/friends> 友链 </a><a class=menu-item href=/about> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/ title>首页</a><a class=menu-item href=/posts title>时间轴</a><a class=menu-item href=/categories title>分类</a><a class=menu-item href=/tags title>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0 title>复习</a><a class=menu-item href=/friends title>友链</a><a class=menu-item href=/about title>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">5. Java 校招复习（持续更新~）</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E5%A4%8D%E4%B9%A0/><i class="far fa-folder fa-fw"></i>复习</a>&nbsp;<a href=/categories/%E6%A0%A1%E6%8B%9B/><i class="far fa-folder fa-fw"></i>校招</a>&nbsp;<a href=/categories/java/><i class="far fa-folder fa-fw"></i>Java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-08-12>2019-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5449 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#多线程>多线程</a></li>
+<li><a href=#hashmap>HashMap</a>
+<ul>
+<li><a href=#实现原理>实现原理</a></li>
+<li><a href=#hash冲突碰撞解决方法>Hash冲突/碰撞解决方法</a></li>
+<li><a href=#常见面试题>常见面试题</a>
+<ul>
+<li><a href=#hashmap和concurrenthashmap区别2020蘑菇街面试真题>HashMap和ConcurrentHashMap区别？(2020蘑菇街面试真题)</a></li>
+<li><a href=#hashmap的value还是key能不能为null2020蘑菇街面试真题>HashMap的Value（还是Key？）能不能为null？(2020蘑菇街面试真题)</a></li>
+<li><a href=#arraymap-的优势>ArrayMap 的优势？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#string-相关>String 相关</a>
+<ul>
+<li><a href=#常见面试题-1>常见面试题</a>
+<ul>
+<li><a href=#stringstringbuffer-和-stringbuilder-的区别和应用场景>String、StringBuffer 和 StringBuilder 的区别和应用场景</a>
+<ul>
+<li><a href=#区别>区别</a></li>
+<li><a href=#场景>场景</a></li>
+</ul>
+</li>
+<li><a href=#字符串拼接后地址比较卓动2020秋招笔试真题>字符串拼接后地址比较（卓动2020秋招笔试真题）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#list相关>List相关</a>
+<ul>
+<li>
+<ul>
+<li><a href=#arraylist和linkedlist区别从实现原理性能对比阐述>ArrayList和LinkedList区别?（从实现原理、性能对比阐述）</a></li>
+<li><a href=#list迭代时移除元素造成的异常卓动2020秋招笔试真题>List迭代时移除元素造成的异常（卓动2020秋招笔试真题）</a>
+<ul>
+<li><a href=#异常原由>异常原由</a>
+<ul>
+<li>
+<ul>
+<li><a href=#笔面试简述>笔/面试简述</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#解决方法>解决方法</a>
+<ul>
+<li><a href=#单线程中的解决方法>单线程中的解决方法</a></li>
+<li><a href=#多线程中的解决方法>多线程中的解决方法</a></li>
+</ul>
+</li>
+<li><a href=#为什么要设置-modcount-与-expectedmodcount-变量>为什么要设置 modCount 与 expectedModCount 变量？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#文件相关>文件相关</a>
+<ul>
+<li><a href=#常见面试题-2>常见面试题</a>
+<ul>
+<li><a href=#用java实现对一个文件夹内所有文件包括子文件夹的删除卓动2020秋招笔试真题>用Java实现对一个文件夹内所有文件包括子文件夹的删除（卓动2020秋招笔试真题）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#jvm>JVM</a>
+<ul>
+<li><a href=#gc算法垃圾回收机制>GC算法（垃圾回收机制）</a></li>
+<li><a href=#内存泄漏和内存溢出>内存泄漏和内存溢出</a>
+<ul>
+<li><a href=#内存溢出oom>内存溢出(OOM)</a></li>
+<li><a href=#内存泄漏>内存泄漏</a></li>
+<li><a href=#区别-1>区别</a></li>
+<li><a href=#什么时候会发生举例场景>什么时候会发生？举例场景</a></li>
+</ul>
+</li>
+<li><a href=#java-类加载机制>Java 类加载机制</a>
+<ul>
+<li><a href=#双亲委派模型以及意义>双亲委派模型以及意义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h1 id=多线程>多线程</h1>
+<blockquote>
+<ul>
+<li><a href=https://www.jianshu.com/p/7a8cb20cfd80 target=_blank rel="noopener noreffer">Android多线程：你必须要了解的多线程基础知识汇总</a></li>
+<li><a href=https://www.jianshu.com/p/5225824ec967 target=_blank rel="noopener noreffer">Android：关于多线程的总结知识都在这里了！</a></li>
+</ul>
+</blockquote>
+<h1 id=hashmap>HashMap</h1>
+<blockquote>
+<ul>
+<li><a href=https://www.jianshu.com/p/e5c8a814c0ca target=_blank rel="noopener noreffer">Java：这是一份全面 & 详细的HashMap 1.7源码分析指南</a></li>
+<li><a href=https://blog.csdn.net/carson_ho/article/details/79373134 target=_blank rel="noopener noreffer">Java源码分析：关于 HashMap 1.8 的重大更新</a></li>
+<li><a href=https://www.jianshu.com/p/8324a34577a0 target=_blank rel="noopener noreffer">Java源码分析：HashMap 1.8 相对于1.7 到底更新了什么？</a></li>
+</ul>
+</blockquote>
+<h2 id=实现原理>实现原理</h2>
+<h2 id=hash冲突碰撞解决方法>Hash冲突/碰撞解决方法</h2>
+<h2 id=常见面试题>常见面试题</h2>
+<h3 id=hashmap和concurrenthashmap区别2020蘑菇街面试真题>HashMap和ConcurrentHashMap区别？(2020蘑菇街面试真题)</h3>
+<p>线程安全？</p>
+<blockquote>
+<ul>
+<li><a href=https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/ target=_blank rel="noopener noreffer">HashMap? ConcurrentHashMap? 相信看完这篇没人能难住你！</a></li>
+<li><a href=https://zhuanlan.zhihu.com/p/31614308 target=_blank rel="noopener noreffer">漫画：什么是ConcurrentHashMap？</a></li>
+</ul>
+</blockquote>
+<h3 id=hashmap的value还是key能不能为null2020蘑菇街面试真题>HashMap的Value（还是Key？）能不能为null？(2020蘑菇街面试真题)</h3>
+<p>Key：
+源码中的<code>hash(Object key)</code>函数里有一句</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=k>return</span> <span class=o>(</span><span class=n>key</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>?</span> <span class=n>0</span> <span class=o>:</span> <span class=o>(</span><span class=n>h</span> <span class=o>=</span> <span class=n>key</span><span class=o>.</span><span class=na>hashCode</span><span class=o>())</span> <span class=o>^</span> <span class=o>(</span><span class=n>h</span> <span class=o>&gt;&gt;&gt;</span> <span class=n>16</span><span class=o>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看出，当<code>key == null</code>时，<code>hashCode</code>为0，而不是抛出异常，所以是<code>key</code>是可以为<code>null</code>的</p>
+<p>Value:
+<code>HashMap</code>源码中并没有对<code>value</code>做限制，所以是<code>value</code>是可以为<code>null</code>的</p>
+<h3 id=arraymap-的优势>ArrayMap 的优势？</h3>
+<h1 id=string-相关>String 相关</h1>
+<h2 id=常见面试题-1>常见面试题</h2>
+<h3 id=stringstringbuffer-和-stringbuilder-的区别和应用场景>String、StringBuffer 和 StringBuilder 的区别和应用场景</h3>
+<blockquote>
+<ul>
+<li><a href=https://www.cjavapy.com/article/63/ target=_blank rel="noopener noreffer">Java中String、StringBuffer、StringBuilder的区别以及使用场景总结</a></li>
+<li><a href=https://juejin.im/post/5a5d5c66f265da3e261bf46c target=_blank rel="noopener noreffer">String,StringBuffer, StringBuilder 的区别是什么？String为什么是不可变的？</a></li>
+<li><a href=https://blog.csdn.net/u013679744/article/details/58605645 target=_blank rel="noopener noreffer">详解String、StringBuffer和StringBuilder的区别和应用场景</a></li>
+<li><a href=https://blog.csdn.net/u010653908/article/details/68060378 target=_blank rel="noopener noreffer">String、StringBuffer、StringBuilder的区别及应用场景</a></li>
+</ul>
+</blockquote>
+<h4 id=区别>区别</h4>
+<ol>
+<li>
+<p>是否可以改变？</p>
+<ul>
+<li><code>String</code>是字符串常量，由<code>String</code>创建的字符内容是<strong>不可改变</strong>的。我们对字符串进行拼接或重新赋值，是在字符串池中创建了新的字符串，原来那个字符串的值并没有改变。</li>
+<li>而<code>StringBuffer</code>和<code>StringBuilder</code>是字符串变量，由<code>StringBuffer</code>和<code>StringBuilder</code>创建的字符内容是可以改变的。而且在字符串拼接的情况下，不会产生临时的字符串。</li>
+</ul>
+</li>
+<li>
+<p><code>StringBuffer</code>是线程安全的，而<code>StringBuilder</code>是非线程安全。<code>StringBuilder</code>是从 JDK5 开始，为<code>StringBuffer</code>补充的一个单线程的等价类。<strong>我们应该在使用时优先考虑 StringBuilder</strong>，因为它支持<code>StringBuffer</code>的所有操作，但是因为它不执行同步，不会有线程安全带来的额外系统消耗，所以速度更快。</p>
+<blockquote>
+<p>实际上<code>StringBuilder</code>和<code>StringBuffer</code>的方法是完全等价的，只是<code>StringBuffer</code>的方法加了<code>sychronized</code>描述。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id=场景>场景</h4>
+<ol>
+<li>如果不常去改变<code>String</code>的值，<strong>不进行许多字符串拼接</strong>等操作，就比较适合使用<code>String</code>，因为<code>String</code>是不可变。</li>
+<li>如果在一个<strong>单线程</strong>中，<strong>有许多字符串拼接</strong>操作，使用<code>StringBuilder</code>就可以满足了，并且它性能更好。</li>
+<li>如果在<strong>多线程</strong>中，要考虑到<strong>线程安全</strong>问题，就只能用<code>StringBuffer</code></li>
+</ol>
+<h3 id=字符串拼接后地址比较卓动2020秋招笔试真题>字符串拼接后地址比较（卓动2020秋招笔试真题）</h3>
+<p>写出以下3个方法的返回值：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -26,7 +278,9 @@
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>boolean</span> <span class=nf>testV1</span><span class=o>()</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>boolean</span> <span class=nf>testV1</span><span class=o>()</span> <span class=o>{</span>
     <span class=n>String</span> <span class=n>a</span> <span class=o>=</span> <span class=s>&#34;a1&#34;</span><span class=o>;</span>
     <span class=n>String</span> <span class=n>b</span> <span class=o>=</span> <span class=s>&#34;a&#34;</span> <span class=o>+</span> <span class=n>1</span><span class=o>;</span>
     <span class=k>return</span> <span class=n>a</span> <span class=o>==</span> <span class=n>b</span><span class=o>;</span>
@@ -45,13 +299,34 @@
     <span class=n>String</span> <span class=n>ab</span> <span class=o>=</span> <span class=s>&#34;a&#34;</span> <span class=o>+</span> <span class=s>&#34;b&#34;</span><span class=o>;</span>
     <span class=k>return</span> <span class=n>a</span> <span class=o>==</span> <span class=n>ab</span><span class=o>;</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kc>true</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kc>true</span>
 <span class=kc>false</span>
 <span class=kc>true</span>
-</code></pre></td></tr></table></div></div><h1 id=list相关>List相关</h1><h3 id=arraylist和linkedlist区别从实现原理性能对比阐述>ArrayList和LinkedList区别?（从实现原理、性能对比阐述）</h3><h3 id=list迭代时移除元素造成的异常卓动2020秋招笔试真题>List迭代时移除元素造成的异常（卓动2020秋招笔试真题）</h3><blockquote><ul><li><a href=https://www.cnblogs.com/dolphin0520/p/3933551.html target=_blank rel="noopener noreffer">Java ConcurrentModificationException异常原因和解决方法</a></li><li><a href=https://www.jianshu.com/p/c5b52927a61a target=_blank rel="noopener noreffer">java.util.ConcurrentModificationException详解</a></li><li><a href=https://my.oschina.net/wangbaofeng/blog/706864 target=_blank rel="noopener noreffer">java.util.ConcurrentModificationException异常详解</a></li></ul></blockquote><p>下面这段代码执行结果是什么？如有异常，请根据此段程序执行的意图给出相应的解决方案并说明原由。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=list相关>List相关</h1>
+<h3 id=arraylist和linkedlist区别从实现原理性能对比阐述>ArrayList和LinkedList区别?（从实现原理、性能对比阐述）</h3>
+<h3 id=list迭代时移除元素造成的异常卓动2020秋招笔试真题>List迭代时移除元素造成的异常（卓动2020秋招笔试真题）</h3>
+<blockquote>
+<ul>
+<li><a href=https://www.cnblogs.com/dolphin0520/p/3933551.html target=_blank rel="noopener noreffer">Java ConcurrentModificationException异常原因和解决方法</a></li>
+<li><a href=https://www.jianshu.com/p/c5b52927a61a target=_blank rel="noopener noreffer">java.util.ConcurrentModificationException详解</a></li>
+<li><a href=https://my.oschina.net/wangbaofeng/blog/706864 target=_blank rel="noopener noreffer">java.util.ConcurrentModificationException异常详解</a></li>
+</ul>
+</blockquote>
+<p>下面这段代码执行结果是什么？如有异常，请根据此段程序执行的意图给出相应的解决方案并说明原由。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -60,7 +335,9 @@
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>testV1</span><span class=o>()</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>testV1</span><span class=o>()</span> <span class=o>{</span>
     <span class=n>ArrayList</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>ids</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;(</span><span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=n>1</span><span class=o>,</span> <span class=n>2</span><span class=o>,</span> <span class=n>3</span><span class=o>,</span> <span class=n>4</span><span class=o>,</span> <span class=n>5</span><span class=o>,</span> <span class=n>6</span><span class=o>,</span> <span class=n>7</span><span class=o>,</span> <span class=n>8</span><span class=o>,</span> <span class=n>9</span><span class=o>));</span>
     <span class=k>for</span> <span class=o>(</span><span class=n>Integer</span> <span class=n>id</span> <span class=o>:</span> <span class=n>ids</span><span class=o>)</span> <span class=o>{</span>
         <span class=k>if</span> <span class=o>(</span><span class=n>id</span> <span class=o>==</span> <span class=n>5</span><span class=o>)</span> <span class=o>{</span>
@@ -69,7 +346,12 @@
         <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>id</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>foreach 循环背后的实现原理其实就是 Iterator，所以我们不妨把上面的代码转换一下以便后面分析：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>foreach 循环背后的实现原理其实就是 Iterator，所以我们不妨把上面的代码转换一下以便后面分析：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -78,7 +360,9 @@
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>ArrayList</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>ids</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;(</span><span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=n>1</span><span class=o>,</span> <span class=n>2</span><span class=o>,</span> <span class=n>3</span><span class=o>,</span> <span class=n>4</span><span class=o>,</span> <span class=n>5</span><span class=o>,</span> <span class=n>6</span><span class=o>,</span> <span class=n>7</span><span class=o>,</span> <span class=n>8</span><span class=o>,</span> <span class=n>9</span><span class=o>));</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>ArrayList</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>ids</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;(</span><span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=n>1</span><span class=o>,</span> <span class=n>2</span><span class=o>,</span> <span class=n>3</span><span class=o>,</span> <span class=n>4</span><span class=o>,</span> <span class=n>5</span><span class=o>,</span> <span class=n>6</span><span class=o>,</span> <span class=n>7</span><span class=o>,</span> <span class=n>8</span><span class=o>,</span> <span class=n>9</span><span class=o>));</span>
 <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>iterator</span> <span class=o>=</span> <span class=n>ids</span><span class=o>.</span><span class=na>iterator</span><span class=o>();</span>
 <span class=k>while</span> <span class=o>(</span><span class=n>iterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
     <span class=n>Integer</span> <span class=n>id</span> <span class=o>=</span> <span class=n>iterator</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
@@ -87,7 +371,12 @@
     <span class=o>}</span>
     <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>id</span><span class=o>);</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>执行结果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>执行结果：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -98,7 +387,9 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>0</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>0</span>
 <span class=n>1</span>
 <span class=n>2</span>
 <span class=n>3</span>
@@ -109,13 +400,29 @@
 	<span class=n>at</span> <span class=n>java</span><span class=o>.</span><span class=na>util</span><span class=o>.</span><span class=na>ArrayList$Itr</span><span class=o>.</span><span class=na>next</span><span class=o>(</span><span class=n>ArrayList</span><span class=o>.</span><span class=na>java</span><span class=o>:</span><span class=n>859</span><span class=o>)</span>
 	<span class=n>at</span> <span class=n>test</span><span class=o>.</span><span class=na>ListTest</span><span class=o>.</span><span class=na>testV1</span><span class=o>(</span><span class=n>ListTest</span><span class=o>.</span><span class=na>java</span><span class=o>:</span><span class=n>18</span><span class=o>)</span>
 	<span class=n>at</span> <span class=n>test</span><span class=o>.</span><span class=na>ListTest</span><span class=o>.</span><span class=na>main</span><span class=o>(</span><span class=n>ListTest</span><span class=o>.</span><span class=na>java</span><span class=o>:</span><span class=n>12</span><span class=o>)</span>
-</code></pre></td></tr></table></div></div><h4 id=异常原由>异常原由</h4><p>当我们迭代一个<code>ArrayList</code>或者<code>HashMap</code>时，如果尝试对集合做一些修改操作（例如删除元素），可能会抛出<code>java.util.ConcurrentModificationException</code>的异常。</p><p>从前面的异常中我们可以知道，报错原因是在<code>java.util.ArrayList$Itr.checkForComodification()</code>这个方法里。</p><p>我们先不忙看这个方法的源码，我们先根据程序的代码一步一步看 ArrayList 源码的实现。</p><p>查首先看 ArrayList 的<code>iterator()</code>方法的具体实现，看源码发现在 ArrayList 的源码中并没有<code>iterator()</code>这个方法，那么很显然这个方法应该是其父类或者实现的接口中的方法，我们在其父类 AbstractList 中找到了<code>iterator()</code>方法的具体实现：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=异常原由>异常原由</h4>
+<p>当我们迭代一个<code>ArrayList</code>或者<code>HashMap</code>时，如果尝试对集合做一些修改操作（例如删除元素），可能会抛出<code>java.util.ConcurrentModificationException</code>的异常。</p>
+<p>从前面的异常中我们可以知道，报错原因是在<code>java.util.ArrayList$Itr.checkForComodification()</code>这个方法里。</p>
+<p>我们先不忙看这个方法的源码，我们先根据程序的代码一步一步看 ArrayList 源码的实现。</p>
+<p>查首先看 ArrayList 的<code>iterator()</code>方法的具体实现，看源码发现在 ArrayList 的源码中并没有<code>iterator()</code>这个方法，那么很显然这个方法应该是其父类或者实现的接口中的方法，我们在其父类 AbstractList 中找到了<code>iterator()</code>方法的具体实现：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>E</span><span class=o>&gt;</span> <span class=nf>iterator</span><span class=o>()</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>E</span><span class=o>&gt;</span> <span class=nf>iterator</span><span class=o>()</span> <span class=o>{</span>
     <span class=k>return</span> <span class=k>new</span> <span class=n>Itr</span><span class=o>();</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>从这段代码可以看出返回的是一个指向 Itr 类型对象的引用，我们接着看 Itr 的具体实现，在 AbstractList 类中找到了 Itr 类的具体实现，它是 AbstractList 的一个成员内部类，下面这段代码是 Itr 类的所有实现：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>从这段代码可以看出返回的是一个指向 Itr 类型对象的引用，我们接着看 Itr 的具体实现，在 AbstractList 类中找到了 Itr 类的具体实现，它是 AbstractList 的一个成员内部类，下面这段代码是 Itr 类的所有实现：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -162,7 +469,9 @@
 </span><span class=lnt>45
 </span><span class=lnt>46
 </span><span class=lnt>47
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kd>class</span> <span class=nc>Itr</span> <span class=kd>implements</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>E</span><span class=o>&gt;</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kd>class</span> <span class=nc>Itr</span> <span class=kd>implements</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>E</span><span class=o>&gt;</span> <span class=o>{</span>
 
     <span class=kt>int</span> <span class=n>cursor</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
 
@@ -209,7 +518,37 @@
             <span class=k>throw</span> <span class=k>new</span> <span class=n>ConcurrentModificationException</span><span class=o>();</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>这里不分析整个 Itr 类，针对本题，我们只需要知道以下几个关键信息：</p><ol><li>执行<code>next()</code>方法的时候，会先调用一次<code>checkForComodification()</code>进行检查；</li><li>当<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>的时候，就会抛出<code>ConcurrentModificationException</code>异常。</li></ol><p>那么<code>modCount</code>和<code>expectedModCount</code>，又是什么呢？下面是科普时间～</p><table><thead><tr><th>变量名</th><th>描述</th></tr></thead><tbody><tr><td>modCount</td><td><strong>当前</strong>集合修改次数；ArrayList 的父类 AbstarctList 中有一个成员变量<code>modCount</code>，每次对集合进行修改（增删元素）时都会<code>modCount++</code>。</td></tr><tr><td>expectedModCount</td><td><strong>期望</strong>的集合修改次数；迭代 ArrayList 的 Iterator（即内部类Itr） 中有一个变量 <code>expectedModCount</code>，该变量会初始化和<code>modCount</code>相等。</td></tr></tbody></table><p>那么我们现在来看一下什么时候<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>。</p><p>既然这里是执行 ArrayList 的<code>remove()</code>，那我们不妨先去看看<code>remove()</code>方法做了什么：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>这里不分析整个 Itr 类，针对本题，我们只需要知道以下几个关键信息：</p>
+<ol>
+<li>执行<code>next()</code>方法的时候，会先调用一次<code>checkForComodification()</code>进行检查；</li>
+<li>当<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>的时候，就会抛出<code>ConcurrentModificationException</code>异常。</li>
+</ol>
+<p>那么<code>modCount</code>和<code>expectedModCount</code>，又是什么呢？下面是科普时间～</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>modCount</td>
+<td><strong>当前</strong>集合修改次数；ArrayList 的父类 AbstarctList 中有一个成员变量<code>modCount</code>，每次对集合进行修改（增删元素）时都会<code>modCount++</code>。</td>
+</tr>
+<tr>
+<td>expectedModCount</td>
+<td><strong>期望</strong>的集合修改次数；迭代 ArrayList 的 Iterator（即内部类Itr） 中有一个变量 <code>expectedModCount</code>，该变量会初始化和<code>modCount</code>相等。</td>
+</tr>
+</tbody>
+</table>
+<p>那么我们现在来看一下什么时候<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>。</p>
+<p>既然这里是执行 ArrayList 的<code>remove()</code>，那我们不妨先去看看<code>remove()</code>方法做了什么：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -223,7 +562,9 @@
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>E</span> <span class=nf>remove</span><span class=o>(</span><span class=kt>int</span> <span class=n>index</span><span class=o>)</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>E</span> <span class=nf>remove</span><span class=o>(</span><span class=kt>int</span> <span class=n>index</span><span class=o>)</span> <span class=o>{</span>
     <span class=n>rangeCheck</span><span class=o>(</span><span class=n>index</span><span class=o>);</span>
 
     <span class=n>modCount</span><span class=o>++;</span>
@@ -237,7 +578,62 @@
 </span><span class=c1></span>
     <span class=k>return</span> <span class=n>oldValue</span><span class=o>;</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>通过 remove 方法删除元素首先对 modCount 进行加1操作（因为对集合修改了一次），然后接下来就是删除元素的操作，最后将 size 进行减1操作，并将引用置为 null 以方便垃圾收集器进行回收工作。</p><p><code>modCount++</code>就是此案元凶，我们来分析一下删除元素前后的各个成员变量的值：</p><p><strong>删除元素前</strong>：</p><table><thead><tr><th>变量名</th><th>变量值</th></tr></thead><tbody><tr><td>Iterator#expectedModCount</td><td>0</td></tr><tr><td>List#modCount</td><td>0</td></tr></tbody></table><p><strong>删除元素后</strong>：</p><table><thead><tr><th>变量名</th><th>变量值</th></tr></thead><tbody><tr><td>Iterator#expectedModCount</td><td>0</td></tr><tr><td>List#modCount</td><td>1</td></tr></tbody></table><p>而删除元素后，程序又执行了<code>next()</code>遍历下一个元素；而执行<code>next()</code>方法的时候，又会先调用一次<code>checkForComodification()</code>进行检查；在<code>checkForComodification()</code>方法中，当<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>的时候，就会抛出<code>ConcurrentModificationException</code>异常。</p><h6 id=笔面试简述>笔/面试简述</h6><p>说了那么多，要是笔试的时候写那么长不是早就到时间了？这里给一个简述给大家参考一下：</p><p>原由是当我们迭代一个<code>ArrayList</code>或者<code>HashMap</code>时，如果尝试对集合做一些修改操作（例如删除元素），可能会抛出<code>java.util.ConcurrentModificationException</code>的异常。</p><p>在 ArrayList 迭代器的<code>next()</code>方法中，首先会调用一次<code>checkForComodification()</code>方法对 modCount 和 expectedModCount 进行检查。 modCount 是当前的集合修改次数， expectedModCount 是期望的集合修改次数，当 modCount 不等于 expectedModCount 的时候，<code>checkForComodification()</code>方法就会抛出<code>ConcurrentModificationException</code>异常。</p><p>而通过 ArrayList 的<code>remove()</code>方法删除元素会对 modCount 进行加1操作，却没有对 expectedModCount 进行任何修改，导致了 modCount 不等于 expectedModCount。</p><p>因此，在执行<code>next()</code>方法遍历下一个元素的时候，就会导致 <code>checkForComodification()</code>方法抛出 ConcurrentModificationException 异常。</p><h4 id=解决方法>解决方法</h4><h5 id=单线程中的解决方法>单线程中的解决方法</h5><p>既然知道原因了，那么如何解决呢？</p><p>其实很简单，细心的朋友可能发现在 Itr 类中也给出了一个<code>remove()</code>方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>通过 remove 方法删除元素首先对 modCount 进行加1操作（因为对集合修改了一次），然后接下来就是删除元素的操作，最后将 size 进行减1操作，并将引用置为 null 以方便垃圾收集器进行回收工作。</p>
+<p><code>modCount++</code>就是此案元凶，我们来分析一下删除元素前后的各个成员变量的值：</p>
+<p><strong>删除元素前</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>变量值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iterator#expectedModCount</td>
+<td>0</td>
+</tr>
+<tr>
+<td>List#modCount</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>删除元素后</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>变量值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iterator#expectedModCount</td>
+<td>0</td>
+</tr>
+<tr>
+<td>List#modCount</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>而删除元素后，程序又执行了<code>next()</code>遍历下一个元素；而执行<code>next()</code>方法的时候，又会先调用一次<code>checkForComodification()</code>进行检查；在<code>checkForComodification()</code>方法中，当<code>modCount</code><strong>不等于</strong><code>expectedModCount</code>的时候，就会抛出<code>ConcurrentModificationException</code>异常。</p>
+<h6 id=笔面试简述>笔/面试简述</h6>
+<p>说了那么多，要是笔试的时候写那么长不是早就到时间了？这里给一个简述给大家参考一下：</p>
+<p>原由是当我们迭代一个<code>ArrayList</code>或者<code>HashMap</code>时，如果尝试对集合做一些修改操作（例如删除元素），可能会抛出<code>java.util.ConcurrentModificationException</code>的异常。</p>
+<p>在 ArrayList 迭代器的<code>next()</code>方法中，首先会调用一次<code>checkForComodification()</code>方法对 modCount 和 expectedModCount 进行检查。 modCount 是当前的集合修改次数， expectedModCount 是期望的集合修改次数，当 modCount 不等于 expectedModCount 的时候，<code>checkForComodification()</code>方法就会抛出<code>ConcurrentModificationException</code>异常。</p>
+<p>而通过 ArrayList 的<code>remove()</code>方法删除元素会对 modCount 进行加1操作，却没有对 expectedModCount 进行任何修改，导致了 modCount 不等于 expectedModCount。</p>
+<p>因此，在执行<code>next()</code>方法遍历下一个元素的时候，就会导致 <code>checkForComodification()</code>方法抛出 ConcurrentModificationException 异常。</p>
+<h4 id=解决方法>解决方法</h4>
+<h5 id=单线程中的解决方法>单线程中的解决方法</h5>
+<p>既然知道原因了，那么如何解决呢？</p>
+<p>其实很简单，细心的朋友可能发现在 Itr 类中也给出了一个<code>remove()</code>方法：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -252,7 +648,9 @@
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kt>void</span> <span class=nf>remove</span><span class=o>()</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kt>void</span> <span class=nf>remove</span><span class=o>()</span> <span class=o>{</span>
     <span class=k>if</span> <span class=o>(</span><span class=n>lastRet</span> <span class=o>&lt;</span> <span class=n>0</span><span class=o>)</span>
         <span class=k>throw</span> <span class=k>new</span> <span class=n>IllegalStateException</span><span class=o>();</span>
     <span class=n>checkForComodification</span><span class=o>();</span>
@@ -267,9 +665,23 @@
         <span class=k>throw</span> <span class=k>new</span> <span class=n>ConcurrentModificationException</span><span class=o>();</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>在这个方法中，删除元素实际上调用的就是<code>list.remove()</code>方法，但是它多了一个操作：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>expectedModCount</span> <span class=o>=</span> <span class=n>modCount</span><span class=o>;</span>
-</code></pre></td></tr></table></div></div><p>这个操作保证了期望值和当前值相等，即保证了不会抛出<code>java.util.ConcurrentModificationException</code>异常。</p><p>因此，在迭代器中如果要删除元素的话，需要调用 Itr 类的 remove 方法。</p><p>所以代码应修改为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>在这个方法中，删除元素实际上调用的就是<code>list.remove()</code>方法，但是它多了一个操作：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>expectedModCount</span> <span class=o>=</span> <span class=n>modCount</span><span class=o>;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个操作保证了期望值和当前值相等，即保证了不会抛出<code>java.util.ConcurrentModificationException</code>异常。</p>
+<p>因此，在迭代器中如果要删除元素的话，需要调用 Itr 类的 remove 方法。</p>
+<p>所以代码应修改为：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -280,7 +692,9 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>testV1Fix</span><span class=o>()</span> <span class=o>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>testV1Fix</span><span class=o>()</span> <span class=o>{</span>
     <span class=n>ArrayList</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>ids</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;(</span><span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=n>1</span><span class=o>,</span> <span class=n>2</span><span class=o>,</span> <span class=n>3</span><span class=o>,</span> <span class=n>4</span><span class=o>,</span> <span class=n>5</span><span class=o>,</span> <span class=n>6</span><span class=o>,</span> <span class=n>7</span><span class=o>,</span> <span class=n>8</span><span class=o>,</span> <span class=n>9</span><span class=o>));</span>
     <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>iterator</span> <span class=o>=</span> <span class=n>ids</span><span class=o>.</span><span class=na>iterator</span><span class=o>();</span>
     <span class=k>while</span> <span class=o>(</span><span class=n>iterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
@@ -291,7 +705,12 @@
         <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>id</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>执行结果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>执行结果：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -303,7 +722,9 @@
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>0</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>0</span>
 <span class=n>1</span>
 <span class=n>2</span>
 <span class=n>3</span>
@@ -315,7 +736,50 @@
 <span class=n>9</span>
 
 <span class=n>Process</span> <span class=n>finished</span> <span class=n>with</span> <span class=n>exit</span> <span class=n>code</span> <span class=n>0</span>
-</code></pre></td></tr></table></div></div><p>但是，这个办法的有两个弊端：</p><ol><li>只能进行 remove 操作，add、clear等 Itr 中没有。</li><li>而且只适用单线程环境。</li></ol><h5 id=多线程中的解决方法>多线程中的解决方法</h5><p>简单说明异常情况：异常的原因很简单，通过 Iterator 访问的情况下，每个线程里面返回的是不同的 iterator，也即是说 <strong>expectedModCount 是每个线程私有</strong>。假若此时有2个线程，线程1在进行修改，线程2在进行遍历；线程1修改后 list 的 modCount 自增了，线程1的 expectedModCount 也自增了，但是线程2的 expectedModCount 由于各线程私有并没有自增，导致线程2迭代时 modCount 与该迭代器的 expectedModCount 不相等。</p><p>一般有两种方法：</p><ol><li>在使用 iterator 迭代前加锁，使用 synchronized 或者 Lock 进行同步；解决了多线程问题，但还是不能进行迭代add、clear等操作。</li><li>使用并发容器 CopyOnWriteArrayList 代替 ArrayList 和 Vector；解决了多线程问题，同时可以add、clear等操作。</li></ol><blockquote><p>CopyOnWriteArrayList 也是一个线程安全的 ArrayList，其实现原理在于，每次 add、remove 等所有的操作都是重新创建一个新的数组，再把引用指向新的数组。（用的少不多讨论）</p></blockquote><h4 id=为什么要设置-modcount-与-expectedmodcount-变量>为什么要设置 modCount 与 expectedModCount 变量？</h4><p>到这里，我们似乎已经理解完这个异常的产生缘由了。</p><p>但是，仔细思考，还是会有几点疑惑：</p><ol><li>既然 modCount 与 expectedModCount 不同会产生异常，那为什么还设置这个变量</li><li>ConcurrentModificationException 可以翻译成“并发修改异常”，那这个异常是否与多线程有关呢？</li></ol><p>源码中 modCount 的注解中频繁的出现了 fail-fast（边幅太大就不贴了，自行查看吧哈哈），那么 fail-fast（快速失败）机制是什么呢？</p><blockquote><p>“快速失败”也就是 fail-fast ，它是 Java 集合的一种错误检测机制。当多个线程对集合进行结构上的改变的操作时，有可能会产生 fail-fast 机制。<strong>记住是有可能，而不是一定。</strong></p><p>例如：假设存在两个线程（线程1、线程2），线程1通过 Iterator 在遍历集合A中的元素，在某个时候线程2修改了集合A的结构（是结构上面的修改，而不是简单的修改集合元素的内容），那么这个时候程序就会抛出 ConcurrentModificationException 异常，从而产生 fail-fast 机制。</p></blockquote><p>看到这里，我们明白了，fail-fast 机制就是为了防止多线程修改集合造成并发问题的机制嘛。</p><p>之所以有 modCount 这个成员变量，就是为了辨别多线程修改集合时出现的错误。而<code>java.util.ConcurrentModificationException</code>就是并发异常。</p><p>但是单线程使用不当时也可能抛出这个异常。</p><h1 id=文件相关>文件相关</h1><h2 id=常见面试题-2>常见面试题</h2><h3 id=用java实现对一个文件夹内所有文件包括子文件夹的删除卓动2020秋招笔试真题>用Java实现对一个文件夹内所有文件包括子文件夹的删除（卓动2020秋招笔试真题）</h3><p>思路：</p><ol><li>先判断节点存不存在</li><li>然后判断节点是不是文件夹，若是文件夹，则<strong>递归遍历</strong>该目录下的所有子结点（文件或目录）</li><li>递归后删除结点。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>但是，这个办法的有两个弊端：</p>
+<ol>
+<li>只能进行 remove 操作，add、clear等 Itr 中没有。</li>
+<li>而且只适用单线程环境。</li>
+</ol>
+<h5 id=多线程中的解决方法>多线程中的解决方法</h5>
+<p>简单说明异常情况：异常的原因很简单，通过 Iterator 访问的情况下，每个线程里面返回的是不同的 iterator，也即是说 <strong>expectedModCount 是每个线程私有</strong>。假若此时有2个线程，线程1在进行修改，线程2在进行遍历；线程1修改后 list 的 modCount 自增了，线程1的 expectedModCount 也自增了，但是线程2的 expectedModCount 由于各线程私有并没有自增，导致线程2迭代时 modCount 与该迭代器的 expectedModCount 不相等。</p>
+<p>一般有两种方法：</p>
+<ol>
+<li>在使用 iterator 迭代前加锁，使用 synchronized 或者 Lock 进行同步；解决了多线程问题，但还是不能进行迭代add、clear等操作。</li>
+<li>使用并发容器 CopyOnWriteArrayList 代替 ArrayList 和 Vector；解决了多线程问题，同时可以add、clear等操作。</li>
+</ol>
+<blockquote>
+<p>CopyOnWriteArrayList 也是一个线程安全的 ArrayList，其实现原理在于，每次 add、remove 等所有的操作都是重新创建一个新的数组，再把引用指向新的数组。（用的少不多讨论）</p>
+</blockquote>
+<h4 id=为什么要设置-modcount-与-expectedmodcount-变量>为什么要设置 modCount 与 expectedModCount 变量？</h4>
+<p>到这里，我们似乎已经理解完这个异常的产生缘由了。</p>
+<p>但是，仔细思考，还是会有几点疑惑：</p>
+<ol>
+<li>既然 modCount 与 expectedModCount 不同会产生异常，那为什么还设置这个变量</li>
+<li>ConcurrentModificationException 可以翻译成“并发修改异常”，那这个异常是否与多线程有关呢？</li>
+</ol>
+<p>源码中 modCount 的注解中频繁的出现了 fail-fast（边幅太大就不贴了，自行查看吧哈哈），那么 fail-fast（快速失败）机制是什么呢？</p>
+<blockquote>
+<p>“快速失败”也就是 fail-fast ，它是 Java 集合的一种错误检测机制。当多个线程对集合进行结构上的改变的操作时，有可能会产生 fail-fast 机制。<strong>记住是有可能，而不是一定。</strong></p>
+<p>例如：假设存在两个线程（线程1、线程2），线程1通过 Iterator 在遍历集合A中的元素，在某个时候线程2修改了集合A的结构（是结构上面的修改，而不是简单的修改集合元素的内容），那么这个时候程序就会抛出 ConcurrentModificationException 异常，从而产生 fail-fast 机制。</p>
+</blockquote>
+<p>看到这里，我们明白了，fail-fast 机制就是为了防止多线程修改集合造成并发问题的机制嘛。</p>
+<p>之所以有 modCount 这个成员变量，就是为了辨别多线程修改集合时出现的错误。而<code>java.util.ConcurrentModificationException</code>就是并发异常。</p>
+<p>但是单线程使用不当时也可能抛出这个异常。</p>
+<h1 id=文件相关>文件相关</h1>
+<h2 id=常见面试题-2>常见面试题</h2>
+<h3 id=用java实现对一个文件夹内所有文件包括子文件夹的删除卓动2020秋招笔试真题>用Java实现对一个文件夹内所有文件包括子文件夹的删除（卓动2020秋招笔试真题）</h3>
+<p>思路：</p>
+<ol>
+<li>先判断节点存不存在</li>
+<li>然后判断节点是不是文件夹，若是文件夹，则<strong>递归遍历</strong>该目录下的所有子结点（文件或目录）</li>
+<li>递归后删除结点。</li>
+</ol>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -333,7 +797,9 @@
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=cm>/**
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=cm>/**
 </span><span class=cm> * 题目：用Java实现对一个文件夹内所有文件包括子文件夹的删除
 </span><span class=cm> *
 </span><span class=cm> * @param dir 将要删除的文件目录
@@ -351,5 +817,84 @@
     <span class=c1>// 此时已经没有文件了，该目录可以删除
 </span><span class=c1></span>    <span class=k>return</span> <span class=n>dir</span><span class=o>.</span><span class=na>delete</span><span class=o>();</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><h1 id=jvm>JVM</h1><h2 id=gc算法垃圾回收机制>GC算法（垃圾回收机制）</h2><blockquote><ul><li><a href=https://www.cnblogs.com/kubidemanong/p/9461755.html target=_blank rel="noopener noreffer">JVM(2)&ndash;一文读懂垃圾回收</a></li><li><a href=https://www.jianshu.com/p/0269237a229d target=_blank rel="noopener noreffer">JVM：这是一份全面 & 详细的 （GC）垃圾收集算法 讲解攻略</a></li><li><a href=https://www.jianshu.com/p/e5d2435a9122 target=_blank rel="noopener noreffer">JVM：关于那些 常见的垃圾收集器 学习指南</a></li></ul></blockquote><h2 id=内存泄漏和内存溢出>内存泄漏和内存溢出</h2><blockquote><ul><li><a href=https://juejin.im/entry/595ecac45188250da205ef04 target=_blank rel="noopener noreffer">面试总结 | 记一次Android 面试</a></li><li><a href=https://www.jianshu.com/p/97fb764f2669 target=_blank rel="noopener noreffer">Android性能优化：关于 内存泄露 的知识都在这里了！</a></li></ul></blockquote><h3 id=内存溢出oom>内存溢出(OOM)</h3><p>内存溢出是指应用在申请内存的时候，没有足够的内存可以分配，导致<code>Out Of Memory</code>错误，也就是 OOM。</p><blockquote><p>注意：OOM 会导致应用 Crash。</p></blockquote><h3 id=内存泄漏>内存泄漏</h3><p>内存泄漏是指在对象被垃圾回收和释放时，如果得不到及时的释放，就会一直占用内存，造成内存泄漏。</p><h3 id=区别-1>区别</h3><p>看上面定义</p><h3 id=什么时候会发生举例场景>什么时候会发生？举例场景</h3><h2 id=java-类加载机制>Java 类加载机制</h2><blockquote><ul><li><a href=https://www.jianshu.com/p/3ca14ec823d7 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：类加载的5个过程</a></li><li><a href=https://www.jianshu.com/p/8743d8062bb6 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：（双亲委派模型）类加载器全解析</a></li><li><a href=https://www.jianshu.com/p/3ae6efff1c96 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：静态分派 & 动态分派 原理解析</a></li></ul></blockquote><h3 id=双亲委派模型以及意义>双亲委派模型以及意义</h3></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2019-08-12</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-hashtags=校招,秋招,学习,复习,Java><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/b3fd4b52/ data-hashtag=校招><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E6%A0%A1%E6%8B%9B/>校招</a>,&nbsp;<a href=/tags/%E7%A7%8B%E6%8B%9B/>秋招</a>,&nbsp;<a href=/tags/%E5%AD%A6%E4%B9%A0/>学习</a>,&nbsp;<a href=/tags/%E5%A4%8D%E4%B9%A0/>复习</a>,&nbsp;<a href=/tags/java/>Java</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/f0a8d55a/ class=prev rel=prev title="4. 计算机网络 校招复习（持续更新~）"><i class="fas fa-angle-left fa-fw"></i>4. 计算机网络 校招复习（持续更新~）</a>
-<a href=/post/e7dd5054/ class=next rel=next title="6. Android 校招复习篇一･Handler">6. Android 校招复习篇一･Handler<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.79.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"BFPHPFN20A","algoliaIndex":"blog-hugo","algoliaSearchKey":"31dc11feeaf9d622e463ea8436736465","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css><script>if('serviceWorker'in navigator){navigator.serviceWorker.addEventListener('controllerchange',function(ev){try{console.log("Cache Update！");new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload();}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点",}).show();}catch(e){}});window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=jvm>JVM</h1>
+<h2 id=gc算法垃圾回收机制>GC算法（垃圾回收机制）</h2>
+<blockquote>
+<ul>
+<li><a href=https://www.cnblogs.com/kubidemanong/p/9461755.html target=_blank rel="noopener noreffer">JVM(2)&ndash;一文读懂垃圾回收</a></li>
+<li><a href=https://www.jianshu.com/p/0269237a229d target=_blank rel="noopener noreffer">JVM：这是一份全面 & 详细的 （GC）垃圾收集算法 讲解攻略</a></li>
+<li><a href=https://www.jianshu.com/p/e5d2435a9122 target=_blank rel="noopener noreffer">JVM：关于那些 常见的垃圾收集器 学习指南</a></li>
+</ul>
+</blockquote>
+<h2 id=内存泄漏和内存溢出>内存泄漏和内存溢出</h2>
+<blockquote>
+<ul>
+<li><a href=https://juejin.im/entry/595ecac45188250da205ef04 target=_blank rel="noopener noreffer">面试总结 | 记一次Android 面试</a></li>
+<li><a href=https://www.jianshu.com/p/97fb764f2669 target=_blank rel="noopener noreffer">Android性能优化：关于 内存泄露 的知识都在这里了！</a></li>
+</ul>
+</blockquote>
+<h3 id=内存溢出oom>内存溢出(OOM)</h3>
+<p>内存溢出是指应用在申请内存的时候，没有足够的内存可以分配，导致<code>Out Of Memory</code>错误，也就是 OOM。</p>
+<blockquote>
+<p>注意：OOM 会导致应用 Crash。</p>
+</blockquote>
+<h3 id=内存泄漏>内存泄漏</h3>
+<p>内存泄漏是指在对象被垃圾回收和释放时，如果得不到及时的释放，就会一直占用内存，造成内存泄漏。</p>
+<h3 id=区别-1>区别</h3>
+<p>看上面定义</p>
+<h3 id=什么时候会发生举例场景>什么时候会发生？举例场景</h3>
+<h2 id=java-类加载机制>Java 类加载机制</h2>
+<blockquote>
+<ul>
+<li><a href=https://www.jianshu.com/p/3ca14ec823d7 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：类加载的5个过程</a></li>
+<li><a href=https://www.jianshu.com/p/8743d8062bb6 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：（双亲委派模型）类加载器全解析</a></li>
+<li><a href=https://www.jianshu.com/p/3ae6efff1c96 target=_blank rel="noopener noreffer">（JVM）Java虚拟机：静态分派 & 动态分派 原理解析</a></li>
+</ul>
+</blockquote>
+<h3 id=双亲委派模型以及意义>双亲委派模型以及意义</h3>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2019-08-12</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-hashtags=校招,秋招,学习,复习,Java><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/b3fd4b52/ data-hashtag=校招><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/b3fd4b52/ data-title="5. Java 校招复习（持续更新~）"><i class="fab fa-evernote fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E6%A0%A1%E6%8B%9B/>校招</a>,&nbsp;<a href=/tags/%E7%A7%8B%E6%8B%9B/>秋招</a>,&nbsp;<a href=/tags/%E5%AD%A6%E4%B9%A0/>学习</a>,&nbsp;<a href=/tags/%E5%A4%8D%E4%B9%A0/>复习</a>,&nbsp;<a href=/tags/java/>Java</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/post/f0a8d55a/ class=prev rel=prev title="4. 计算机网络 校招复习（持续更新~）"><i class="fas fa-angle-left fa-fw"></i>4. 计算机网络 校招复习（持续更新~）</a>
+<a href=/post/e7dd5054/ class=next rel=next title="6. Android 校招复习篇一･Handler">6. Android 校招复习篇一･Handler<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css>
+<script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script>
+<div id=disqus_thread class=comment></div>
+<script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"})</script></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:100},comment:{},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"BFPHPFN20A",algoliaIndex:"blog-hugo",algoliaSearchKey:"31dc11feeaf9d622e463ea8436736465",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-175008981-1',{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
+<script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css>
+<script>'serviceWorker'in navigator&&(navigator.serviceWorker.addEventListener('controllerchange',function(a){try{console.log("Cache Update！"),new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload()}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点"}).show()}catch(a){}}),window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(a){console.log('Service Worker Registered')}),navigator.serviceWorker.ready.then(function(a){console.log('Service Worker Ready')})})</script>
+</html>

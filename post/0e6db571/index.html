@@ -1,13 +1,169 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Hexo 迁移到 Hugo 记录 - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Hexo 迁移到 Hugo 记录"><meta property="og:description" content="参考： 把博客从 Hexo 迁移到 Hugo Hugo 永久链接 HUGO 为什么要迁移到Hugo？ 因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太"><meta property="og:type" content="article"><meta property="og:url" content="https://reb.mallotec.com/post/0e6db571/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:published_time" content="2020-08-19T10:38:17+08:00"><meta property="article:modified_time" content="2020-08-19T10:38:17+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta name=twitter:title content="Hexo 迁移到 Hugo 记录"><meta name=twitter:description content="参考： 把博客从 Hexo 迁移到 Hugo Hugo 永久链接 HUGO 为什么要迁移到Hugo？ 因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太"><meta name=application-name content="Reborn's Blog"><meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/0e6db571/><link rel=prev href=https://reb.mallotec.com/post/7afcff16/><link rel=next href=https://reb.mallotec.com/post/9e9c31ab/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hexo 迁移到 Hugo 记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/0e6db571\/"},"genre":"posts","keywords":"Hugo, 教程, 个人经验","wordcount":3773,"url":"https:\/\/reb.mallotec.com\/post\/0e6db571\/","datePublished":"2020-08-19T10:38:17+08:00","dateModified":"2020-08-19T10:38:17+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts>时间轴 </a><a class=menu-item href=/categories>分类 </a><a class=menu-item href=/tags>标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习 </a><a class=menu-item href=/friends>友链 </a><a class=menu-item href=/about>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder="Search for Posts" id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Reborn's Blog">Reborn's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search for Posts" id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/>首页</a><a class=menu-item href=/posts>时间轴</a><a class=menu-item href=/categories>分类</a><a class=menu-item href=/tags>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0>复习</a><a class=menu-item href=/friends>友链</a><a class=menu-item href=/about>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Hexo 迁移到 Hugo 记录</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/hugo/><i class="far fa-folder fa-fw"></i>Hugo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-08-19>2020-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3773 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#为什么要迁移到hugo>为什么要迁移到Hugo？</a></li><li><a href=#迁移需要注意的地方>迁移需要注意的地方</a><ul><li><a href=#关于-front-matter>关于 Front-matter</a><ul><li><a href=#时间格式-date>时间格式 date</a></li></ul></li><li><a href=#关于迁移旧链接>关于迁移旧链接</a></li></ul></li><li><a href=#给-hugo-添加新功能>给 Hugo 添加新功能</a><ul><li><a href=#永久链接>永久链接</a><ul><li><a href=#永久链接生成方案>永久链接生成方案</a></li></ul></li><li><a href=#disqusjs>DisqusJS</a></li><li><a href=#pwaservice-worker>PWA/Service Worker</a><ul><li><a href=#添加清理旧版本策略>添加清理旧版本策略</a></li></ul></li><li><a href=#github-action-自动部署>Github Action 自动部署</a></li><li><a href=#音乐-shortcode-支持本地歌词文件>音乐 shortcode 支持本地歌词文件</a></li></ul></li></ul></nav></div></div><div class=content id=content><blockquote><p>参考：</p><ul><li><a href=https://jdhao.github.io/2018/10/10/hexo_to_hugo/ target=_blank rel="noopener noreffer">把博客从 Hexo 迁移到 Hugo</a></li><li><a href=https://blog.lxdlam.com/post/9cc3283b/ target=_blank rel="noopener noreffer">Hugo 永久链接</a></li><li><a href=https://kuang.netlify.app/blog/hugo.html target=_blank rel="noopener noreffer">HUGO</a></li></ul></blockquote><h1 id=为什么要迁移到hugo>为什么要迁移到Hugo？</h1><p>因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太过简洁，想要的功能都没有；要么太过臃肿，阅读界面太乱；太难了~</p><h1 id=迁移需要注意的地方>迁移需要注意的地方</h1><h2 id=关于-front-matter>关于 Front-matter</h2><h3 id=时间格式-date>时间格式 date</h3><p>Hexo 中时间格式与 Hugo 格式不太相同，Hugo 对时间格式的要求比较严格，Hexo 中<code>YYYY-MM-DD HH:MM:SS</code>格式的时间在 Hugo 中无法被正确识别。</p><p><a href=https://scripter.co/time-formatting-in-go/ target=_blank rel="noopener noreffer">Hugo 中使用的时间格式</a>如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>YYYY-MM-DD HH:MM:SS +08:00
-</code></pre></td></tr></table></div></div><p>最后的<code>+08:00</code>代表中国的时区是 GMT+8。</p><p>另外，Hexo 中 Front Matter 代表博客更新时间的<code>updated</code>选项，在 Hugo 中是<code>lastmod</code>。</p><p>由于写的文章太多，我直接用正则表达式搜索替换：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))\s([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])
-</code></pre></td></tr></table></div></div><h2 id=关于迁移旧链接>关于迁移旧链接</h2><p>迁移博客过程中最重要的莫过于保证文章的 URL 不变，不然，这将会非常不利于 SEO。好不容易有一篇文章出现在 Google 相关搜索结果的前排，却因为 URL 的变化导致原链接 404 从而导致该文章从 Google 的索引中移除，这一定会是非常令人沮丧的😶。下面我们就来说说怎么解决这个问题~</p><p>Hugo 默认使用 &ldquo;Pretty URLs&rdquo;（漂亮URL）, 而 Hexo 使用 &ldquo;Ugly URLs&rdquo;（丑陋URL）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Hexo 迁移到 Hugo 记录 - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Hexo 迁移到 Hugo 记录">
+<meta property="og:description" content="参考： 把博客从 Hexo 迁移到 Hugo Hugo 永久链接 HUGO 为什么要迁移到Hugo？ 因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reb.mallotec.com/post/0e6db571/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-08-19T10:38:17+08:00">
+<meta property="article:modified_time" content="2020-08-19T10:38:17+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png">
+<meta name=twitter:title content="Hexo 迁移到 Hugo 记录">
+<meta name=twitter:description content="参考： 把博客从 Hexo 迁移到 Hugo Hugo 永久链接 HUGO 为什么要迁移到Hugo？ 因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太">
+<meta name=application-name content="Reborn's Blog">
+<meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/0e6db571/><link rel=prev href=https://reb.mallotec.com/post/7afcff16/><link rel=next href=https://reb.mallotec.com/post/9e9c31ab/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hexo 迁移到 Hugo 记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/0e6db571\/"},"genre":"posts","keywords":"Hugo, 教程, 个人经验","wordcount":3773,"url":"https:\/\/reb.mallotec.com\/post\/0e6db571\/","datePublished":"2020-08-19T10:38:17+08:00","dateModified":"2020-08-19T10:38:17+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/> 首页 </a><a class=menu-item href=/posts> 时间轴 </a><a class=menu-item href=/categories> 分类 </a><a class=menu-item href=/tags> 标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0> 复习 </a><a class=menu-item href=/friends> 友链 </a><a class=menu-item href=/about> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/ title>首页</a><a class=menu-item href=/posts title>时间轴</a><a class=menu-item href=/categories title>分类</a><a class=menu-item href=/tags title>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0 title>复习</a><a class=menu-item href=/friends title>友链</a><a class=menu-item href=/about title>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Hexo 迁移到 Hugo 记录</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/hugo/><i class="far fa-folder fa-fw"></i>Hugo</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-08-19>2020-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3773 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#为什么要迁移到hugo>为什么要迁移到Hugo？</a></li>
+<li><a href=#迁移需要注意的地方>迁移需要注意的地方</a>
+<ul>
+<li><a href=#关于-front-matter>关于 Front-matter</a>
+<ul>
+<li><a href=#时间格式-date>时间格式 date</a></li>
+</ul>
+</li>
+<li><a href=#关于迁移旧链接>关于迁移旧链接</a></li>
+</ul>
+</li>
+<li><a href=#给-hugo-添加新功能>给 Hugo 添加新功能</a>
+<ul>
+<li><a href=#永久链接>永久链接</a>
+<ul>
+<li><a href=#永久链接生成方案>永久链接生成方案</a></li>
+</ul>
+</li>
+<li><a href=#disqusjs>DisqusJS</a></li>
+<li><a href=#pwaservice-worker>PWA/Service Worker</a>
+<ul>
+<li><a href=#添加清理旧版本策略>添加清理旧版本策略</a></li>
+</ul>
+</li>
+<li><a href=#github-action-自动部署>Github Action 自动部署</a></li>
+<li><a href=#音乐-shortcode-支持本地歌词文件>音乐 shortcode 支持本地歌词文件</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><blockquote>
+<p>参考：</p>
+<ul>
+<li><a href=https://jdhao.github.io/2018/10/10/hexo_to_hugo/ target=_blank rel="noopener noreffer">把博客从 Hexo 迁移到 Hugo</a></li>
+<li><a href=https://blog.lxdlam.com/post/9cc3283b/ target=_blank rel="noopener noreffer">Hugo 永久链接</a></li>
+<li><a href=https://kuang.netlify.app/blog/hugo.html target=_blank rel="noopener noreffer">HUGO</a></li>
+</ul>
+</blockquote>
+<h1 id=为什么要迁移到hugo>为什么要迁移到Hugo？</h1>
+<p>因为 Hexo 太慢啦~ Node的依赖也乱七八糟~ 顺便想要简洁主题找不到合适自己的，要么太过简洁，想要的功能都没有；要么太过臃肿，阅读界面太乱；太难了~</p>
+<h1 id=迁移需要注意的地方>迁移需要注意的地方</h1>
+<h2 id=关于-front-matter>关于 Front-matter</h2>
+<h3 id=时间格式-date>时间格式 date</h3>
+<p>Hexo 中时间格式与 Hugo 格式不太相同，Hugo 对时间格式的要求比较严格，Hexo 中<code>YYYY-MM-DD HH:MM:SS</code>格式的时间在 Hugo 中无法被正确识别。</p>
+<p><a href=https://scripter.co/time-formatting-in-go/ target=_blank rel="noopener noreffer">Hugo 中使用的时间格式</a>如下：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>YYYY-MM-DD HH:MM:SS +08:00
+</code></pre></td></tr></table>
+</div>
+</div><p>最后的<code>+08:00</code>代表中国的时区是 GMT+8。</p>
+<p>另外，Hexo 中 Front Matter 代表博客更新时间的<code>updated</code>选项，在 Hugo 中是<code>lastmod</code>。</p>
+<p>由于写的文章太多，我直接用正则表达式搜索替换：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))\s([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=关于迁移旧链接>关于迁移旧链接</h2>
+<p>迁移博客过程中最重要的莫过于保证文章的 URL 不变，不然，这将会非常不利于 SEO。好不容易有一篇文章出现在 Google 相关搜索结果的前排，却因为 URL 的变化导致原链接 404 从而导致该文章从 Google 的索引中移除，这一定会是非常令人沮丧的😶。下面我们就来说说怎么解决这个问题~</p>
+<p>Hugo 默认使用 &ldquo;Pretty URLs&rdquo;（漂亮URL）, 而 Hexo 使用 &ldquo;Ugly URLs&rdquo;（丑陋URL）</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -15,7 +171,9 @@
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>├─content           <span class=c1># 网站源代码目录</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>├─content           <span class=c1># 网站源代码目录</span>
 <span class=p>|</span> ├─_index.md       <span class=c1># URL转换为：https://example.com/</span>
 <span class=p>|</span> ├─posts           <span class=c1># 一个名为posts的章节文件夹</span>
 <span class=p>|</span> <span class=p>|</span> ├─_index.md     <span class=c1># URL转换为：https://example.com/posts/</span>
@@ -23,27 +181,81 @@
 <span class=p>|</span> <span class=p>|</span> └─topic         <span class=c1># 章节内的子页面内容目录（包含md文件和图片）</span>
 <span class=p>|</span> <span class=p>|</span> <span class=p>|</span> ├─second.md   <span class=c1># URL转换为：https://example.com/posts/topic/second/</span>
 <span class=p>|</span> <span class=p>|</span> <span class=p>|</span> └─123.jpg     <span class=c1># second.md文件引用的本地图片</span>
-</code></pre></td></tr></table></div></div><blockquote><p>&ldquo;_index.md&rdquo; 和 &ldquo;index.md&rdquo; 文件在 Hugo 中具有特殊含义（用于组织页面）。在 &ldquo;Pretty URLs&rdquo; 渲染下，与实际路径一致。</p></blockquote><p>若文件名不为 &ldquo;_index.md&rdquo; 或 &ldquo;index.md&rdquo; 时，<strong>&ldquo;Pretty URLs&rdquo; 将 md 文件渲染为目录</strong>。</p><blockquote><p>会导致后果：md 文件引用本地图片时，渲染路径比实际路径多了一个与文件名同名的目录名，导致引用图片失败。</p></blockquote><p>而 &ldquo;Ugly URLs&rdquo; 则会直接渲染为 xxx.html，这会导致迁移后 Hexo 版本的链接会<strong>直接失效</strong>。若有搜索引擎收录了 Hexo 版本的链接，则会<strong>指向 404 页面</strong>。</p><p>这是我不能接受的，于是我翻了翻 Hugo 文档，终于找到了<a href=https://gohugo.io/content-management/urls/#yaml-front-matter target=_blank rel="noopener noreffer">解决方法</a>：</p><p>假设您在<code>content/posts/my-awesome-blog-post.md</code>中创建了一条新内容。内容是您以前的帖子的修订版，位于<code>content/posts/my-original-url.md</code>。您可以在新的<code>my-awesome-blog-post.md</code>的开头创建别名字段，在其中可以添加以前的路径。以下示例说明如何在 YAML 中创建此字段。（机翻勿吐槽🙈️&mldr;&mldr;）</p><p>content/posts/my-awesome-post.md</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>&ldquo;_index.md&rdquo; 和 &ldquo;index.md&rdquo; 文件在 Hugo 中具有特殊含义（用于组织页面）。在 &ldquo;Pretty URLs&rdquo; 渲染下，与实际路径一致。</p>
+</blockquote>
+<p>若文件名不为 &ldquo;_index.md&rdquo; 或 &ldquo;index.md&rdquo; 时，<strong>&ldquo;Pretty URLs&rdquo; 将 md 文件渲染为目录</strong>。</p>
+<blockquote>
+<p>会导致后果：md 文件引用本地图片时，渲染路径比实际路径多了一个与文件名同名的目录名，导致引用图片失败。</p>
+</blockquote>
+<p>而 &ldquo;Ugly URLs&rdquo; 则会直接渲染为 xxx.html，这会导致迁移后 Hexo 版本的链接会<strong>直接失效</strong>。若有搜索引擎收录了 Hexo 版本的链接，则会<strong>指向 404 页面</strong>。</p>
+<p>这是我不能接受的，于是我翻了翻 Hugo 文档，终于找到了<a href=https://gohugo.io/content-management/urls/#yaml-front-matter target=_blank rel="noopener noreffer">解决方法</a>：</p>
+<p>假设您在<code>content/posts/my-awesome-blog-post.md</code>中创建了一条新内容。内容是您以前的帖子的修订版，位于<code>content/posts/my-original-url.md</code>。您可以在新的<code>my-awesome-blog-post.md</code>的开头创建别名字段，在其中可以添加以前的路径。以下示例说明如何在 YAML 中创建此字段。（机翻勿吐槽🙈️&mldr;&mldr;）</p>
+<p>content/posts/my-awesome-post.md</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>aliases</span><span class=p>:</span><span class=w>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>aliases</span><span class=p>:</span><span class=w>
 </span><span class=w>    </span>- <span class=l>/posts/my-original-url/</span><span class=w>
 </span><span class=w>    </span>- <span class=l>/2010/01/01/even-earlier-url.html</span><span class=w>
-</span></code></pre></td></tr></table></div></div><p>当你输入<code>aliases</code>中任意一个路径时，他就会跳转到<code>my-awesome-post.md</code>所在的页面啦~</p><h1 id=给-hugo-添加新功能>给 Hugo 添加新功能</h1><h2 id=永久链接>永久链接</h2><p>之前使用 Hexo 的时候，用的是<code>hexo-abbrlink</code>插件来处理永久链接。迁移到 Hugo 之后，发现没有这种插件，顿时就慌了，那可怎么办呀~</p><p>搜索了一下发现还是有大佬利用 Hugo 自建函数实现了这个功能。</p><h3 id=永久链接生成方案>永久链接生成方案</h3><p>大佬的永久链接生成方案是<strong>直接对时间 + 文章名生成字符串做一下 md5 然后取任意 4-12 位</strong>。想了一下，这样的 hash 冲撞概率还是挺小的，我觉得可以！</p><p>那么接下来说说怎么把这个方案应用到 Hugo 中&mldr;&mldr;</p><p>Hugo 在永久链接中支持一个参数：<code>slug</code>。简单来说，我们可以针对每一篇文章指定一个 <code>slug</code>，然后在 <code>config.toml</code> 中配置<code>permalinks</code>包含<code>slug</code>参数，就可以生成唯一的永久链接。我们的目的就是对<strong>每篇文章自动生成一个 slug</strong>。</p><p>修改<code>archetypes/default.md</code>添加如下一行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>当你输入<code>aliases</code>中任意一个路径时，他就会跳转到<code>my-awesome-post.md</code>所在的页面啦~</p>
+<h1 id=给-hugo-添加新功能>给 Hugo 添加新功能</h1>
+<h2 id=永久链接>永久链接</h2>
+<p>之前使用 Hexo 的时候，用的是<code>hexo-abbrlink</code>插件来处理永久链接。迁移到 Hugo 之后，发现没有这种插件，顿时就慌了，那可怎么办呀~</p>
+<p>搜索了一下发现还是有大佬利用 Hugo 自建函数实现了这个功能。</p>
+<h3 id=永久链接生成方案>永久链接生成方案</h3>
+<p>大佬的永久链接生成方案是<strong>直接对时间 + 文章名生成字符串做一下 md5 然后取任意 4-12 位</strong>。想了一下，这样的 hash 冲撞概率还是挺小的，我觉得可以！</p>
+<p>那么接下来说说怎么把这个方案应用到 Hugo 中&mldr;&mldr;</p>
+<p>Hugo 在永久链接中支持一个参数：<code>slug</code>。简单来说，我们可以针对每一篇文章指定一个 <code>slug</code>，然后在 <code>config.toml</code> 中配置<code>permalinks</code>包含<code>slug</code>参数，就可以生成唯一的永久链接。我们的目的就是对<strong>每篇文章自动生成一个 slug</strong>。</p>
+<p>修改<code>archetypes/default.md</code>添加如下一行：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nn>---</span><span class=w>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nn>---</span><span class=w>
 </span><span class=w></span><span class=c>#...</span><span class=w>
 </span><span class=w></span><span class=nt>slug</span><span class=p>:</span><span class=w> </span>{{<span class=w> </span><span class=l>substr (md5 (printf &#34;%s%s&#34; .Date (replace .TranslationBaseName &#34;-&#34; &#34; &#34; | title))) 4 8 }}</span><span class=w>
 </span><span class=w></span><span class=c>#...</span><span class=w>
 </span><span class=w></span><span class=nn>---</span><span class=w>
-</span></code></pre></td></tr></table></div></div><p>这样在每次使用<code>hugo new</code>的时候就会自动填写一个永久链接了。</p><p>之后修改<code>config.toml</code>添加如下行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这样在每次使用<code>hugo new</code>的时候就会自动填写一个永久链接了。</p>
+<p>之后修改<code>config.toml</code>添加如下行：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>permalinks</span><span class=p>]</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>permalinks</span><span class=p>]</span>
   <span class=nx>posts</span> <span class=p>=</span> <span class=s2>&#34;/post/:slug&#34;</span>
-</code></pre></td></tr></table></div></div><h2 id=disqusjs>DisqusJS</h2><p>我现在用的是 LoveIt 主题，官方集成了 Disqus 评论模块，却没有集成 DisqusJS，于是决定自己动手~</p><p>以 LoveIt 主题为例：</p><ol><li><p>拷贝<code>themes/LoveIt/layouts/partials/comment.html</code>到<code>博客根目录/layouts/partials/comment.html</code></p></li><li><p>在<code>id="comments"</code>的 div 块里加入以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=disqusjs>DisqusJS</h2>
+<p>我现在用的是 LoveIt 主题，官方集成了 Disqus 评论模块，却没有集成 DisqusJS，于是决定自己动手~</p>
+<p>以 LoveIt 主题为例：</p>
+<ol>
+<li>
+<p>拷贝<code>themes/LoveIt/layouts/partials/comment.html</code>到<code>博客根目录/layouts/partials/comment.html</code></p>
+</li>
+<li>
+<p>在<code>id="comments"</code>的 div 块里加入以下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -68,7 +280,9 @@
 </span><span class=lnt>23
 </span><span class=lnt>24
 </span><span class=lnt>25
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;comments&#34;</span><span class=p>&gt;</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;comments&#34;</span><span class=p>&gt;</span>
 ...
 {{- /* DisqusJS Comment System */ -}}
     {{- $disqusjs := $comment.disqusjs | default dict -}}
@@ -93,15 +307,34 @@
 {{- end -}}
 ...
 <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div></li><li><p>拷贝<code>themes/LoveIt/assets/data/cdn/jsdelivr.yml</code>到<code>博客根目录/assets/data/cdn/jsdelivr.yml</code></p></li><li><p>在<code>libFiles</code>结点里添加以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>拷贝<code>themes/LoveIt/assets/data/cdn/jsdelivr.yml</code>到<code>博客根目录/assets/data/cdn/jsdelivr.yml</code></p>
+</li>
+<li>
+<p>在<code>libFiles</code>结点里添加以下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>libFiles</span><span class=p>:</span><span class=w>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>libFiles</span><span class=p>:</span><span class=w>
 </span><span class=w>    </span><span class=l>...</span><span class=w>
 </span><span class=w>    </span><span class=nt>disqusjsCSS</span><span class=p>:</span><span class=w> </span><span class=l>disqusjs@1.3/dist/disqusjs.css</span><span class=w>
 </span><span class=w>    </span><span class=nt>disqusjsJS</span><span class=p>:</span><span class=w> </span><span class=l>disqusjs@1.3/dist/disqus.js</span><span class=w>
-</span></code></pre></td></tr></table></div></div></li><li><p>修改<code>config.toml</code>添加如下行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改<code>config.toml</code>添加如下行：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -116,7 +349,9 @@
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>page</span><span class=p>.</span><span class=nx>comment</span><span class=p>]</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>page</span><span class=p>.</span><span class=nx>comment</span><span class=p>]</span>
   <span class=nx>enable</span> <span class=p>=</span> <span class=kc>true</span>
   <span class=p>...</span>
   <span class=c># DisqusJS 评论系统设置</span>
@@ -131,7 +366,18 @@
     <span class=nx>admin</span> <span class=p>=</span> <span class=s1>&#39;Your admin&#39;</span>
     <span class=nx>adminLabel</span> <span class=p>=</span> <span class=s1>&#39;admin&#39;</span>
     <span class=p>...</span>
-</code></pre></td></tr></table></div></div></li></ol><h2 id=pwaservice-worker>PWA/Service Worker</h2><p>懒得写了，网上一堆解释，直接贴源码算了：</p><ol><li><p>在<code>static/</code>目录下新建<code>sw.js</code>文件，然后加入以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id=pwaservice-worker>PWA/Service Worker</h2>
+<p>懒得写了，网上一堆解释，直接贴源码算了：</p>
+<ol>
+<li>
+<p>在<code>static/</code>目录下新建<code>sw.js</code>文件，然后加入以下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>  1
 </span><span class=lnt>  2
 </span><span class=lnt>  3
 </span><span class=lnt>  4
@@ -244,18 +490,20 @@
 </span><span class=lnt>111
 </span><span class=lnt>112
 </span><span class=lnt>113
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>importScripts</span><span class=p>(</span><span class=s1>&#39;https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js&#39;</span><span class=p>);</span>
-   
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>importScripts</span><span class=p>(</span><span class=s1>&#39;https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js&#39;</span><span class=p>);</span>
+
 <span class=k>if</span> <span class=p>(</span><span class=nx>workbox</span><span class=p>)</span> <span class=p>{</span>
     <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Yay! Workbox is loaded 🎉`</span><span class=p>);</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>core</span><span class=p>.</span><span class=nx>setCacheNameDetails</span><span class=p>({</span>
         <span class=nx>prefix</span><span class=o>:</span> <span class=s2>&#34;Your Username&#34;</span>
     <span class=p>});</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>core</span><span class=p>.</span><span class=nx>skipWaiting</span><span class=p>();</span>
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>core</span><span class=p>.</span><span class=nx>clientsClaim</span><span class=p>();</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>precaching</span><span class=p>.</span><span class=nx>precacheAndRoute</span><span class=p>([</span>
         <span class=p>{</span>
             <span class=s2>&#34;url&#34;</span><span class=o>:</span> <span class=s2>&#34;/index.html&#34;</span><span class=p>,</span>
@@ -266,7 +514,7 @@
             <span class=s2>&#34;revision&#34;</span><span class=o>:</span> <span class=s2>&#34;MD5 of your style.css&#34;</span>
         <span class=p>}</span>
     <span class=p>],</span> <span class=p>{});</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span><span class=sr>/(?:\/)$/</span><span class=p>,</span>
         <span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>StaleWhileRevalidate</span><span class=p>({</span>
             <span class=nx>cacheName</span><span class=o>:</span> <span class=s2>&#34;html&#34;</span><span class=p>,</span>
@@ -277,14 +525,14 @@
 </span><span class=c1></span>                <span class=p>})</span>
             <span class=p>]</span>
         <span class=p>}),</span> <span class=s2>&#34;GET&#34;</span><span class=p>);</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/\.(?:js|css)$/</span><span class=p>,</span>
         <span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>StaleWhileRevalidate</span><span class=p>({</span>
             <span class=nx>cacheName</span><span class=o>:</span> <span class=s1>&#39;static-resources&#39;</span>
         <span class=p>})</span>
     <span class=p>)</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/\.(?:png|jpg|jpeg|gif|bmp|webp|svg|ico)$/</span><span class=p>,</span>
         <span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>CacheFirst</span><span class=p>({</span>
@@ -295,7 +543,7 @@
                 <span class=c1>// purgeOnQuotaError: !0
 </span><span class=c1></span>            <span class=p>})]</span>
         <span class=p>}),</span> <span class=s2>&#34;GET&#34;</span><span class=p>);</span>
-   
+
     <span class=c1>// Fonts
 </span><span class=c1></span>    <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/\.(?:eot|ttf|woff|woff2)$/</span><span class=p>,</span>
@@ -312,14 +560,14 @@
             <span class=p>]</span>
         <span class=p>})</span>
     <span class=p>);</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/^https:\/\/fonts\.googleapis\.com/</span><span class=p>,</span>
         <span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>StaleWhileRevalidate</span><span class=p>({</span>
             <span class=nx>cacheName</span><span class=o>:</span> <span class=s1>&#39;google-fonts-stylesheets&#39;</span>
         <span class=p>})</span>
     <span class=p>);</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/^https:\/\/fonts\.gstatic\.com/</span><span class=p>,</span>
         <span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>CacheFirst</span><span class=p>({</span>
@@ -335,7 +583,7 @@
             <span class=p>]</span>
         <span class=p>})</span>
     <span class=p>);</span>
-   
+
     <span class=c1>// external resources
 </span><span class=c1></span>    <span class=nx>workbox</span><span class=p>.</span><span class=nx>routing</span><span class=p>.</span><span class=nx>registerRoute</span><span class=p>(</span>
         <span class=sr>/(^https:\/\/cdn\.jsdelivr\.net.*?(\.js|\.css))|(^https:\/\/cdnjs\.cloudflare\.com)/</span><span class=p>,</span>
@@ -352,12 +600,22 @@
             <span class=p>]</span>
         <span class=p>})</span>
     <span class=p>);</span>
-   
+
     <span class=nx>workbox</span><span class=p>.</span><span class=nx>googleAnalytics</span><span class=p>.</span><span class=nx>initialize</span><span class=p>({});</span>
 <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
     <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Boo! Workbox didn&#39;t load 😬`</span><span class=p>)</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div></li><li><p>拷贝<code>themes/LoveIt/layouts/_default/baseof.html</code>到<code>博客根目录/layouts/_default/baseof.html</code></p></li><li><p>在<code>&lt;/body></code>后加入以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>拷贝<code>themes/LoveIt/layouts/_default/baseof.html</code>到<code>博客根目录/layouts/_default/baseof.html</code></p>
+</li>
+<li>
+<p>在<code>&lt;/body></code>后加入以下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -376,7 +634,9 @@
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
 <span class=c1>// 可以这么注册 Service Worker
 </span><span class=c1></span><span class=k>if</span> <span class=p>(</span><span class=s1>&#39;serviceWorker&#39;</span> <span class=k>in</span> <span class=nx>navigator</span><span class=p>)</span> <span class=p>{</span>
     <span class=c1>// 为了保证首屏渲染性能，可以在页面 load 完之后注册 Service Worker
@@ -395,7 +655,15 @@
     <span class=p>};</span>
 <span class=p>}</span>
 <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div></li></ol><h3 id=添加清理旧版本策略>添加清理旧版本策略</h3><p>修改<code>sw.js</code>文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id=添加清理旧版本策略>添加清理旧版本策略</h3>
+<p>修改<code>sw.js</code>文件：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -437,7 +705,9 @@
 </span><span class=lnt>40
 </span><span class=lnt>41
 </span><span class=lnt>42
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=p>...</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=p>...</span>
 <span class=p>...</span>
 <span class=nx>workbox</span><span class=p>.</span><span class=nx>core</span><span class=p>.</span><span class=nx>setCacheNameDetails</span><span class=p>({</span>
         <span class=nx>prefix</span><span class=o>:</span> <span class=s2>&#34;Your name&#34;</span><span class=p>,</span>
@@ -479,13 +749,32 @@
         <span class=p>])</span>
     <span class=p>);</span>
 <span class=p>});</span>
-</code></pre></td></tr></table></div></div><p>然后确保每个<code>new workbox.strategies.xxx</code>的<code>cacheName</code>都是如下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>然后确保每个<code>new workbox.strategies.xxx</code>的<code>cacheName</code>都是如下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>xxx</span><span class=p>({</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=k>new</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>strategies</span><span class=p>.</span><span class=nx>xxx</span><span class=p>({</span>
     <span class=nx>cacheName</span><span class=o>:</span> <span class=s2>&#34;your-cache-name-&#34;</span> <span class=o>+</span> <span class=nx>workbox</span><span class=p>.</span><span class=nx>core</span><span class=p>.</span><span class=nx>cacheNames</span><span class=p>.</span><span class=nx>suffix</span><span class=p>,</span>
 <span class=p>})</span>
-</code></pre></td></tr></table></div></div><h2 id=github-action-自动部署>Github Action 自动部署</h2><p>Github Action 是个好东西，一定要好好利用，我已经写好一个 Hugo 部署到 github page 的 github action 了，直接用就好了~</p><ol><li><p>在博客源码的 Github 仓库项目中<code>Settings—Secrets</code>设置好<code>GH_TOKEN</code>、<code>GIT_NAME</code>、<code>GIT_EMAIL</code></p></li><li><p>新建<code>.github/workflows/deploy.yml</code>，示例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=github-action-自动部署>Github Action 自动部署</h2>
+<p>Github Action 是个好东西，一定要好好利用，我已经写好一个 Hugo 部署到 github page 的 github action 了，直接用就好了~</p>
+<ol>
+<li>
+<p>在博客源码的 Github 仓库项目中<code>Settings—Secrets</code>设置好<code>GH_TOKEN</code>、<code>GIT_NAME</code>、<code>GIT_EMAIL</code></p>
+</li>
+<li>
+<p>新建<code>.github/workflows/deploy.yml</code>，示例：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -520,31 +809,33 @@
 </span><span class=lnt>33
 </span><span class=lnt>34
 </span><span class=lnt>35
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>自动部署 Hugo</span><span class=w>
-</span><span class=w>   
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>自动部署 Hugo</span><span class=w>
+</span><span class=w>
 </span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
 </span><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
 </span><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
 </span><span class=w>      </span>- <span class=l>master</span><span class=w>
-</span><span class=w>   
+</span><span class=w>
 </span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
 </span><span class=w>  </span><span class=nt>build</span><span class=p>:</span><span class=w>
 </span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
 </span><span class=w>    </span><span class=nt>strategy</span><span class=p>:</span><span class=w>
 </span><span class=w>      </span><span class=nt>matrix</span><span class=p>:</span><span class=w>
 </span><span class=w>        </span><span class=nt>node-version</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=m>10.</span><span class=l>x]</span><span class=w>
-</span><span class=w>   
+</span><span class=w>
 </span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
 </span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>开始运行</span><span class=w>
 </span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v1</span><span class=w>
-</span><span class=w>   
+</span><span class=w>
 </span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>缓存</span><span class=w>
 </span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/cache@v1</span><span class=w>
 </span><span class=w>        </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>cache-dependencies</span><span class=w>
 </span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
 </span><span class=w>          </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>node_modules</span><span class=w>
 </span><span class=w>          </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>${{runner.OS}}-${{hashFiles(&#39;**/package-lock.json&#39;)}}</span><span class=w>
-</span><span class=w>   
+</span><span class=w>
 </span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>部署准备</span><span class=w>
 </span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
 </span><span class=sd>          </span><span class=w>          </span><span class=l>git clone https://${{secrets.GH_TOKEN}}@github.com/username/username.github.io.git .deploy_git</span><span class=w>
@@ -555,7 +846,21 @@
 </span><span class=w>          </span><span class=nt>username</span><span class=p>:</span><span class=w> </span><span class=l>${{secrets.GIT_NAME}}</span><span class=w>
 </span><span class=w>          </span><span class=nt>email</span><span class=p>:</span><span class=w> </span><span class=l>${{secrets.GIT_EMAIL}}</span><span class=w>
 </span><span class=w>          </span><span class=nt>repo_url</span><span class=p>:</span><span class=w> </span><span class=l>https://${{secrets.GH_TOKEN}}@github.com/username/username.github.io.git</span><span class=w>
-</span></code></pre></td></tr></table></div></div></li></ol><h2 id=音乐-shortcode-支持本地歌词文件>音乐 shortcode 支持本地歌词文件</h2><p>太简单了，看 APlayer 文档就能找出来，直接贴代码：</p><ol><li><p>拷贝<code>themes/LoveIt/layouts/shortcodes/music.html</code>到<code>博客根目录/layouts/shortcodes/music.html</code></p></li><li><p>修改如下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id=音乐-shortcode-支持本地歌词文件>音乐 shortcode 支持本地歌词文件</h2>
+<p>太简单了，看 APlayer 文档就能找出来，直接贴代码：</p>
+<ol>
+<li>
+<p>拷贝<code>themes/LoveIt/layouts/shortcodes/music.html</code>到<code>博客根目录/layouts/shortcodes/music.html</code></p>
+</li>
+<li>
+<p>修改如下代码：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -564,7 +869,9 @@
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>...
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html>...
 {{- if .Get &#34;url&#34; -}}
 ...
 {{- $lrc := .Get &#34;lrc&#34; -}}
@@ -573,5 +880,51 @@
 {{- end -}}
 <span class=p>&lt;</span><span class=nt>meting-js</span> <span class=err>...</span> <span class=na>lrc</span><span class=o>=</span><span class=s>&#34;{{ $lrc }}&#34;</span> <span class=err>...</span> <span class=p>&gt;&lt;/</span><span class=nt>meting-js</span><span class=p>&gt;</span>
 ...
-</code></pre></td></tr></table></div></div></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-08-19</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-hashtags=Hugo,教程,个人经验><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/0e6db571/ data-hashtag=Hugo><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hugo/>Hugo</a>,&nbsp;<a href=/tags/%E6%95%99%E7%A8%8B/>教程</a>,&nbsp;<a href=/tags/%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C/>个人经验</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/post/7afcff16/ class=prev rel=prev title="里包恩第一款开源第三方库 plugin-locale 面世！！"><i class="fas fa-angle-left fa-fw"></i>里包恩第一款开源第三方库 plugin-locale 面世！！</a>
-<a href=/post/9e9c31ab/ class=next rel=next title="Hugo 添加友情链接页面">Hugo 添加友情链接页面<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css><script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script><div id=disqus_thread class=comment></div><script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"});</script></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.79.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"BFPHPFN20A","algoliaIndex":"blog-hugo","algoliaSearchKey":"31dc11feeaf9d622e463ea8436736465","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-175008981-1',{'anonymize_ip':true});</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body><script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css><link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css><script>if('serviceWorker'in navigator){navigator.serviceWorker.addEventListener('controllerchange',function(ev){try{console.log("Cache Update！");new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload();}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点",}).show();}catch(e){}});window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(registration){console.log('Service Worker Registered');});navigator.serviceWorker.ready.then(function(registration){console.log('Service Worker Ready');});};}</script></html>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2020-08-19</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-hashtags=Hugo,教程,个人经验><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/0e6db571/ data-hashtag=Hugo><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/0e6db571/ data-title="Hexo 迁移到 Hugo 记录"><i class="fab fa-evernote fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hugo/>Hugo</a>,&nbsp;<a href=/tags/%E6%95%99%E7%A8%8B/>教程</a>,&nbsp;<a href=/tags/%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C/>个人经验</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/post/7afcff16/ class=prev rel=prev title="里包恩第一款开源第三方库 plugin-locale 面世！！"><i class="fas fa-angle-left fa-fw"></i>里包恩第一款开源第三方库 plugin-locale 面世！！</a>
+<a href=/post/9e9c31ab/ class=next rel=next title="Hugo 添加友情链接页面">Hugo 添加友情链接页面<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css>
+<script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script>
+<div id=disqus_thread class=comment></div>
+<script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"})</script></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:100},comment:{},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"BFPHPFN20A",algoliaIndex:"blog-hugo",algoliaSearchKey:"31dc11feeaf9d622e463ea8436736465",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-175008981-1',{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
+<script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css>
+<script>'serviceWorker'in navigator&&(navigator.serviceWorker.addEventListener('controllerchange',function(a){try{console.log("Cache Update！"),new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload()}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点"}).show()}catch(a){}}),window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(a){console.log('Service Worker Registered')}),navigator.serviceWorker.ready.then(function(a){console.log('Service Worker Ready')})})</script>
+</html>
