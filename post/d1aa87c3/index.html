@@ -1,0 +1,278 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Android ANR 原因、定位和避免 - Reborn's Blog</title><meta name=Description content="欢迎来到Reborn's Blog! 我是Reborn, 小萌新一个。这是我的个人技术分享博客，随便记录点东西。目前主要以 Web、逆向和 Android的东西为主。"><meta property="og:title" content="Android ANR 原因、定位和避免">
+<meta property="og:description" content="简介 ANR 全称 Application Not Responding，即应用程序无响应。 主要原因（为什么会发生 ANR？） 主线程（UI 线程）在规定时间内没有处理完相应的工作，就">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reb.mallotec.com/post/d1aa87c3/"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-12-10T16:19:19+08:00">
+<meta property="article:modified_time" content="2021-12-10T16:19:19+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cdn.jsdelivr.net/gh/RebornQ/cdn.blog/img/avatar/android-chrome-192x192.png">
+<meta name=twitter:title content="Android ANR 原因、定位和避免">
+<meta name=twitter:description content="简介 ANR 全称 Application Not Responding，即应用程序无响应。 主要原因（为什么会发生 ANR？） 主线程（UI 线程）在规定时间内没有处理完相应的工作，就">
+<meta name=application-name content="Reborn's Blog">
+<meta name=apple-mobile-web-app-title content="Reborn's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://reb.mallotec.com/post/d1aa87c3/><link rel=prev href=https://reb.mallotec.com/post/6ee1cab0/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><meta name=google-site-verification content="801Xsm51TXL-ks4w7qEmT5wwshzqr2rQEQQo6brRoEc"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Android ANR 原因、定位和避免","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/reb.mallotec.com\/post\/d1aa87c3\/"},"genre":"posts","keywords":"校招, 秋招, 学习, 复习, Android, ANR","wordcount":991,"url":"https:\/\/reb.mallotec.com\/post\/d1aa87c3\/","datePublished":"2021-12-10T16:19:19+08:00","dateModified":"2021-12-10T16:19:19+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Reborn"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/> 首页 </a><a class=menu-item href=/posts> 时间轴 </a><a class=menu-item href=/categories> 分类 </a><a class=menu-item href=/tags> 标签 </a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0> 复习 </a><a class=menu-item href=/friends> 友链 </a><a class=menu-item href=/about> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search for Posts" id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Reborn's Blog">Reborn's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search for Posts" id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/ title>首页</a><a class=menu-item href=/posts title>时间轴</a><a class=menu-item href=/categories title>分类</a><a class=menu-item href=/tags title>标签</a><a class=menu-item href=/categories/%E5%A4%8D%E4%B9%A0 title>复习</a><a class=menu-item href=/friends title>友链</a><a class=menu-item href=/about title>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Android ANR 原因、定位和避免</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://reb.mallotec.com title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Reborn</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E5%A4%8D%E4%B9%A0/><i class="far fa-folder fa-fw"></i>复习</a>&nbsp;<a href=/categories/%E6%A0%A1%E6%8B%9B/><i class="far fa-folder fa-fw"></i>校招</a>&nbsp;<a href=/categories/android/><i class="far fa-folder fa-fw"></i>Android</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-12-10>2021-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 991 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#简介>简介</a></li>
+<li><a href=#主要原因为什么会发生-anr>主要原因（为什么会发生 ANR？）</a>
+<ul>
+<li><a href=#anr-场景>ANR 场景</a>
+<ul>
+<li><a href=#anr-超时阈值表>ANR 超时阈值表</a></li>
+<li><a href=#android-中哪些操作是在主线程呢>Android 中哪些操作是在主线程呢？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#定位-anr>定位 ANR</a>
+<ul>
+<li><a href=#方法一log>方法一：log</a></li>
+<li><a href=#方法二tracestxt>方法二：traces.txt</a></li>
+</ul>
+</li>
+<li><a href=#如何解决避免-anr>如何解决/避免 ANR？</a></li>
+<li><a href=#造成-anr-的更多原因及解决办法>造成 ANR 的更多原因及解决办法</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h1 id=简介>简介</h1>
+<p>ANR 全称 <strong>Application Not Responding</strong>，即应用程序无响应。</p>
+<h1 id=主要原因为什么会发生-anr>主要原因（为什么会发生 ANR？）</h1>
+<p>主线程（UI 线程）在规定时间内没有处理完相应的工作，就会出现 ANR。</p>
+<h2 id=anr-场景>ANR 场景</h2>
+<h3 id=anr-超时阈值表>ANR 超时阈值表</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+<th>前台</th>
+<th>后台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service</td>
+<td>服务</td>
+<td>20s</td>
+<td>200s</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>广播</td>
+<td>10s</td>
+<td>60s</td>
+</tr>
+<tr>
+<td>ContentProvider</td>
+<td>内容提供者</td>
+<td>10s</td>
+<td>&ndash;</td>
+</tr>
+<tr>
+<td>InputEventDispatching <strong>（常见）</strong></td>
+<td>输入事件分发（包括按键和触摸事件）</td>
+<td>5s</td>
+<td>&ndash;</td>
+</tr>
+</tbody>
+</table>
+<p>以上四个条件的执行时间达到阈值，均可造成 ANR 的发生。</p>
+<h3 id=android-中哪些操作是在主线程呢>Android 中哪些操作是在主线程呢？</h3>
+<ol>
+<li>Activity 的所有生命周期回调都是在主线程执行的。</li>
+<li>Service 默认在主线程执行。</li>
+<li>BroadcastReceiver 的 onReceive 回调是在主线程执行的。</li>
+<li>没有使用子线程的 looper 的 Handler 的 handleMessage.post(Runnable) 是在主线程执行的。</li>
+<li>AsyncTask 的回调中除了 doInBackground，其他都是在主线程执行的。</li>
+</ol>
+<h1 id=定位-anr>定位 ANR</h1>
+<h2 id=方法一log>方法一：log</h2>
+<p>可以在 log 中搜索<code>ANR in</code>或<code>am_anr</code>，该行会包含 ANR 的时间、进程以及何种 ANR 等信息。</p>
+<h2 id=方法二tracestxt>方法二：traces.txt</h2>
+<p>使用adb命令</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>adb pull /data/anr/traces.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>traces.txt 会保存到当前所在的目录下，从 trace.txt 文件查看调用 stack。</p>
+<h1 id=如何解决避免-anr>如何解决/避免 ANR？</h1>
+<ol>
+<li>使用 AsyncTask 处理耗时 I/O 操作</li>
+<li>使用 Thread 或者 HandlerThread 提高优先级。<del><em>(HandlerThread？？？)</em></del></li>
+<li>使用 Handler 来处理工作线程的耗时任务。</li>
+<li>Activity 的 onCreate() 和 onResume() 回调中尽量避免耗时的操作。
+<blockquote>
+<p>事实上，onPause() 中也应尽量避免耗时，可以放到 onStop() 中处理，这样可以让新的 Activity 尽快显示出来并切换到前台。<br><br>【因为栈顶的 Activity 需要先 onPause 后（消失于前台），新的 Activity 才能启动。】</p>
+</blockquote>
+</li>
+</ol>
+<h1 id=造成-anr-的更多原因及解决办法>造成 ANR 的更多原因及解决办法</h1>
+<p>以上只是由于简单的主线程耗时造成的 ANR，实际上还有其他原因：</p>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>解决办法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主线程阻塞或主线程数据读取（死锁/线程锁）</td>
+<td>避免死锁的出现，使用子线程来处理耗时操作或阻塞任务。尽量避免在主线程 Query Provider，不要滥用 SharePreferences（ SP 本章不展开讲）</td>
+</tr>
+<tr>
+<td>CPU 满负荷，I/O 阻塞</td>
+<td>文件读写或数据库操作放在子线程异步操作</td>
+</tr>
+<tr>
+<td>内存不足</td>
+<td>Manifest 中 <application> 设置 android:largeHeap=“true”，增大 App 分配的内存。但是<strong>不建议使用此法</strong>，从根本上防止内存泄漏，优化内存使用才是正道。</td>
+</tr>
+<tr>
+<td>各大组件 ANR</td>
+<td>各大组件生命周期中也应避免耗时操作，具体参考上面的超时阈值。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href=https://juejin.cn/post/6844903904061194254 target=_blank rel="noopener noreffer">深入理解Android ANR(面试及实战)</a></li>
+<li><a href=http://gityuan.com/2019/04/06/android-anr/ target=_blank rel="noopener noreffer">彻底理解安卓应用无响应机制</a></li>
+<li><a href=https://www.jianshu.com/p/388166988cef target=_blank rel="noopener noreffer">Android ANR：原理分析及解决办法</a></li>
+<li><a href=https://www.cnblogs.com/webor2006/p/8971331.html target=_blank rel="noopener noreffer">Android异常与性能优化相关面试问题-ANR异常面试问题详解</a></li>
+<li><a href=https://www.jianshu.com/p/7a340a844659 target=_blank rel="noopener noreffer">99%面试必问题目：讲一下ANR吧！</a></li>
+<li><a href="http://kmanong.top/kmn/qxw/form/article?id=77402&cate=86" target=_blank rel="noopener noreffer">妥妥的去面试之Android基础（一） - K码农</a></li>
+<li><a href=https://developer.aliyun.com/article/687786 target=_blank rel="noopener noreffer">看完这篇 Android ANR 分析，就可以和面试官装逼了！</a></li>
+<li><a href=https://xie.infoq.cn/article/6641ca5ae6c93b6621c00b273 target=_blank rel="noopener noreffer">2021Android 高级面试题及答案，Android 篇</a></li>
+</ul>
+</blockquote>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2021-12-10</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免" data-hashtags=校招,秋招,学习,复习,Android,ANR><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://reb.mallotec.com/post/d1aa87c3/ data-hashtag=校招><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免" data-description><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://reb.mallotec.com/post/d1aa87c3/ data-title="Android ANR 原因、定位和避免"><i class="fab fa-evernote fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E6%A0%A1%E6%8B%9B/>校招</a>,&nbsp;<a href=/tags/%E7%A7%8B%E6%8B%9B/>秋招</a>,&nbsp;<a href=/tags/%E5%AD%A6%E4%B9%A0/>学习</a>,&nbsp;<a href=/tags/%E5%A4%8D%E4%B9%A0/>复习</a>,&nbsp;<a href=/tags/android/>Android</a>,&nbsp;<a href=/tags/anr/>ANR</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/post/6ee1cab0/ class=prev rel=prev title="Thread 和 Runnable 的区别"><i class="fas fa-angle-left fa-fw"></i>Thread 和 Runnable 的区别</a></div>
+</div>
+<div id=comments><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/css/disqusjs.min.css>
+<script src=https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js></script>
+<div id=disqus_thread class=comment></div>
+<script>var dsqjs=new DisqusJS({shortname:"rebor",siteName:"Reborn Blog",api:"https://disqus.skk.moe/disqus/",apikey:"fHXEf41Zcb5G9JEcg9dx5UPVBcJPlzJD9QLZ6d6KYsy4Tx5BlFElaZMRjCcfZKCZ",admin:"disqus_yQKQzyJhV3",adminLabel:"admin"})</script></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://reb.mallotec.com target=_blank>Reborn</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:100},comment:{},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"D67XLAJ7ZJ",algoliaIndex:"blog",algoliaSearchKey:"db3c554023877e0b06844cc73ac0c37f",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=https://cdn.jsdelivr.net/gh/RebornQ/rebornQ.github.io/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-175008981-1',{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-175008981-1" async></script></body>
+<script src=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.min.js type=text/javascript></script>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/noty.css rel=stylesheet type=text/css>
+<link href=https://cdn.jsdelivr.net/npm/noty@3.2.0-beta/lib/themes/metroui.css rel=stylesheet type=text/css>
+<script>'serviceWorker'in navigator&&(navigator.serviceWorker.addEventListener('controllerchange',function(a){try{console.log("Cache Update！"),new Noty({type:"info",theme:"metroui",closeWith:['click'],callbacks:{onClick:()=>{window.location.reload()}},timeout:"5000",text:"<style>#tips:link{color: #2a2a2a} #tips:visited{color: #4b0173} #tips:hover{color: #f5f5ff} #tips:active{color: #cccccc}</style><div><b>检测到站点需要更新</b></div><a id='tips' href='#' onclick='window.location.reload();'>点击刷新页面</a> 更新站点"}).show()}catch(a){}}),window.onload=function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(a){console.log('Service Worker Registered')}),navigator.serviceWorker.ready.then(function(a){console.log('Service Worker Ready')})})</script>
+</html>
